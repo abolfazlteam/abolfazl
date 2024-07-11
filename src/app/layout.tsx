@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className={`${alexandria.className} bg-bgColor`}>
         <ThemeProvider attribute="class" enableSystem defaultTheme="light">
           <NextTopLoader
-            color="#7127ba"
+            color="#43D9AD"
             initialPosition={0.08}
             crawlSpeed={200}
             height={3}
@@ -27,7 +27,7 @@ export default function RootLayout({
             showSpinner={false}
             easing="ease"
             speed={200}
-            shadow="0 0 10px #7127ba,0 0 5px #7127ba"
+            shadow="0 0 10px #43D9AD,0 0 5px #43D9AD"
             zIndex={1600}
             showAtBottom={false}
           />
