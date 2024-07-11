@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import ThemeProvider from "@/components/ThemeProvider";
+import { alexandria } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Abolfazl Jamshidi",
@@ -14,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light">
-      <body className={""}>
+    <html lang="en">
+      <body className={`${alexandria.className} bg-bgColor`}>
         <ThemeProvider attribute="class" enableSystem defaultTheme="light">
           <NextTopLoader
             color="#7127ba"
