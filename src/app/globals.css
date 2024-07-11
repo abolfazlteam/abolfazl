@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  -moz-font-feature-settings: "ss01";
+  -webkit-font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
+  scroll-behavior: smooth;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+  }
+
+  /* dark theme colors */
+  :root[class="dark"] {
+  }
+}
+
+/* ARTICLES ELLIPSE BACKGROUND GRADIENT */
+@media screen and (min-width: 1024px) {
+  .ellipse::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--ellipse-gradient);
+    width: 850px;
+    height: 700px;
+    filter: blur(7rem);
+    top: -10rem;
+    left: 2rem;
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  .ellipse::before {
+    height: 800px;
+    top: -10rem;
+    left: -1rem;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  .ellipse::before {
+    width: 750px;
+    height: 750px;
+    top: -5rem;
+    left: 15rem;
+  }
+}
