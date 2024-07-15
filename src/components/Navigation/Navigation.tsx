@@ -11,11 +11,14 @@ import Link from "next/link";
 // import { isSearchSystemReleased } from "@/constants/FeatureFlag.constants";
 import { useEffect, useState } from "react";
 import IconArrowDown from "@/assets/icons/ArrowDown";
+import { useMatchMedia } from "@/hooks/useMatchMedia";
+import MobileNavList from "./MobileNavList";
 
 const Navigation = () => {
   const { resolvedTheme } = useTheme();
   const [logoImage, setLogoImage] = useState<string>(DARK_LOGO_SVG);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const shouldShowMobileNavigation = useMatchMedia("(max-width:640px)");
 
   const handleOpenMenu = () => setIsMenuOpen(true);
   const handleCloseMenu = () => setIsMenuOpen(false);
@@ -44,12 +47,15 @@ const Navigation = () => {
               Abolfazl
             </p>
           </div>
-
-          <NavList
-            links={NAVIGATION_LINKS}
-            isMenuOpen={isMenuOpen}
-            onCloseMenu={handleCloseMenu}
-          />
+          {shouldShowMobileNavigation ? (
+            <MobileNavList
+              links={NAVIGATION_LINKS}
+              isMenuOpen={isMenuOpen}
+              onCloseMenu={handleCloseMenu}
+            />
+          ) : (
+            <NavList links={NAVIGATION_LINKS} />
+          )}
 
           <div className="flex items-center gap-x-12 sm:order-2">
             {/* {isSearchSystemReleased && ( */}
@@ -67,20 +73,22 @@ const Navigation = () => {
         </nav>
 
         {/* Mobile Navigation Menu Button */}
-        <button
-          className="z-40 order-2 my-14 flex h-full max-h-9 w-full max-w-[105px] items-center justify-between rounded-[80px] border border-text-primary px-4 py-2 sm:hidden"
-          onClick={handleOpenMenu}
-        >
-          <span className="text-base text-text-primary">menu</span>
-          <IconArrowDown className="[&_path]:stroke-[#282c33] dark:[&_path]:stroke-white" />
-        </button>
+        {shouldShowMobileNavigation && (
+          <button
+            className="z-40 order-2 my-14 flex h-full max-h-9 w-full max-w-[105px] items-center justify-between rounded-[80px] border border-text-primary px-4 py-2 sm:hidden"
+            onClick={handleOpenMenu}
+          >
+            <span className="text-base text-text-primary">menu</span>
+            <IconArrowDown className="[&_path]:stroke-[#282c33] dark:[&_path]:stroke-white" />
+          </button>
+        )}
       </header>
 
       {/* overlay */}
-      {isMenuOpen && (
-        <div className="absolute left-0 top-0 z-30 h-full w-full bg-[#00000066] sm:hidden">
-          overlay
-        </div>
+      {shouldShowMobileNavigation && (
+        <div
+          className={`absolute left-0 top-0 z-[30] h-full w-full bg-[#00000066] backdrop-blur-sm transition-all duration-300 ease-linear ${isMenuOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+        ></div>
       )}
     </>
   );

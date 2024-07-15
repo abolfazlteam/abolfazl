@@ -32,8 +32,6 @@ export default function RootLayout({
             zIndex={1600}
             showAtBottom={false}
           />
-
-          {/* Navigation */}
           <Navigation />
 
           <div className="relative mx-auto max-w-[800px]">
