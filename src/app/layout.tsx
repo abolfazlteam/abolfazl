@@ -4,6 +4,8 @@ import NextTopLoader from "nextjs-toploader";
 import ThemeProvider from "@/components/ThemeProvider";
 import { alexandria } from "./fonts";
 import Navigation from "@/components/Navigation/Navigation";
+import ToolbarLinks from "@/components/Navigation/ToolbarLinks";
+import { toolbarLinks } from "@/constants/toolbarlinks.constants";
 
 export const metadata: Metadata = {
   title: "Abolfazl Jamshidi",
@@ -33,12 +35,9 @@ export default function RootLayout({
             showAtBottom={false}
           />
           <Navigation />
+          <ToolbarLinks links={toolbarLinks} />
 
-          <div className="relative mx-auto max-w-[800px]">
-            {children}
-
-            {/* Toolbar links */}
-          </div>
+          <div className="relative mx-auto max-w-[800px]">{children}</div>
 
           {/* Footer */}
         </ThemeProvider>
