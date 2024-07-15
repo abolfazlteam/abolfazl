@@ -14,7 +14,7 @@ html {
   :root {
     --white-color: #fff;
     --main-bg-color: #fff;
-    --primary-color: #7127ba;
+    --primary-color: #43d9ad;
     --text-primary: #282c33;
     --gray-1: #282c33;
     --purple-2: "#ccc";
@@ -46,7 +46,7 @@ html {
   :root[class="dark"] {
     --main-bg-color: #282c33;
     --white-color: #fff;
-    --primary-color: #d24df8;
+    --primary-color: #43d9ad;
     --text-primary: #fff;
     --text-secondary: #abb2bf;
     --gray-1: white;

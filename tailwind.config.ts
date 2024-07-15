@@ -29,6 +29,7 @@ const config: Config = {
       backgroundImage: {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-nav-link": `linear-gradient(270deg, rgba(67, 217, 173, 0) 0%, #43D9AD 52.15%, rgba(36, 115, 92, 0) 100%)`,
       },
       padding: {
         "10.5": "42px",
@@ -69,6 +70,7 @@ const config: Config = {
       boxShadow: {
         heroImage: "0px 4px 4px -1px #370C620F",
         heroImage2: "0px 8px 6px -1px #370C621A",
+        navActiveLink: "0px -1px 4px 0px #43D9AD0D",
       },
       keyframes: {
         in: {
