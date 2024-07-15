@@ -6,6 +6,7 @@ import { alexandria } from "./fonts";
 import Navigation from "@/components/Navigation/Navigation";
 import ToolbarLinks from "@/components/Navigation/ToolbarLinks";
 import { toolbarLinks } from "@/constants/toolbarlinks.constants";
+import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
   title: "Abolfazl Jamshidi",
@@ -39,7 +40,7 @@ export default function RootLayout({
 
           <div className="relative mx-auto max-w-[800px]">{children}</div>
 
-          {/* Footer */}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

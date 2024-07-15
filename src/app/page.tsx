@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main className="px-4">hi</main>;
+  return <main className="h-svh px-4">hi</main>;
 }
