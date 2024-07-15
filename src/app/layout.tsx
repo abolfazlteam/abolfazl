@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
 import ThemeProvider from "@/components/ThemeProvider";
 import { alexandria } from "./fonts";
+import Navigation from "@/components/Navigation/Navigation";
 
 export const metadata: Metadata = {
   title: "Abolfazl Jamshidi",
@@ -31,7 +32,17 @@ export default function RootLayout({
             zIndex={1600}
             showAtBottom={false}
           />
-          <div className="relative mx-auto max-w-[800px]">{children}</div>
+
+          {/* Navigation */}
+          <Navigation />
+
+          <div className="relative mx-auto max-w-[800px]">
+            {children}
+
+            {/* Toolbar links */}
+          </div>
+
+          {/* Footer */}
         </ThemeProvider>
       </body>
     </html>
