@@ -18,7 +18,7 @@ export const toolbarLinks: IToolbarLinkItemProps[] = [
     ),
   },
   {
-    href: "https://www.linkedin.com/in/abolfazl-jmashidi/",
+    href: "https://www.linkedin.com/in/abolfazl-jamshidi/",
     ariaLabel: "linkedin profile",
     icon: (
       <IconLinkedIn className="transition-all duration-300 ease-in [&_path]:fill-gray-2 [&_path]:stroke-none group-hover:[&_path]:fill-primary" />
