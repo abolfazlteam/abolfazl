@@ -7,7 +7,10 @@ interface IToolbarLinkProps {
 
 const ToolbarLinks: React.FC<IToolbarLinkProps> = ({ links }) => {
   return (
-    <article className="absolute top-0 z-30 hidden h-[311px] w-[32px] flex-col items-center gap-2 xl:left-96 xl:flex">
+    <article
+      className="absolute top-0 z-30 hidden h-[311px] w-[32px] flex-col items-center gap-2 xl:left-96 xl:flex"
+      data-testid="toolbar-links-wrapper"
+    >
       {/* line */}
       <div className="h-full max-h-[191px] w-[1px] bg-gray-2" />
 
