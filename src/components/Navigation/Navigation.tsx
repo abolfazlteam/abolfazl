@@ -75,6 +75,7 @@ const Navigation = () => {
         {/* Mobile Navigation Menu Button */}
         {shouldShowMobileNavigation && (
           <button
+            data-testid="mobile-navigation-open-btn"
             className="z-40 order-2 my-14 flex h-full max-h-9 w-full max-w-[105px] items-center justify-between rounded-[80px] border border-text-primary px-4 py-2 sm:hidden"
             onClick={handleOpenMenu}
           >

@@ -1,5 +1,3 @@
-// import type { ReactElement } from 'react';
-
 import userEvent from "@testing-library/user-event";
 import { ReactElement } from "react";
 import { render as renderComponent } from "@testing-library/react";
