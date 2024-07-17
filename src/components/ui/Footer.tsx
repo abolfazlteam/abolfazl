@@ -20,7 +20,10 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="mt-25 border-t border-border-articles bg-bgColor px-4 py-5 md:mt-45 md:px-0 md:py-8">
+    <footer
+      className="mt-25 border-t border-border-articles bg-bgColor px-4 py-5 md:mt-45 md:px-0 md:py-8"
+      data-testid="footer-element"
+    >
       <div className="mx-auto max-w-[800px] space-y-12">
         <div className="flex justify-between">
           <div>

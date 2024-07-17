@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { usePathname } from "next/navigation";
 import { render } from "../../../utilities";
 import NavLink from "../Navigation/NavLink";
-import { screen, act } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+
+vi.mock("next/navigation", () => ({
+  usePathname: vi.fn(),
+}));
 
 describe("NavLink Component Tests Suite", () => {
   it("should render the component properly", () => {
@@ -12,16 +18,24 @@ describe("NavLink Component Tests Suite", () => {
     expect(link).toHaveAttribute("href", "/sample-link");
   });
 
-  it.todo("should change the url when clicked on the link", async () => {
-    const { user } = render(<NavLink href="/sample-link">click me</NavLink>);
+  it("should apply active classes when link is active", () => {
+    // @ts-ignore
+    (usePathname as vi.Mock).mockReturnValue("/sample-link");
+    render(<NavLink href="/sample-link">click me</NavLink>);
 
     const link = screen.getByRole("link");
 
-    await user.click(link);
+    expect(link).toHaveClass("font-medium text-primary");
+  });
 
-    act(() => {
-      window.location.pathname = "/sample-link";
-      console.log(window.location.pathname);
-    });
+  it("should not apply active classes when link is inactive", () => {
+    // @ts-ignore
+    (usePathname as vi.Mock).mockReturnValue("/current-link");
+    render(<NavLink href="/sample-link">click me</NavLink>);
+
+    const link = screen.getByRole("link");
+
+    expect(link).not.toHaveClass("font-medium text-primary");
+    expect(link).toHaveClass("text-gray-1 hover:text-primary");
   });
 });

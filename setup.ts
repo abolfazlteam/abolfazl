@@ -42,5 +42,6 @@ afterEach(() => {
 beforeEach(() => {
   vi.mock("next/font/google", () => ({
     Alexandria: () => ({ className: "" }),
+    Rammetto_One: () => ({ className: "" }),
   }));
 });
