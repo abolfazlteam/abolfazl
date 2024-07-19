@@ -27,9 +27,9 @@ html {
     --purple-2: "#ccc";
     --border-color: "#370C62";
     --ellipse-gradient: radial-gradient(
-      70% 70% at 75% 65%,
-      rgba(113, 39, 186, 0.5) 0%,
-      rgba(113, 39, 186, 0) 100%
+      39% 39% at 50% 50%,
+      rgba(67, 217, 173, 0.9) 0%,
+      rgba(67, 217, 173, 0) 70%
     );
     --bg-tertiary: #fcf9ff;
     --bg-tertiary-2: #f9f3ff;
@@ -93,5 +93,39 @@ html {
     height: 750px;
     top: -5rem;
     left: 15rem;
+  }
+}
+
+/* ARTICLES ELLIPSE BACKGROUND GRADIENT */
+@media screen and (min-width: 1024px) {
+  .ellipse::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--ellipse-gradient);
+    width: 1089px;
+    height: 1400px;
+    filter: blur(3rem);
+    top: 40%;
+    left: 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .ellipse::before {
+    width: 1200px;
+    height: 1500px;
+    left: 0;
+    top: 20%;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  .ellipse::before {
+    width: 1512px;
+    height: 1812px;
+    top: 30%;
+    left: 60%;
+    transform: translate(-50%, -10%);
   }
 }

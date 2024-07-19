@@ -1,5 +1,5 @@
 const Page = () => {
-  return <main>all blogs here</main>;
+  return <main className="min-h-svh">all blogs here</main>;
 };
 
 export default Page;
