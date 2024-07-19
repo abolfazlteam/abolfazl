@@ -14,7 +14,7 @@ const HomePageHeroSection = () => {
       <article className="flex w-full flex-col gap-4 md:gap-8">
         <header className={`${rammettoOne.className}`}>
           <h1 className="text-xl leading-8 md:text-[1.6rem] lg:text-[1.9rem] lg:leading-[3.4rem]">
-            Abolfazl Jamshidi
+            Abolfazl
           </h1>
           <p className="text-lg leading-8 text-primary md:text-[1.5rem] lg:text-[1.8rem] lg:leading-[3rem]">
             Front-end developer
