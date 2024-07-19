@@ -43,9 +43,7 @@ const Navigation = () => {
               <Image src={WHITE_LOGO_SVG} alt="logo" width={40} height={40} />
             )}
 
-            <p className="text-caption1 font-bold capitalize text-text-primary">
-              Abolfazl
-            </p>
+            <p className="text-caption1 font-bold capitalize">Abolfazl</p>
           </div>
           {shouldShowMobileNavigation ? (
             <MobileNavList
