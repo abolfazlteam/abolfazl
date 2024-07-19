@@ -21,6 +21,7 @@ const BlogItem = () => {
   }>({ x: 240, y: -324 });
 
   const headingRef = useRef(null);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
     setShowImage(true);
     const position = getRelativeCoordinates(
@@ -28,7 +29,6 @@ const BlogItem = () => {
       headingRef.current as unknown as HTMLHeadingElement,
     );
 
-    console.log(position, "position");
     setMousePosition(position);
   };
 
@@ -37,7 +37,7 @@ const BlogItem = () => {
   const imageOffset = 164;
 
   return (
-    <article className="group">
+    <article className="group rounded-10">
       <Link
         href={"/blogs/1"}
         className={`flex w-full max-w-[800px] flex-col gap-6 rounded-10 bg-gray-7 px-6 pb-4 pt-6 shadow-sm transition-all duration-300 ease-linear group-hover:shadow-lg max-md:group-hover:-translate-y-2 ${alexandria.className}`}
