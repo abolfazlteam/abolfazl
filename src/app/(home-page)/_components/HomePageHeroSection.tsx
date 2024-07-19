@@ -5,7 +5,7 @@ import { Rammetto_One } from "next/font/google";
 const rammettoOne = Rammetto_One({
   subsets: ["latin"],
   weight: ["400"],
-  preload: false,
+  preload: true,
 });
 
 const HomePageHeroSection = () => {
@@ -30,7 +30,7 @@ const HomePageHeroSection = () => {
         </p>
       </article>
 
-      <figure className="relative -order-1 h-full max-h-[344px] w-full max-w-[344px] overflow-hidden rounded-10 sm:order-1 md:max-h-[386px] md:max-w-[384px]">
+      <figure className="relative -order-1 h-[344px] w-full max-w-[344px] overflow-hidden rounded-10 sm:order-1 md:max-h-[386px] md:max-w-[384px]">
         <Image
           src={"/images/hero-img.png"}
           fill

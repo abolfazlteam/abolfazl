@@ -14,6 +14,7 @@ html {
 @layer base {
   ::selection {
     background-color: #43d9ad !important;
+    color: #fff;
   }
 
   :root {
