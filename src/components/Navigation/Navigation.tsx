@@ -29,7 +29,7 @@ const Navigation = () => {
 
   return (
     <>
-      <header className="relative top-0 z-20 bg-bgColor px-4 py-2 md:sticky md:px-0 md:py-1">
+      <header className="bg-white/30 md:py relative top-0 z-20 px-4 py-2 backdrop-blur-md md:sticky md:px-0">
         <nav className="mx-auto flex max-w-[800px] flex-wrap items-center justify-between pt-10 sm:pt-0">
           <div className="flex items-center gap-4">
             {resolvedTheme === "light" ? (

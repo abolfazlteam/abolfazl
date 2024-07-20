@@ -38,7 +38,9 @@ export default function RootLayout({
           <Navigation />
           <ToolbarLinks links={toolbarLinks} />
 
-          <div className="relative mx-auto max-w-[800px] px-4">{children}</div>
+          <div className="container relative mx-auto max-w-[800px] px-4">
+            {children}
+          </div>
 
           <Footer />
         </ThemeProvider>
