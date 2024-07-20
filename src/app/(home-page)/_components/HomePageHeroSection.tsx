@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Rammetto_One } from "next/font/google";
+import HeroImage from "./HeroImage";
 // import { rammettoOne } from "../fonts";
 
 const rammettoOne = Rammetto_One({
@@ -30,17 +30,7 @@ const HomePageHeroSection = () => {
         </p>
       </article>
 
-      <figure className="relative -order-1 h-[344px] w-full max-w-[344px] overflow-hidden rounded-10 sm:order-1 md:max-h-[386px] md:max-w-[384px]">
-        <Image
-          src={"/images/hero-img.png"}
-          fill
-          priority
-          decoding="sync"
-          quality={90}
-          alt="abolfazl is here"
-          className="h-full w-full object-cover object-center"
-        />
-      </figure>
+      <HeroImage />
     </section>
   );
 };
