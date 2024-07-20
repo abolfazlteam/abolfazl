@@ -11,7 +11,7 @@ const ProjectCard = () => {
         alt="project title"
       />
 
-      <div className="bg-project-card-hover absolute left-0 top-full z-[2] h-full w-full space-y-6 px-4 pb-3 pt-[41px] transition-all duration-200 ease-in-out group-hover:top-0">
+      <div className="absolute left-0 top-full z-[2] h-full w-full space-y-6 bg-project-card-hover px-4 pb-3 pt-[41px] transition-all duration-200 ease-in-out group-hover:top-0">
         <div className="space-y-3">
           <h4 className="text-lg font-extrabold capitalize text-white">
             React query
