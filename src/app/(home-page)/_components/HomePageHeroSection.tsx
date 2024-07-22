@@ -17,7 +17,7 @@ const HomePageHeroSection = () => {
             Abolfazl
           </h1>
           <p className="text-lg leading-8 text-primary md:text-[1.5rem] lg:text-[1.8rem] lg:leading-[3rem]">
-            Front-end developer
+            Front-end Developer
           </p>
         </header>
 

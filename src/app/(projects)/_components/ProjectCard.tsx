@@ -3,7 +3,7 @@ import Tag from "./Tag";
 
 const ProjectCard = () => {
   return (
-    <article className="group relative h-[250px] w-[250px] cursor-pointer overflow-hidden rounded-10">
+    <article className="group relative h-[240px] w-[240px] cursor-pointer overflow-hidden rounded-10">
       <Image
         src={"/images/sample-project-img.png"}
         fill
