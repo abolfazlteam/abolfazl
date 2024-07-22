@@ -7,7 +7,11 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   ...props
 }) => {
-  return <NextThemeProvider {...props}>{children}</NextThemeProvider>;
+  return (
+    <NextThemeProvider themes={["light", "dark"]} {...props}>
+      {children}
+    </NextThemeProvider>
+  );
 };
 
 export default ThemeProvider;
