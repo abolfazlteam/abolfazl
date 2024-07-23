@@ -1,4 +1,5 @@
 import { Rammetto_One } from "next/font/google";
+import Gallery from "./Gallery";
 // import { rammettoOne } from "../fonts";
 
 const rammettoOne = Rammetto_One({
@@ -24,8 +25,10 @@ const AboutMeHeroSection = () => {
         </span>
       </header>
 
-      {/* images gallery here like b-r.io */}
-      <div className="border border-red-500"></div>
+      {/* images gallery */}
+      <section className="hidden lg:block">
+        <Gallery />
+      </section>
 
       {/* description */}
       <p className="text-base font-light leading-6 md:text-lg">

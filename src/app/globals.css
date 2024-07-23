@@ -163,3 +163,8 @@ html {
     );
   }
 }
+
+body::-webkit-scrollbar {
+  /* hide scrollbars with webkit scrollbar */
+  display: none;
+}

@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${alexandria.className} ellipse bg-bgColor`}>
-        <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
+        <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <NextTopLoader
             color="#43D9AD"
             initialPosition={0.08}
