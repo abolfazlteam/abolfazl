@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 
-const useMousePosition = (ref) => {
+const useMousePosition = (ref: any) => {
   const [mousePosition, setMousePosition] = React.useState({
     x: null,
     y: null,
   });
 
   React.useEffect(() => {
-    const updateMousePosition = (ev) => {
+    const updateMousePosition = (ev: { clientX: number; clientY: number }) => {
       setMousePosition({
+        // @ts-ignore
         x: ev.clientX - ref.current.getBoundingClientRect().left,
+        // @ts-ignore
         y: ev.clientY - ref.current.getBoundingClientRect().top,
       });
     };
