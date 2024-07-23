@@ -1,5 +1,8 @@
 import { Rammetto_One } from "next/font/google";
+import Gallery from "./Gallery";
+import Image from "next/image";
 // import { rammettoOne } from "../fonts";
+import myImage from "../../../../public/images/me.jpeg";
 
 const rammettoOne = Rammetto_One({
   subsets: ["latin"],
@@ -24,8 +27,37 @@ const AboutMeHeroSection = () => {
         </span>
       </header>
 
-      {/* images gallery here like b-r.io */}
-      <div className="border border-red-500"></div>
+      <div className="mb-8 flex items-center justify-center md:hidden">
+        <figure className="relative left-0 top-0 block h-[240px] w-[270px] -rotate-6 self-center overflow-hidden rounded-20 transition-all duration-150 ease-in-out hover:z-10 md:h-[240px] md:w-[320px] md:hover:left-24">
+          <Image
+            src={myImage}
+            alt=""
+            width={300}
+            height={300}
+            priority
+            decoding="sync"
+            // sizes="(max-width: 500px) 50vw, (max-width: 750px) 33vw, (max-width: 995px) 25vw, (max-width: 1125px) 22vw, (max-width: 1280px) 21vw, 33vw"
+            className="h-full w-full object-cover object-center"
+          />
+        </figure>
+        <figure className="relative -left-6 top-4 block h-[255px] w-[190px] rotate-[7.39deg] select-none overflow-hidden rounded-20 transition-all duration-150 ease-in-out hover:z-10 md:left-14 md:top-8 md:h-[250px] md:w-[230px] md:hover:left-16">
+          <Image
+            src={myImage}
+            alt=""
+            width={300}
+            height={300}
+            priority
+            decoding="sync"
+            // sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 26vw, (max-width: 1560px) 14vw, 15vw"
+            className="h-full w-full object-cover object-center"
+          />
+        </figure>
+      </div>
+
+      {/* images gallery */}
+      <section className="hidden md:block">
+        <Gallery />
+      </section>
 
       {/* description */}
       <p className="text-base font-light leading-6 md:text-lg">

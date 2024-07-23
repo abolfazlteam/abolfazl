@@ -24,7 +24,7 @@ const LinkButton: React.FC<ICommunicationLinkProps> = ({
       <div className="flex items-center gap-2">
         {icon}
         <span
-          className={`text-caption1 font-light ${alexandria.className} capitalize tracking-wide transition-all duration-200 ease-linear group-hover:font-bold`}
+          className={`text-caption1 font-light ${alexandria.className} capitalize tracking-wide text-white transition-all duration-200 ease-linear group-hover:font-bold`}
         >
           {children}
         </span>

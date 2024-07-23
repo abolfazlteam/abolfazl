@@ -19,6 +19,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.3.12",
     "next": "14.2.4",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^1.6.12",
