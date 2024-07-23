@@ -1,11 +1,11 @@
 import PhotoCard from "./PhotoCard";
-import sampleImage from "../../../../public/images/blog-hover-img.png";
+import myImage from "../../../../public/images/me.jpeg";
 
 const Gallery = () => {
   return (
     <div className="relative h-[268px]">
       <PhotoCard
-        src={sampleImage}
+        src={myImage}
         width={290}
         height={219}
         rotate={-6}
@@ -14,7 +14,7 @@ const Gallery = () => {
         meta="hi"
       />
       <PhotoCard
-        src={sampleImage}
+        src={myImage}
         width={200}
         height={220}
         rotate={6.3}
@@ -22,7 +22,7 @@ const Gallery = () => {
         index={2}
       />
       <PhotoCard
-        src={sampleImage}
+        src={myImage}
         width={250}
         height={205}
         rotate={-5.4}
@@ -30,7 +30,7 @@ const Gallery = () => {
         index={3}
       />
       <PhotoCard
-        src={sampleImage}
+        src={myImage}
         width={200}
         height={230}
         rotate={7.6}

@@ -164,7 +164,6 @@ html {
   }
 }
 
-body::-webkit-scrollbar {
-  /* hide scrollbars with webkit scrollbar */
-  display: none;
+body {
+  overflow-x: hidden;
 }
