@@ -8,6 +8,13 @@ const DynamicConnectionSection = dynamic(
   { ssr: false },
 );
 
+const DynamicWorkExperienceSection = dynamic(
+  () => import("../_components/WorkExperienceSection"),
+  {
+    ssr: false,
+  },
+);
+
 // const rammettoOne = Rammetto_One({
 //   subsets: ["latin"],
 //   weight: ["400"],
@@ -19,6 +26,7 @@ const Page = () => {
     <main className="min-h-svh">
       <AboutMeHeroSection />
       <DynamicConnectionSection />
+      <DynamicWorkExperienceSection />
     </main>
   );
 };
