@@ -1,15 +1,31 @@
 import Image from "next/image";
 import Tag from "./Tag";
 import { TProjectProps } from "@/constants/Projects.constants";
+import { twMerge } from "tailwind-merge";
 
-const ProjectCard: React.FC<TProjectProps> = ({
+type TProjectCardProps = TProjectProps & {
+  width?: number;
+  height?: number;
+  className?: string;
+};
+
+const ProjectCard: React.FC<TProjectCardProps> = ({
   description,
   src,
   tags,
   title,
+  width = 240,
+  height = 240,
+  className,
 }) => {
   return (
-    <article className="group relative h-[240px] w-[240px] cursor-pointer overflow-hidden rounded-10">
+    <article
+      style={{ maxWidth: `${width}px`, height: `${height}px` }}
+      className={twMerge(
+        "group relative w-full cursor-pointer overflow-hidden rounded-10",
+        className,
+      )}
+    >
       <Image
         src={src}
         fill
@@ -19,7 +35,7 @@ const ProjectCard: React.FC<TProjectProps> = ({
 
       <div className="invisible absolute h-full w-full bg-project-card-hover opacity-0 duration-300 ease-linear first-letter:transition-all group-hover:visible group-hover:opacity-100"></div>
 
-      <div className="absolute left-0 top-full z-[2] h-full w-full space-y-6 px-4 pb-3 pt-[41px] transition-all duration-500 ease-in-out group-hover:top-0">
+      <div className="absolute left-0 top-full z-[2] flex h-full w-full flex-col justify-end space-y-6 px-4 pb-3 pt-[41px] transition-all duration-500 ease-in-out group-hover:top-0">
         <div className="space-y-3">
           <h4 className="text-lg font-extrabold capitalize text-white">
             {title}
