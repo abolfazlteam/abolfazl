@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Tag from "./Tag";
 
-type TAnimatedProjectCardProps = {
+type TTinderProjectCardProps = {
   rotate?: number;
   width?: number;
   height?: number;
   index?: number;
 };
 
-const AnimatedProjectCard: React.FC<TAnimatedProjectCardProps> = ({
+const TinderProjectCard: React.FC<TTinderProjectCardProps> = ({
   height,
   width,
   index = 1,
@@ -35,6 +35,7 @@ const AnimatedProjectCard: React.FC<TAnimatedProjectCardProps> = ({
         opacity: 0,
         width,
         height,
+        scale: 0.8,
       }}
       transition={{
         default: {
@@ -51,8 +52,8 @@ const AnimatedProjectCard: React.FC<TAnimatedProjectCardProps> = ({
       }}
       animate={{ y: 0, opacity: 1, x: 0 }}
       drag={"x"}
-      whileTap={{ scale: 1.1, cursor: "grabbing" }}
-      whileDrag={{ scale: 1.2, cursor: "grabbing" }}
+      whileTap={{ scale: 0.9, cursor: "grabbing" }}
+      whileDrag={{ scale: 0.9, cursor: "grabbing" }}
     >
       <article
         style={{ width: `${width}px`, height: `${height}px`, zIndex: index }}
@@ -86,4 +87,4 @@ const AnimatedProjectCard: React.FC<TAnimatedProjectCardProps> = ({
   );
 };
 
-export default AnimatedProjectCard;
+export default TinderProjectCard;
