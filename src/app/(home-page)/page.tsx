@@ -5,6 +5,7 @@ import Section from "@/components/ui/Section";
 import BlogsList from "../(blogs)/_components/BlogsList";
 import { Metadata } from "next";
 import ProjectsList from "../(projects)/_components/ProjectsList";
+import Slider from "@/components/ui/Slider";
 // import { rammettoOne } from "../fonts";
 
 // import { Rammetto_One, Alexandria } from "next/font/google";
@@ -37,7 +38,13 @@ const Page = () => {
 
       <Section>
         <Header title="latest projects" />
-        <ProjectsList />
+        <section className="hidden md:block">
+          <ProjectsList />
+        </section>
+
+        <section className="block md:hidden">
+          <Slider />
+        </section>
       </Section>
     </main>
   );
