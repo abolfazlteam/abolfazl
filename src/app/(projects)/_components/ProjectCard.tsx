@@ -22,7 +22,7 @@ const ProjectCard: React.FC<TProjectCardProps> = ({
     <article
       style={{ maxWidth: `${width}px`, height: `${height}px` }}
       className={twMerge(
-        "group relative w-full cursor-pointer overflow-hidden rounded-10",
+        "group relative w-full cursor-pointer overflow-hidden rounded-10 shadow-md",
         className,
       )}
     >
