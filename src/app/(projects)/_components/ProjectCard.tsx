@@ -7,15 +7,13 @@ const ProjectCard: React.FC<TProjectProps> = ({
   src,
   tags,
   title,
-  // repoLink,
-  // siteLink,
 }) => {
   return (
     <article className="group relative h-[240px] w-[240px] cursor-pointer overflow-hidden rounded-10">
       <Image
         src={src}
         fill
-        className="z-0 h-full w-full object-cover object-center"
+        className="z-0 h-full w-full object-cover"
         alt="project title"
       />
 
@@ -27,13 +25,13 @@ const ProjectCard: React.FC<TProjectProps> = ({
             {title}
           </h4>
           <p className="text-base leading-6 text-white">
-            {description.slice(0, 35)}
+            {description.slice(0, 55)}...
           </p>
         </div>
         {/* tags */}
         <div className="flex flex-wrap items-center gap-2">
           {tags.slice(0, 3).map((tag) => (
-            <Tag>{tag}</Tag>
+            <Tag key={tag}>{tag}</Tag>
           ))}
         </div>
       </div>
