@@ -62,7 +62,10 @@ const ThemeSwitcher: React.FC<IThemeSwitcherProps> = () => {
         className={`absolute left-0 top-10 flex w-max -translate-x-full flex-col overflow-hidden rounded-10 bg-bgColor shadow-md transition-all duration-200 ease-in-out ${showMenu ? "visible z-40 opacity-100" : "invisible -z-30 scale-0 opacity-0"}`}
       >
         {themes.map((theme) => (
-          <LightThemeButton onClick={() => handleChangeTheme(theme)}>
+          <LightThemeButton
+            key={theme}
+            onClick={() => handleChangeTheme(theme)}
+          >
             {theme === "system" ? "automatic" : theme}
           </LightThemeButton>
         ))}

@@ -33,7 +33,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "gradient-nav-link": `linear-gradient(270deg, rgba(67, 217, 173, 0) 0%, #43D9AD 52.15%, rgba(36, 115, 92, 0) 100%)`,
         "project-card-hover":
-          "linear-gradient(0deg, #14161A 0%, rgba(20, 22, 26, 0.65) 100%)",
+          "linear-gradient(0deg, #14161ace 0%, rgba(20, 22, 26, 0.37) 100%)",
       },
       padding: {
         "10.5": "42px",

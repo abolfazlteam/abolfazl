@@ -30,7 +30,7 @@ const Company: React.FC<ICompanyInfoProps> = ({
             {role} at {companyName}{" "}
           </span>
           <span className="hidden text-text-primary sm:inline-block"> - </span>
-          <span className="text-gray-5 inline-block w-full leading-6 sm:w-fit">
+          <span className="inline-block w-full leading-6 text-gray-5 sm:w-fit">
             {" "}
             {location} · {jobType}
           </span>
