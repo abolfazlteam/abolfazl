@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRef, useState } from "react";
 import blogHoverImage from "../../../../public/images/blog-hover-img.png";
 import getRelativeCoordinates from "@/utils/getRelativeCoordinates";
+import { useInView } from "framer-motion";
+import { IBlogItemProps } from "./BlogItem.types";
 
 const alexandria = Alexandria({
   subsets: ["latin"],
@@ -13,13 +15,23 @@ const alexandria = Alexandria({
   preload: true,
 });
 
-const BlogItem = () => {
+const BlogItem: React.FC<IBlogItemProps> = ({
+  shouldHaveAnimation = false,
+  animationDirection = "right",
+}) => {
   const [showImage, setShowImage] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<{
     x: number;
     y: number;
   }>({ x: 240, y: -324 });
 
+  // useInView ref
+  const blogItemRef = useRef(null);
+  const isInView = useInView(blogItemRef, {
+    once: true,
+  });
+
+  // heading hover ref
   const headingRef = useRef(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
@@ -37,7 +49,10 @@ const BlogItem = () => {
   const imageOffset = 164;
 
   return (
-    <article className="group rounded-10">
+    <article
+      className={`group rounded-10 transition-all duration-300 ease-in-out ${shouldHaveAnimation ? (isInView ? "translate-x-0 opacity-100" : `${animationDirection === "left" ? "-translate-x-40" : "translate-x-40"} opacity-0`) : "translate-x-0 opacity-100"}`}
+      ref={blogItemRef}
+    >
       <Link
         href={"/blogs/1"}
         className={`flex w-full max-w-[800px] flex-col gap-6 rounded-10 bg-gray-7 px-6 pb-4 pt-6 shadow-sm transition-all duration-300 ease-linear group-hover:shadow-lg max-md:group-hover:-translate-y-2 ${alexandria.className}`}
