@@ -1,11 +1,16 @@
+import {
+  ABOLFAZL_AND_BIKE_FIRST_IMAGE,
+  ABOLFAZL_AND_BIKE_SECOND_IMAGE,
+  ABOLFAZL_FIRST_IMAGE,
+  ABOLFAZL_SECOND_IMAGE,
+} from "@/constants";
 import PhotoCard from "./PhotoCard";
-import myImage from "../../../../public/images/me.jpeg";
 
 const Gallery = () => {
   return (
     <div className="relative h-[268px]">
       <PhotoCard
-        src={myImage}
+        src={ABOLFAZL_FIRST_IMAGE}
         width={290}
         height={219}
         rotate={-6}
@@ -14,7 +19,7 @@ const Gallery = () => {
         meta="hi"
       />
       <PhotoCard
-        src={myImage}
+        src={ABOLFAZL_SECOND_IMAGE}
         width={200}
         height={220}
         rotate={6.3}
@@ -22,15 +27,15 @@ const Gallery = () => {
         index={2}
       />
       <PhotoCard
-        src={myImage}
+        src={ABOLFAZL_AND_BIKE_FIRST_IMAGE}
         width={250}
-        height={205}
+        height={225}
         rotate={-5.4}
         left={343}
         index={3}
       />
       <PhotoCard
-        src={myImage}
+        src={ABOLFAZL_AND_BIKE_SECOND_IMAGE}
         width={200}
         height={230}
         rotate={7.6}
