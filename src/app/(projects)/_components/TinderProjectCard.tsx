@@ -70,7 +70,7 @@ const TinderProjectCard: React.FC<TTinderProjectCardProps> = ({
           alt="project title"
         />
 
-        <div className="bg-tinder-project-card-hover absolute h-full w-full"></div>
+        <div className="absolute h-full w-full bg-tinder-project-card-hover"></div>
 
         <div className="absolute left-0 top-0 z-[2] flex h-full w-full flex-col justify-end space-y-6 px-4 pb-10 pt-[41px]">
           <h4>
