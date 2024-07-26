@@ -21,7 +21,7 @@ const HomePageHeroSection = () => {
           </p>
         </header>
 
-        <p className="text-base leading-4 lg:text-lg">
+        <p className="text-base leading-8 md:leading-6 lg:text-lg">
           I'm a frontend developer, optimist, and supportive team player. I love
           creating and presenting content about JavaScript, TypeScript, React,
           Next.js and more. In addition, I love doing new and exciting things

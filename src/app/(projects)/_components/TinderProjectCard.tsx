@@ -1,11 +1,13 @@
 "use client";
 
+import IconLink from "@/assets/icons/LinkIcon";
+import { TProjectProps } from "@/constants/Projects.constants";
 import { motion } from "framer-motion";
 
 import Image from "next/image";
-import Tag from "./Tag";
+import Link from "next/link";
 
-type TTinderProjectCardProps = {
+type TTinderProjectCardProps = TProjectProps & {
   rotate?: number;
   width?: number;
   height?: number;
@@ -17,6 +19,8 @@ const TinderProjectCard: React.FC<TTinderProjectCardProps> = ({
   width,
   index = 1,
   rotate = 10,
+  src,
+  title,
 }) => {
   return (
     <motion.article
@@ -57,30 +61,27 @@ const TinderProjectCard: React.FC<TTinderProjectCardProps> = ({
     >
       <article
         style={{ width: `${width}px`, height: `${height}px`, zIndex: index }}
-        className={`group relative cursor-pointer overflow-hidden rounded-10`}
+        className={`group relative cursor-pointer overflow-hidden rounded-10 shadow-lg`}
       >
         <Image
-          src={"/images/sample-project-img.png"}
+          src={src}
           fill
           className="z-0 h-full w-full object-cover object-center"
           alt="project title"
         />
 
-        <div className="absolute left-0 top-full z-[2] h-full w-full space-y-6 bg-project-card-hover px-4 pb-3 pt-[41px] transition-all duration-200 ease-in-out group-hover:top-0">
-          <div className="space-y-3">
-            <h4 className="text-lg font-extrabold capitalize text-white">
-              React query
-            </h4>
-            <p className="text-base leading-6 text-white">
-              Simplifies the use of React Query by offering a...
-            </p>
-          </div>
-          {/* tags */}
-          <div className="flex flex-wrap items-center gap-2">
-            <Tag>typescript</Tag>
-            <Tag>javascript</Tag>
-            <Tag>vite</Tag>
-          </div>
+        <div className="bg-tinder-project-card-hover absolute h-full w-full"></div>
+
+        <div className="absolute left-0 top-0 z-[2] flex h-full w-full flex-col justify-end space-y-6 px-4 pb-10 pt-[41px]">
+          <h4>
+            <Link
+              href={"/projects"}
+              className="flex items-center justify-between text-2xl font-extrabold capitalize text-white"
+            >
+              {title}
+              <IconLink className="[&_path]:stroke-white" />
+            </Link>
+          </h4>
         </div>
       </article>
     </motion.article>

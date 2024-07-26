@@ -12,9 +12,9 @@ const useMousePosition = (ref: any) => {
     const updateMousePosition = (ev: { clientX: number; clientY: number }) => {
       setMousePosition({
         // @ts-ignore
-        x: ev.clientX - ref.current.getBoundingClientRect().left,
+        x: ev.clientX - ref.current?.getBoundingClientRect().left,
         // @ts-ignore
-        y: ev.clientY - ref.current.getBoundingClientRect().top,
+        y: ev.clientY - ref.current?.getBoundingClientRect().top,
       });
     };
     window.addEventListener("mousemove", updateMousePosition);
