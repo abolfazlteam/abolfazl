@@ -90,8 +90,12 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
             alt={""}
             width={width}
             height={height}
-            className="pointer-events-none absolute inset-0 h-full w-full rounded-2xl object-cover object-center"
+            className="pointer-events-none absolute inset-0 h-full w-full rounded-2xl object-cover object-top"
             priority
+            quality={80}
+            decoding="sync"
+            placeholder="blur"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 26vw, (max-width: 1560px) 14vw, 15vw"
           />
         </div>
         {/* the image back side */}

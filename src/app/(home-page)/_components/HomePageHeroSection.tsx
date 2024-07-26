@@ -21,12 +21,11 @@ const HomePageHeroSection = () => {
           </p>
         </header>
 
-        <p className="text-base leading-6 lg:text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas
-          purus viverra accumsan Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Egestas purus viverra accumsan
+        <p className="text-base leading-8 md:leading-6 lg:text-lg">
+          I'm a frontend developer, optimist, and supportive team player. I love
+          creating and presenting content about JavaScript, TypeScript, React,
+          Next.js and more. In addition, I love doing new and exciting things
+          beyond the screen like riding a bike or spending my time in nature.
         </p>
       </article>
 

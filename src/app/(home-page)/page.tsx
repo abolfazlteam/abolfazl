@@ -5,7 +5,6 @@ import Header from "@/components/ui/Header";
 import Section from "@/components/ui/Section";
 import BlogsList from "../(blogs)/_components/BlogsList";
 import { Metadata } from "next";
-import Slider from "@/components/ui/Slider";
 
 const DynamicProjectList = dynamic(
   () => import("../(projects)/_components/ProjectsList"),
@@ -14,21 +13,12 @@ const DynamicProjectList = dynamic(
   },
 );
 
-// import { rammettoOne } from "../fonts";
-
-// import { Rammetto_One, Alexandria } from "next/font/google";
-
-// const rammettoOne = Rammetto_One({
-//   subsets: ["latin"],
-//   weight: ["400"],
-//   preload: false,
-// });
-
-// const alexandria = Alexandria({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700"],
-//   preload: false,
-// });
+const DynamicTinderProjectList = dynamic(
+  () => import("../(projects)/_components/TinderProjectsWrapper"),
+  {
+    ssr: false,
+  },
+);
 
 export const metadata: Metadata = {
   title: "Abolfazl Jamshidi - Frontend Engineer",
@@ -51,7 +41,7 @@ const Page = () => {
         </section>
 
         <section className="block md:hidden">
-          <Slider />
+          <DynamicTinderProjectList />
         </section>
       </Section>
     </main>

@@ -21,6 +21,7 @@ const Company: React.FC<ICompanyInfoProps> = ({
           alt={`${companyName} logo`}
           fill
           className="h-full w-full object-cover object-center"
+          placeholder="blur"
         />
       </figure>
 

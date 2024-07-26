@@ -35,7 +35,9 @@ const MobileNavList: React.FC<INavListProps> = ({
 
       {links.map((link) => (
         <li key={link.id}>
-          <NavLink href={link.href}>{link.title}</NavLink>
+          <button onClick={onCloseMenu}>
+            <NavLink href={link.href}>{link.title}</NavLink>
+          </button>
         </li>
       ))}
     </ul>,
