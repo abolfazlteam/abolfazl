@@ -63,21 +63,14 @@ const AboutMeHeroSection = () => {
 
       {/* description */}
       <p className="text-base font-light leading-6 md:text-lg">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Egestas purus
-        viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus
-        aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi
-        porta lorem mollis. Morbi tristique senectus et netus. Mattis
-        pellentesque id nibh tortor id aliquet lectus proin. Sapien faucibus et
-        molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed
-        ullamcorper morbi tincidunt ornare massa eget. Dictum varius duis at
-        consectetur lorem. Nisi vitae suscipit tellus mauris a diam maecenas sed
-        enim. Velit ut tortor pretium viverra suspendisse potenti nullam. Et
-        molestie ac feugiat sed lectus. Non nisi est sit amet facilisis magna.
-        Dignissim diam quis enim lobortis scelerisque fermentum. Odio ut enim
-        blandit volutpat maecenas volutpat. Ornare lectus sit amet est placerat
-        in egestas erat. Nisi vitae suscipit tellus mauris a diam maecenas sed.
-        Placerat duis ultricies lacus sed turpis tincidunt id aliquet.
+        Hey, I'm Abolfazl. I have been coding for 3 years and currently work as
+        a frontend developer at Pardis Technology Park. In addition to coding, I
+        like exploring and writing about technology, self-development and
+        lifestyle.
+      </p>
+      <p className="text-base font-light leading-6 md:text-lg">
+        While I'm not at my desk, I am probably lifting weights, riding my
+        motorcycle, or exploring peace in nature/camping.
       </p>
     </section>
   );

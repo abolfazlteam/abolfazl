@@ -1,5 +1,6 @@
 "use client";
 
+import { ABOLFAZL_FIRST_IMAGE } from "@/constants";
 import { throttle } from "@/utils/index.utils";
 import Image from "next/image";
 import { MouseEvent, useCallback, useState } from "react";
@@ -43,13 +44,15 @@ const HeroImage = () => {
       className="hero-image relative -order-1 h-[344px] w-full max-w-[344px] rounded-10 after:rounded-10 sm:order-1 md:max-h-[386px] md:max-w-[384px]"
     >
       <Image
-        src={"/images/hero-img.png"}
+        src={ABOLFAZL_FIRST_IMAGE}
         fill
         priority
         decoding="sync"
         quality={90}
         alt="abolfazl is here"
-        className="h-full w-full rounded-10 object-cover object-center"
+        placeholder="blur"
+        className="h-full w-full rounded-10 object-cover object-top"
+        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 26vw, (max-width: 1560px) 14vw, 15vw"
       />
     </figure>
   );
