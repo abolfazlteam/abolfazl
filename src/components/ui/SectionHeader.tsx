@@ -1,10 +1,4 @@
-import { Rammetto_One } from "next/font/google";
-
-const rammettoOne = Rammetto_One({
-  subsets: ["latin"],
-  weight: ["400"],
-  preload: true,
-});
+import { rammettoOne } from "@/app/fonts";
 
 interface ISectionHeaderProps {
   title: string;

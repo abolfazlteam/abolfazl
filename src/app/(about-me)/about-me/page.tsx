@@ -1,11 +1,13 @@
-// import { Rammetto_One } from "next/font/google";
 import dynamic from "next/dynamic";
 import AboutMeHeroSection from "../_components/AboutMeHeroSection";
-// import { rammettoOne } from "../fonts";
+import { ConnectionSkeletons } from "../_components/ConnectionItemSkeleton";
 
 const DynamicConnectionSection = dynamic(
   () => import("../_components/ConnectionListSection"),
-  { ssr: false },
+  {
+    ssr: false,
+    loading: () => <ConnectionSkeletons />,
+  },
 );
 
 const DynamicWorkExperienceSection = dynamic(
@@ -14,12 +16,6 @@ const DynamicWorkExperienceSection = dynamic(
     ssr: false,
   },
 );
-
-// const rammettoOne = Rammetto_One({
-//   subsets: ["latin"],
-//   weight: ["400"],
-//   preload: true,
-// });
 
 const Page = () => {
   return (
