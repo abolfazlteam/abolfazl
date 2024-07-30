@@ -1,6 +1,5 @@
 "use client";
 
-import { Alexandria } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -8,12 +7,7 @@ import blogHoverImage from "../../../../public/images/blog-hover-img.png";
 import getRelativeCoordinates from "@/utils/getRelativeCoordinates";
 import { useInView } from "framer-motion";
 import { IBlogItemProps } from "./BlogItem.types";
-
-const alexandria = Alexandria({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  preload: true,
-});
+import { alexandria } from "@/app/fonts";
 
 const BlogItem: React.FC<IBlogItemProps> = ({
   shouldHaveAnimation = false,

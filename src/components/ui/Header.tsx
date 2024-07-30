@@ -1,13 +1,6 @@
+import { rammettoOne } from "@/app/fonts";
 import IconArrowRight from "@/assets/icons/ArrowRightIcon";
-import { Rammetto_One } from "next/font/google";
 import Link from "next/link";
-// import { rammettoOne } from "../fonts";
-
-const rammettoOne = Rammetto_One({
-  subsets: ["latin"],
-  weight: ["400"],
-  preload: true,
-});
 
 interface IHeaderProps {
   title: string;

@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ./docker/development/Dockerfile
+    ports:
+      - 3000:3000
+
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./next.config.mjs
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+        - path: .
+          target: /app
+          action: sync
+
+    environment:
+      - name=value

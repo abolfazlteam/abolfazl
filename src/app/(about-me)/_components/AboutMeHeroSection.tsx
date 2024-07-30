@@ -1,14 +1,7 @@
-import { Rammetto_One } from "next/font/google";
 import Gallery from "./Gallery";
 import Image from "next/image";
 import { ABOLFAZL_FIRST_IMAGE, ABOLFAZL_SECOND_IMAGE } from "@/constants";
-// import { rammettoOne } from "../fonts";
-
-const rammettoOne = Rammetto_One({
-  subsets: ["latin"],
-  weight: ["400"],
-  preload: true,
-});
+import { rammettoOne } from "@/app/fonts";
 
 const AboutMeHeroSection = () => {
   return (

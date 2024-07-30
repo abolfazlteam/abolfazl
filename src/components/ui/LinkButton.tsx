@@ -1,13 +1,7 @@
+import { alexandria } from "@/app/fonts";
 import IconLink from "@/assets/icons/LinkIcon";
 import { ICommunicationLinkProps } from "@/constants/CommunicationLinks.constants";
-import { Alexandria } from "next/font/google";
 import Link from "next/link";
-
-const alexandria = Alexandria({
-  subsets: ["latin"],
-  weight: ["300", "400", "600", "700"],
-  preload: true,
-});
 
 const LinkButton: React.FC<ICommunicationLinkProps> = ({
   hasLinkIcon = false,
