@@ -3,8 +3,7 @@ services:
   web:
     build:
       context: ./
-      target: production
-      dockerfile: Dockerfile
+      dockerfile: ./docker/development/Dockerfile
     ports:
       - 3000:3000
 
