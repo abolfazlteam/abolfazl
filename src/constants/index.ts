@@ -11,6 +11,8 @@ import ABOLFAZL_SECOND_IMAGE from "../../public/images/me-2.jpg";
 import ABOLFAZL_AND_BIKE_FIRST_IMAGE from "../../public/images/me-and-bike.jpg";
 import ABOLFAZL_AND_BIKE_SECOND_IMAGE from "../../public/images/me-and-bike-2.jpg";
 
+export const NEWSLETTER_SUBSCRIBERS_CONSTANT = 50;
+
 export {
   DARK_LOGO_SVG,
   WHITE_LOGO_SVG,
