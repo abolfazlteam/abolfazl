@@ -1,6 +1,13 @@
+import dynamic from "next/dynamic";
+
 import SectionHeader from "@/components/ui/SectionHeader";
-import WorkExperienceList from "./WorkExperienceList";
 import Section from "@/components/ui/Section";
+import WorkExperienceSectionSkeleton from "./WorkExperienceSkeleton";
+
+const WorkExperienceListDynamic = dynamic(
+  () => import("./WorkExperienceList"),
+  { ssr: false, loading: () => <WorkExperienceSectionSkeleton /> },
+);
 
 const WorkExperienceSection = () => {
   return (
@@ -12,7 +19,7 @@ const WorkExperienceSection = () => {
           viverra accumsan"
       />
 
-      <WorkExperienceList />
+      <WorkExperienceListDynamic />
     </Section>
   );
 };

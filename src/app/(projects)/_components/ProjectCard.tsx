@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Tag from "./Tag";
 import { TProjectProps } from "@/constants/Projects.constants";
 import { twMerge } from "tailwind-merge";
+import { useState } from "react";
 
 type TProjectCardProps = TProjectProps & {
   width?: number;
@@ -18,6 +21,8 @@ const ProjectCard: React.FC<TProjectCardProps> = ({
   height = 240,
   className,
 }) => {
+  const [loading, setLoading] = useState<boolean>(true);
+
   return (
     <article
       style={{ maxWidth: `${width}px`, height: `${height}px` }}
@@ -26,11 +31,21 @@ const ProjectCard: React.FC<TProjectCardProps> = ({
         className,
       )}
     >
+      {loading && (
+        <div className="absolute z-10 h-full w-full animate-pulse rounded-[inherit] bg-gray-100"></div>
+      )}
+
       <Image
         src={src}
         fill
+        style={{
+          visibility: loading ? "hidden" : "visible",
+        }}
         className="z-0 h-full w-full object-cover"
         alt="project title"
+        onLoad={() => {
+          setLoading(false);
+        }}
       />
 
       <div className="invisible absolute h-full w-full bg-project-card-hover opacity-0 duration-300 ease-linear first-letter:transition-all group-hover:visible group-hover:opacity-100"></div>
