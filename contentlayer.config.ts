@@ -6,14 +6,15 @@ import {
 } from "contentlayer/source-files";
 import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
+import textEllipsisFormatter from "./src/utils/text-ellipsis";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import textEllipsisFormatter from "@/utils/text-ellipsis";
 
+// computing some values from docs
 const getSlug = (doc: any) =>
   doc?._raw.sourceFileName
     .replace(/\.mdx$/, "")
-    .replace("-", " ")
-    .split(" ")[1]; // extracting the 1- from the file names
+    .replace("-", " ") // extracting the 1- from the file names
+    .split(" ")[1];
 
 const blogComputedFields: ComputedFields = {
   slug: {
@@ -55,7 +56,7 @@ export const Blog = defineDocumentType(() => ({
     baseUrl: {
       type: "string",
       required: false,
-      default: "https://iabolfazl.dev/",
+      default: "https://armancodes.com/",
     },
     title: { type: "string", required: true },
     summary: { type: "string", required: true },
@@ -86,8 +87,6 @@ export const Blog = defineDocumentType(() => ({
   },
   computedFields: blogComputedFields,
 }));
-
-// making the sources
 
 export default makeSource({
   contentDirPath: "src/content",

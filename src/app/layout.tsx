@@ -1,4 +1,6 @@
 import "./globals.css";
+import "../../public/prism/one-dark.css";
+
 import type { Metadata } from "next";
 // import { headers } from "next/headers";
 import NextTopLoader from "nextjs-toploader";

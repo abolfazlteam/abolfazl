@@ -171,3 +171,97 @@ html {
 body {
   overflow-x: hidden;
 }
+
+.prose
+  p
+  :where(code):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::before,
+.prose
+  p
+  :where(code):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::after {
+  content: "";
+}
+
+.prose p code {
+  @apply whitespace-pre-line rounded p-1 font-normal text-text-primary;
+}
+
+pre,
+pre[data-theme="github-dark-dimmed"] {
+  @apply rounded-md border border-[var(--gray-3)] !bg-[#ffffff] text-[13px] text-xs leading-6 text-text-primary dark:!bg-[#262626];
+}
+
+div[data-rehype-pretty-code-title] + pre,
+figcaption[data-rehype-pretty-code-title] + pre {
+  @apply mt-0 rounded-tl-none rounded-tr-none border-t-0;
+}
+
+div[data-rehype-pretty-code-title] {
+  @apply max-w-none rounded-md rounded-bl-none rounded-br-none border border-[var(--gray-3)] bg-[#ffffff] px-6 py-3 text-[13px] text-xs leading-5 text-text-primary dark:bg-[#262626];
+}
+
+figcaption[data-rehype-pretty-code-title] {
+  @apply m-0 block w-full max-w-[37rem] rounded-md rounded-bl-none rounded-br-none border border-[var(--gray-3)] bg-[#ffffff] px-6 py-3 text-[13px] text-xs leading-5 text-text-primary dark:bg-[#262626];
+}
+
+div[data-rehype-pretty-code-fragment] {
+  overflow: hidden;
+
+  /* stylist preferences */
+  background-color: rgb(248, 17, 17);
+  border-radius: 0.5rem;
+}
+
+div[data-rehype-pretty-code-fragment] pre {
+  overflow-x: auto;
+
+  /* stylist preferences */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.code-highlight {
+  float: left; /* 1 */
+  min-width: 100%; /* 2 */
+}
+
+.code-line {
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.highlight-line {
+  margin-left: -28px;
+  margin-right: -24px;
+  padding-left: 25px;
+  background-color: #008ff54f; /* Set highlight bg color */
+  border-left: 3px solid #3b9eff; /* Set highlight accent border color */
+}
+
+:root[class="dark"] {
+  .highlight-line {
+    background-color: transparent;
+    border-left: none;
+    padding-left: 28px;
+  }
+}
+
+.line-number::before {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  text-align: right;
+  margin-right: 24px;
+  margin-left: -8px;
+  color: var(--gray-8); /* Line number color */
+  content: attr(line);
+}
