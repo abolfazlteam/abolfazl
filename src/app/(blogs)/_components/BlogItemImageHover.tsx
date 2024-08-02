@@ -35,7 +35,7 @@ const BlogItemHoverImage: React.FC<IBlogItemHoverImageProps> = ({
         }}
         width={width}
         height={height}
-        className={`absolute -top-[10rem] transition-all duration-100 ease-linear`}
+        className={`absolute -top-[10rem] rounded-10 transition-all duration-100 ease-linear`}
         alt="image of blog"
         onLoad={() => {
           setLoading(false);

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import AboutMeHeroSection from "../_components/AboutMeHeroSection";
 import { ConnectionSkeletons } from "../_components/ConnectionItemSkeleton";
 import WorkExperienceSection from "../_components/WorkExperienceSection";
-import JsonLd from "@/components/seo/JsonLd";
+// import JsonLd from "@/components/seo/JsonLd";
 
 const DynamicConnectionSection = dynamic(
   () => import("../_components/ConnectionListSection"),
@@ -43,20 +43,20 @@ const DynamicConnectionSection = dynamic(
 // };
 
 const Page = () => {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "@id": "ProfilePage",
-    mainEntity: {
-      "@type": "Person",
-      name: "Arman Ahmadi",
-      image: "https://armancodes.com/images/hero-img.webp",
-      description:
-        "Hi, I'm Arman! I'm based in the Netherlands and work as a backend engineer at Onefit/Urban Sports Club.",
-      url: "https://armancodes.com",
-      jobTitle: "Backend Engineer",
-    },
-  };
+  // const jsonLd = {
+  //   "@context": "https://schema.org",
+  //   "@type": "ProfilePage",
+  //   "@id": "ProfilePage",
+  //   mainEntity: {
+  //     "@type": "Person",
+  //     name: "Arman Ahmadi",
+  //     image: "https://armancodes.com/images/hero-img.webp",
+  //     description:
+  //       "Hi, I'm Arman! I'm based in the Netherlands and work as a backend engineer at Onefit/Urban Sports Club.",
+  //     url: "https://armancodes.com",
+  //     jobTitle: "Backend Engineer",
+  //   },
+  // };
 
   return (
     <main className="min-h-svh">
@@ -65,7 +65,7 @@ const Page = () => {
       <WorkExperienceSection />
 
       {/* JSON+LD data */}
-      <JsonLd data={jsonLd} />
+      {/* <JsonLd data={jsonLd} /> */}
     </main>
   );
 };
