@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ComputedFields,
@@ -92,6 +93,7 @@ export default makeSource({
   contentDirPath: "src/content",
   markdown: {
     rehypePlugins: [
+      // @ts-ignore
       rehypePrism,
       rehypeSlug,
       [
@@ -107,6 +109,7 @@ export default makeSource({
   documentTypes: [Blog],
   mdx: {
     rehypePlugins: [
+      // @ts-ignore
       rehypePrism,
       rehypeSlug,
       [
