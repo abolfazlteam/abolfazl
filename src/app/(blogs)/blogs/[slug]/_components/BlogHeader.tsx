@@ -17,7 +17,7 @@ const BlogHeader = () => {
     <header className="mb-11 mt-12 space-y-2 md:mb-12 md:mt-14 md:space-y-5">
       <span className="text-body2 text-gray-4">Aug 24, 2022</span>
 
-      <h1 className="text-heading text-body2 md:text-xl">
+      <h1 className="text-body2 text-heading md:text-xl">
         Build-Time Syntax Highlighting: Zero Client-Side JS, Support for
         Languages and Any VSCode Theme
       </h1>
