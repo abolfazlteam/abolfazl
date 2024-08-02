@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+// import { headers } from "next/headers";
 import NextTopLoader from "nextjs-toploader";
 import ThemeProvider from "@/components/ThemeProvider";
 import { alexandria } from "./fonts";
@@ -18,8 +19,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const nonce = headers().get("x-nonce");
+
   return (
     <html lang="en">
+      {/* <GoogleAnalytics nonce={nonce!} /> */}
+
       <body className={`${alexandria.className} ellipse bg-bgColor`}>
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <NextTopLoader
