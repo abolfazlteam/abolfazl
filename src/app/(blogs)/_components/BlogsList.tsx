@@ -1,11 +1,17 @@
+import { Blog as BlogType } from "contentlayer/generated";
+
 import BlogItem from "./BlogItem";
 
-const BlogsList = () => {
+interface IBlogsListProps {
+  blogs: BlogType[];
+}
+
+const BlogsList: React.FC<IBlogsListProps> = ({ blogs }) => {
   return (
     <ul className="flex flex-col gap-8">
-      <BlogItem />
-      <BlogItem />
-      <BlogItem />
+      {blogs.map((blog) => (
+        <BlogItem key={blog.slug} data={blog} />
+      ))}
     </ul>
   );
 };

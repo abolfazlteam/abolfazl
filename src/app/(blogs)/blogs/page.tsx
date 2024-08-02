@@ -1,8 +1,11 @@
 // import { Metadata } from "next";
 
+import { allBlogs } from "contentlayer/generated";
+
 import Header from "@/components/ui/Header";
 import Section from "@/components/ui/Section";
 import BlogItem from "../_components/BlogItem";
+import Newsletter from "@/components/ui/Newsletter";
 
 // export const metadata: Metadata = {
 //   title: "Blogs | Abolfazl Jamshidi",
@@ -45,10 +48,13 @@ const Page = () => {
         <Header title="my blogs" />
       </Section>
 
+      <Newsletter />
+
       <section className="mt-6 space-y-8 lg:mt-8">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((blog, index) => (
+        {allBlogs.map((blog, index) => (
           <BlogItem
-            key={blog}
+            key={blog.slug}
+            data={blog}
             shouldHaveAnimation
             animationDirection={index % 2 === 0 ? "left" : "right"}
           />

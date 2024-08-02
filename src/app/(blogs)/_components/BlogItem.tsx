@@ -1,18 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import blogHoverImage from "../../../../public/images/blog-hover-img.png";
 import getRelativeCoordinates from "@/utils/getRelativeCoordinates";
 import { useInView } from "framer-motion";
 import { IBlogItemProps } from "./BlogItem.types";
 import { alexandria } from "@/app/fonts";
+import textEllipsisFormatter from "@/utils/text-ellipsis";
+import formatPublishedDateHandler from "@/utils/date";
+import BlogItemHoverImage from "./BlogItemImageHover";
 
 const BlogItem: React.FC<IBlogItemProps> = ({
   shouldHaveAnimation = false,
   animationDirection = "right",
+  data,
 }) => {
+  const { slug, image, title, summary, publishedAt } = data;
+
   const [showImage, setShowImage] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<{
     x: number;
@@ -48,12 +52,12 @@ const BlogItem: React.FC<IBlogItemProps> = ({
       ref={blogItemRef}
     >
       <Link
-        href={"/blogs/1"}
+        href={`/blogs/${slug}`}
         className={`flex w-full max-w-[800px] flex-col gap-6 rounded-10 bg-gray-7 px-6 pb-4 pt-6 shadow-sm transition-all duration-300 ease-linear group-hover:shadow-lg max-md:group-hover:-translate-y-2 ${alexandria.className}`}
       >
         {/* date */}
         <span className="text-sm font-light leading-6 text-text-secondary md:text-base">
-          Aug 24, 2022
+          {formatPublishedDateHandler(publishedAt)}
         </span>
         <h2
           ref={headingRef}
@@ -61,30 +65,21 @@ const BlogItem: React.FC<IBlogItemProps> = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setShowImage(false)}
         >
-          Build-Time Syntax Highlighting: Zero Client-Side JS, Support for 100+
-          Languages and Any VSCode Theme
+          {title}
           {/* image */}
           {showImage && (
-            <Image
-              src={blogHoverImage}
-              style={{
-                top: mousePosition.y / imageHeight - imageOffset,
-                left: mousePosition.x - imageWidth / 2,
-              }}
-              width={imageWidth}
+            <BlogItemHoverImage
+              src={image}
               height={imageHeight}
-              className={`absolute -top-[10rem] transition-all duration-100 ease-linear`}
-              alt="image of blog"
-              placeholder="blur"
+              width={imageWidth}
+              offset={imageOffset}
+              mousePosition={mousePosition}
             />
           )}
         </h2>
 
         <p className="text-base font-light leading-6 text-text-secondary md:text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas
-          purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris
-          rhoncus aenean vel elit scelerisque...
+          {textEllipsisFormatter(summary, 200)}
         </p>
 
         <div className="mt-2 flex items-center gap-11 font-light text-text-secondary">

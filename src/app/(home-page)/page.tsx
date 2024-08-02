@@ -1,6 +1,8 @@
 // import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
+import { allBlogs } from "contentlayer/generated";
+
 import HomePageHeroSection from "./_components/HomePageHeroSection";
 import Header from "@/components/ui/Header";
 import Section from "@/components/ui/Section";
@@ -52,7 +54,7 @@ const Page = () => {
 
       <Section>
         <Header title="latest blogs" href="/" />
-        <BlogsList />
+        <BlogsList blogs={allBlogs} />
       </Section>
 
       <Section>
