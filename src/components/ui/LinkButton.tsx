@@ -13,7 +13,7 @@ const LinkButton: React.FC<ICommunicationLinkProps> = ({
     <Link
       href={href}
       target="_blank"
-      className="group flex w-full min-w-[200px] items-center justify-between rounded-10 bg-[#14161A80] px-6 py-4 transition-all duration-200 ease-linear"
+      className="group flex w-full min-w-[200px] items-center justify-between rounded-10 bg-[#282c33] px-6 py-4 transition-all duration-200 ease-linear"
     >
       <div className="flex items-center gap-2">
         {icon}
