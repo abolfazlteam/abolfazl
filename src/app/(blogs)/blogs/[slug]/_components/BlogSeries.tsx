@@ -36,7 +36,7 @@ const BlogSeries: React.FC<IBlogSeriesProps> = ({ seriesLinks }) => {
   }, [isSeriesBoxOpen]);
 
   return (
-    <div className="rounded-10 bg-tertiary-bg-2 px-2 py-4 transition-all delay-150 duration-150 ease-linear md:pl-6 md:pr-8">
+    <div className="rounded-10 bg-tertiary-bg px-2 py-4 transition-all delay-150 duration-150 ease-linear md:pl-6 md:pr-8">
       <div
         className={`flex justify-between ${isSeriesBoxOpen && "border-b border-[#ABB2BF] pb-6 pt-4"} cursor-pointer transition-all delay-150 duration-150 ease-linear`}
         onClick={handleOpenSeriesBox}
@@ -46,7 +46,7 @@ const BlogSeries: React.FC<IBlogSeriesProps> = ({ seriesLinks }) => {
       >
         <div className="flex flex-col space-y-6">
           <span
-            className={`${alexandria.className} text-caption2 font-medium capitalize text-[#ABB2BF] md:text-body2`}
+            className={`${alexandria.className} text-caption2 font-medium capitalize text-[#626872] dark:text-[#ABB2BF] md:text-body2`}
           >
             series
           </span>
@@ -55,7 +55,7 @@ const BlogSeries: React.FC<IBlogSeriesProps> = ({ seriesLinks }) => {
           >
             {textEllipsisFormatter(currentArticleOfSeries?.title as string, 30)}{" "}
             |{" "}
-            <span className="text-[#ABB2BF]">
+            <span className="text-[#626872] dark:text-[#ABB2BF]">
               {currentArticleOfSeries?.episode} of {totalArticlesInSeries}
             </span>
           </span>
@@ -64,7 +64,7 @@ const BlogSeries: React.FC<IBlogSeriesProps> = ({ seriesLinks }) => {
         <div className="flex justify-center md:items-center">
           <IconArrowDownCircle
             viewBox="0 0 54 54"
-            className={`h-8 w-8 cursor-pointer transition-all duration-150 ease-linear md:h-12 md:w-12 [&_path]:stroke-[#ABB2BF] ${isSeriesBoxOpen ? "rotate-180" : "rotate-0"}`}
+            className={`h-8 w-8 cursor-pointer transition-all duration-150 ease-linear md:h-12 md:w-12 [&_path]:stroke-[#626872] dark:[&_path]:stroke-[#ABB2BF] ${isSeriesBoxOpen ? "rotate-180" : "rotate-0"}`}
           />
         </div>
       </div>

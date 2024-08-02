@@ -2,6 +2,7 @@ import BackLink from "@/components/ui/BackLink";
 import BlogHeader from "./_components/BlogHeader";
 import BlogHeroImage from "./_components/BlogHeroImage";
 import BlogSeries from "./_components/BlogSeries";
+import SidebarLinks from "./_components/SidebarLinks";
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   console.log(params.slug);
@@ -25,7 +26,18 @@ const Page = async ({ params }: { params: { slug: string } }) => {
               { episode: 2, title: "hihi2", isCurrent: false },
             ]}
           />
+
+          {/* main content */}
+          {/* <MdxWrapper code={article?.body?.code as string} /> */}
         </div>
+
+        {/* SIDEBAR OF SINGLE ARTICLES */}
+        <SidebarLinks
+          links={[
+            { title: "ihihh", href: "/" },
+            { title: "ihihh78", href: "/" },
+          ]}
+        />
       </section>
     </main>
   );

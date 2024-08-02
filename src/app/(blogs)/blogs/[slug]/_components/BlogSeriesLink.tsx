@@ -21,7 +21,7 @@ const BlogSeriesLink: React.FC<ISeriesLinkItemProps> = ({ children, href }) => {
   if (!href) {
     return (
       <li
-        className={`${alexandria.className} cursor-not-allowed text-caption2 text-[#ABB2BF] transition-all duration-150 ease-linear`}
+        className={`${alexandria.className} cursor-not-allowed text-caption2 text-[#626872] transition-all duration-150 ease-linear dark:text-[#ABB2BF]`}
       >
         {children}
       </li>
