@@ -21,12 +21,13 @@ const config: Config = {
         "gray-1": "var(--gray-1)",
         "gray-2": "#ABB2BF",
         "gray-3": "#4E4458",
-        "gray-4": "#9C8AAE",
+        "gray-4": "var(--gray-4)",
         "gray-5": "var(--gray-5)",
         "gray-7": "var(--gray-7)",
         "gray-9": "#14161A80",
         "border-gray": "#ABB2BF33",
         "tertiary-bg-2": "var(--bg-tertiary-2)",
+        heading: "var(--heading)",
       },
       backgroundImage: {
         "gradient-conic":

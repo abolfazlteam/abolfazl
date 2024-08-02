@@ -1,5 +1,5 @@
 const isNewsLetterFeatureReleased: boolean = true;
-const isLikeArticleFeatureReleased: boolean = false;
+const isLikeArticleFeatureReleased: boolean = true;
 const isSearchSystemReleased: boolean = true;
 
 export {

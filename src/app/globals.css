@@ -35,9 +35,9 @@ html {
     --bg-tertiary-2: #f9f3ff;
     --text-link: #9c8aae;
     --text-link-2: #5f6571;
-
+    --heading: #282c33;
     --gray-3: #abb2bf;
-    --gray-4: #e8e8e8;
+    --gray-4: #282c33;
     --gray-5: #abb2bf;
     --gray-7: #e5e5e580;
   }
@@ -58,9 +58,9 @@ html {
     --text-link-2: #5f6571;
 
     -sample: #ffffff;
-
+    --heading: #fff;
     --gray-3: #abb2bf;
-    --gray-4: #2a2a2a;
+    --gray-4: #e8e8e8b9;
     --gray-5: #626872;
     --gray-7: #14161a80;
   }
