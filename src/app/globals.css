@@ -33,7 +33,7 @@ html {
     );
     --bg-tertiary: #e5e5e580;
     --bg-tertiary-2: #f9f3ff;
-    --text-link: #9c8aae;
+    --text-link: #14161a80;
     --text-link-2: #5f6571;
     --heading: #282c33;
     --gray-3: #abb2bf;
@@ -54,7 +54,6 @@ html {
     --border-color: "#ABB2BF";
     --bg-tertiary: #14161a80;
     --bg-tertiary-2: #14161a80;
-    --text-link: #9c8aae;
     --text-link-2: #5f6571;
 
     -sample: #ffffff;

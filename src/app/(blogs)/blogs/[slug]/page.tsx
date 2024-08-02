@@ -3,6 +3,8 @@ import BlogHeader from "./_components/BlogHeader";
 import BlogHeroImage from "./_components/BlogHeroImage";
 import BlogSeries from "./_components/BlogSeries";
 import SidebarLinks from "./_components/SidebarLinks";
+import TagsList from "./_components/TagsList";
+import Newsletter from "@/components/ui/Newsletter";
 
 const Page = async ({ params }: { params: { slug: string } }) => {
   console.log(params.slug);
@@ -15,10 +17,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       <BlogHeroImage src="/images/blog-hover-img.png" />
 
       {/* body section */}
-      <section className="flex border border-white sm:gap-x-6 md:gap-x-14">
+      <section className="flex sm:gap-x-6 md:gap-x-14">
         <div
           // className={`${article?.hasSidebarLinks ? "max-w-[600px]" : "w-full"} space-y-6`}
-          className={`w-full space-y-6 border border-white`}
+          className={`w-full space-y-6`}
         >
           <BlogSeries
             seriesLinks={[
@@ -39,6 +41,15 @@ const Page = async ({ params }: { params: { slug: string } }) => {
           ]}
         />
       </section>
+
+      {/* TAGS SECTION */}
+      <TagsList tags={["react", "next.js", "typescript"]} />
+
+      {/* Newsletter */}
+      <Newsletter />
+
+      {/* JSON+LD data */}
+      {/* <JsonLd data={jsonLd} /> */}
     </main>
   );
 };
