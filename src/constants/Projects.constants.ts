@@ -17,6 +17,7 @@ export type TProjectProps = {
   repoLink?: string;
   startDate?: string;
   endDate?: string;
+  slug?: string;
 };
 
 export const PROJECTS_DATA: TProjectProps[] = [
@@ -27,7 +28,8 @@ export const PROJECTS_DATA: TProjectProps[] = [
       "It's a personal branding website for Arman Ahmadi based - a backend engineer.",
     src: ARMAN_PORTFOLIO,
     tags: ["next.js", "typescript", "MDX", "tailwind"],
-    siteLink: "",
+    siteLink: "https://armancodes.com",
+    slug: "arman-portfolio",
   },
   {
     id: 2,
@@ -36,7 +38,8 @@ export const PROJECTS_DATA: TProjectProps[] = [
       "It's a job seeking platform in which employers can post their job positions and applicant can apply. They can track their job postings or applications, etc.",
     src: SADAF_PROJECT,
     tags: ["react", "next.js", "typescript", "tailwind"],
-    siteLink: "",
+    siteLink: "https://isadaf.techpark.ir/",
+    slug: "sadaf-job-seeking-platform",
   },
   {
     id: 3,

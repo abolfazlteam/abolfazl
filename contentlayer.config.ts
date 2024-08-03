@@ -78,6 +78,7 @@ export const Project = defineDocumentType(() => ({
     keywords: { type: "json", required: false },
     isDraft: { type: "boolean", required: false, default: true },
     image: { type: "string", required: false, default: "" },
+    websiteUrl: { type: "string", required: false, default: "" },
   },
   computedFields: blogComputedFields,
 }));
