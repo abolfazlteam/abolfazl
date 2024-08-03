@@ -43,12 +43,10 @@ import Newsletter from "@/components/ui/Newsletter";
 
 const Page = () => {
   return (
-    <main className="min-h-svh">
+    <main className="">
       <Section className="lg:mt-[80px]">
         <Header title="my blogs" />
       </Section>
-
-      <Newsletter />
 
       <section className="mt-6 space-y-8 lg:mt-8">
         {allBlogs.map((blog, index) => (
@@ -60,6 +58,8 @@ const Page = () => {
           />
         ))}
       </section>
+
+      <Newsletter />
     </main>
   );
 };
