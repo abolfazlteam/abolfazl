@@ -5,7 +5,7 @@ interface IProjectHeaderProps {
   title: string;
   publishedAt: string;
   description: string;
-  websiteUrl: string;
+  websiteUrl?: string;
 }
 
 const ProjectHeader: React.FC<IProjectHeaderProps> = ({

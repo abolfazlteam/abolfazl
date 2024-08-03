@@ -36,7 +36,7 @@ import AllProjectsSection from "../_components/AllProjectsSection";
 
 const Page = () => {
   return (
-    <div className="min-h-svh">
+    <div>
       <Section className="lg:mt-[80px]">
         <Header title="my projects" />
       </Section>

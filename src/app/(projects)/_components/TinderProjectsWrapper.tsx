@@ -2,7 +2,9 @@ import { PROJECTS_DATA } from "@/constants/Projects.constants";
 import TinderProjectCard from "./TinderProjectCard";
 
 const TinderProjectsWrapper = () => {
-  const reversedProjectsOrder = [...PROJECTS_DATA].reverse();
+  const reversedProjectsOrder = [...PROJECTS_DATA]
+    .filter((project) => !project.isDraft)
+    .reverse();
 
   return (
     <div className="relative mx-auto flex h-[500px] cursor-grab flex-col items-center justify-center gap-6">
