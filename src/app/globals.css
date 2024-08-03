@@ -94,15 +94,16 @@ html {
   position: absolute;
   width: 100%;
   height: 400px;
-  top: 150%;
+  top: 60%;
   background: radial-gradient(
-    79% 79% at 90% 50%,
+    79% 79% at 50% 50%,
     rgba(67, 217, 173, 0.9) 0%,
     rgba(67, 217, 173, 0) 70%
   );
   left: 0;
   z-index: -10;
-  display: none;
+  filter: blur(10rem);
+  /* display: none; */
 }
 
 @media screen and (min-width: 650px) {
@@ -112,8 +113,8 @@ html {
     width: 100%;
     height: 700px;
     display: block;
-    top: 80%;
-    filter: blur(15rem);
+    top: 30%;
+    filter: blur(10rem);
     background: radial-gradient(
       79% 69% at 70% 50%,
       rgba(67, 217, 173, 0.9) 0%,
@@ -131,7 +132,7 @@ html {
     width: 100%;
     height: 700px;
     filter: blur(15rem);
-    top: 90%;
+    top: 30%;
     background: radial-gradient(
       89% 99% at 70% 50%,
       rgba(67, 217, 173, 0.9) 0%,
@@ -145,9 +146,9 @@ html {
     width: 100%;
     height: 1000px;
     filter: blur(15rem);
-    top: 65%;
+    top: 20%;
     background: radial-gradient(
-      69% 70% at 60% 50%,
+      69% 70% at 60% 10%,
       rgba(67, 217, 173, 0.9) 0%,
       rgba(67, 217, 173, 0) 90%
     );
@@ -160,7 +161,7 @@ html {
     width: 100%;
     height: 1000px;
     filter: blur(15rem);
-    top: 65%;
+    top: 20%;
     background: radial-gradient(
       59% 70% at 60% 50%,
       rgba(67, 217, 173, 0.9) 0%,

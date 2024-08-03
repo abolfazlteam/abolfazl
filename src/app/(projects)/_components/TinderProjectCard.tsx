@@ -21,6 +21,7 @@ const TinderProjectCard: React.FC<TTinderProjectCardProps> = ({
   rotate = 10,
   src,
   title,
+  slug,
 }) => {
   return (
     <motion.article
@@ -75,7 +76,7 @@ const TinderProjectCard: React.FC<TTinderProjectCardProps> = ({
         <div className="absolute left-0 top-0 z-[2] flex h-full w-full flex-col justify-end space-y-6 px-4 pb-10 pt-[41px]">
           <h4>
             <Link
-              href={"/projects"}
+              href={`/projects/${slug}`}
               className="flex items-center justify-between text-2xl font-extrabold capitalize text-white"
             >
               {title}

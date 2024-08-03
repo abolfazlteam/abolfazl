@@ -27,13 +27,13 @@ const BlogImage: React.FC<IBlogImageProps> = ({
         rounded && "overflow-hidden rounded-10",
       )}
     >
-      <figure className={twMerge("m-0 flex flex-col", "gap-2")}>
+      <figure className={twMerge("m-0 my-4 flex flex-col", "gap-2")}>
         <Image
           {...props}
           src={src}
           width={width}
           height={height}
-          alt={alt}
+          alt={alt || (caption as string)}
           priority={priority}
           fill={fill}
           className={twMerge(

@@ -17,6 +17,8 @@ export type TProjectProps = {
   repoLink?: string;
   startDate?: string;
   endDate?: string;
+  slug?: string;
+  isDraft?: boolean;
 };
 
 export const PROJECTS_DATA: TProjectProps[] = [
@@ -27,7 +29,8 @@ export const PROJECTS_DATA: TProjectProps[] = [
       "It's a personal branding website for Arman Ahmadi based - a backend engineer.",
     src: ARMAN_PORTFOLIO,
     tags: ["next.js", "typescript", "MDX", "tailwind"],
-    siteLink: "",
+    siteLink: "https://armancodes.com",
+    slug: "arman-portfolio",
   },
   {
     id: 2,
@@ -36,24 +39,34 @@ export const PROJECTS_DATA: TProjectProps[] = [
       "It's a job seeking platform in which employers can post their job positions and applicant can apply. They can track their job postings or applications, etc.",
     src: SADAF_PROJECT,
     tags: ["react", "next.js", "typescript", "tailwind"],
-    siteLink: "",
+    siteLink: "https://isadaf.techpark.ir/",
+    slug: "sadaf-job-seeking-platform",
   },
   {
     id: 3,
     title: "Tech Park Website",
     description: "This is the offical redesign of the Pardis Technology Park.",
     src: TECH_PARK_GIF,
-    tags: ["next.js", "typescript", "MDX", "tailwind"],
+    tags: ["react", "next.js", "typescript", "tailwind", "swipper", "zustand"],
     siteLink: "https://site.techpark.ir/fa",
+    slug: "tech-park-website",
   },
   {
     id: 4,
-    title: "My Company",
+    title: "Mail Room Dashboard",
     description:
-      "This project is an admin panel for companies inside Pardis Technology Park which can do everything related to their bureaucracy",
+      "This project is an admin panel for companies inside Pardis Technology Park which can do everything related to their bureaucracy such as sending mails, archiving letters or event track the letters that were created.",
     src: MY_COMPANY_PROJECT,
-    tags: ["next.js", "typescript", "tailwind"],
-    siteLink: "https://site.techpark.ir/fa",
+    tags: [
+      "vite",
+      "react",
+      "typescript",
+      "tailwind",
+      "framer motion",
+      "vitest",
+      "cypress",
+    ],
+    slug: "mail-room-dashboard",
   },
   {
     id: 5,
@@ -62,6 +75,8 @@ export const PROJECTS_DATA: TProjectProps[] = [
     src: PROJECT_TEST_IMAGE,
     tags: ["react", "javascript", "react query", "tailwind"],
     siteLink: "https://site.techpark.ir/fa",
+    slug: "tech-park-website",
+    isDraft: true,
   },
   {
     id: 6,
@@ -70,5 +85,7 @@ export const PROJECTS_DATA: TProjectProps[] = [
     src: PROJECT_TEST_IMAGE,
     tags: ["HTML", "javascript", "sass"],
     siteLink: "https://site.techpark.ir/fa",
+    slug: "tech-park-website",
+    isDraft: true,
   },
 ];

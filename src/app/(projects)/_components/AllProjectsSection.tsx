@@ -2,11 +2,13 @@ import { PROJECTS_DATA } from "@/constants/Projects.constants";
 import ProjectCard from "./ProjectCard";
 
 const AllProjectsSection = () => {
-  const evenIndexedProjects = PROJECTS_DATA.filter(
+  const publishedProjects = PROJECTS_DATA.filter((project) => !project.isDraft);
+
+  const evenIndexedProjects = publishedProjects.filter(
     (_, index) => index % 2 === 0,
   );
 
-  const oddIndexedProjects = PROJECTS_DATA.filter(
+  const oddIndexedProjects = publishedProjects.filter(
     (_, index) => index % 2 !== 0,
   );
 
