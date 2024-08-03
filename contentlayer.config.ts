@@ -48,6 +48,40 @@ const blogComputedFields: ComputedFields = {
   },
 };
 
+export const Project = defineDocumentType(() => ({
+  name: "Project",
+  contentType: "mdx",
+  filePathPattern: `projects/*.mdx`,
+  fields: {
+    baseUrl: {
+      type: "string",
+      required: false,
+      default: "https://iabolfazl.dev",
+    },
+    title: { type: "string", required: true },
+    shortTitle: { type: "string", required: false, default: "" },
+    summary: { type: "string", required: true },
+    publishedAt: { type: "string", required: true },
+    updatedAt: { type: "string", required: false },
+    tags: { type: "json", required: false },
+    isFeatured: { type: "boolean", required: false, default: false },
+    robots: { type: "string", required: false, default: "index,follow" },
+    canonical: { type: "string", required: false, default: "" },
+    ogTitle: { type: "string", required: false, default: "" },
+    ogType: { type: "string", required: false, default: "website" },
+    ogUrl: { type: "string", required: false, default: "" },
+    ogImage: { type: "string", required: false, default: "" },
+    twitterTitle: { type: "string", required: false, default: "" },
+    twitterUrl: { type: "string", required: false, default: "" },
+    twitterImage: { type: "string", required: false, default: "" },
+    author: { type: "string", required: true, default: "" },
+    keywords: { type: "json", required: false },
+    isDraft: { type: "boolean", required: false, default: true },
+    image: { type: "string", required: false, default: "" },
+  },
+  computedFields: blogComputedFields,
+}));
+
 export const Blog = defineDocumentType(() => ({
   name: "Blog",
   contentType: "mdx",
@@ -57,7 +91,7 @@ export const Blog = defineDocumentType(() => ({
     baseUrl: {
       type: "string",
       required: false,
-      default: "https://armancodes.com/",
+      default: "https://iabolfazl.dev",
     },
     title: { type: "string", required: true },
     summary: { type: "string", required: true },
@@ -106,7 +140,7 @@ export default makeSource({
       ],
     ], // adding id tag automatically to headings (h1-h6)
   },
-  documentTypes: [Blog],
+  documentTypes: [Blog, Project],
   mdx: {
     rehypePlugins: [
       // @ts-ignore
