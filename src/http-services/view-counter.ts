@@ -1,12 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import { IGetSubscribersResponse } from "@/types/newsletter.types";
+import { VIEWS_COUNTER_DEFAULT_VALUE } from "@/constants";
+import { IGetBlogViewsCountResponseProps } from "@/types/view-counter";
 
-export async function getBlogViewsCount(slug: string): Promise<any> {
+export async function getBlogViewsCount(
+  slug: string,
+): Promise<IGetBlogViewsCountResponseProps> {
   const response = await fetch(`/api/hitSlug?slug=${slug}`);
-
   const data = await response.json();
 
-  console.log(data, "data from httpservice");
-
-  return data;
+  // check if status is 200
+  if (response?.status === 200) {
+    return data;
+  } else {
+    return {
+      message: "Unsuccessful!",
+      views: VIEWS_COUNTER_DEFAULT_VALUE,
+    };
+  }
 }
