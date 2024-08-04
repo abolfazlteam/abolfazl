@@ -9,6 +9,7 @@ import { alexandria } from "@/app/fonts";
 import textEllipsisFormatter from "@/utils/text-ellipsis";
 import formatPublishedDateHandler from "@/utils/date";
 import BlogItemHoverImage from "./BlogItemImageHover";
+import ViewCounter from "../blogs/[slug]/_components/ViewCounter";
 
 const BlogItem: React.FC<IBlogItemProps> = ({
   shouldHaveAnimation = false,
@@ -83,7 +84,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({
         </p>
 
         <div className="mt-2 flex items-center gap-11 font-light text-text-secondary">
-          <span className="text-xs leading-6 md:text-sm">21,189 views</span>
+          <ViewCounter slug={slug} />
           <span className="text-xs leading-6 md:text-sm">225,228 likes</span>
         </div>
       </Link>
