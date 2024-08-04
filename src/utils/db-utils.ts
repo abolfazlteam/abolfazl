@@ -37,3 +37,13 @@ export const updateOneBlogViews = async (
 
   return document;
 };
+
+export const insertNewDoc = async (
+  client: MongoClient,
+  collection: string,
+  documentData: { slug: string; views: number; likes: number },
+) => {
+  const db = client.db();
+  const document = await db.collection(collection).insertOne(documentData);
+  return document;
+};

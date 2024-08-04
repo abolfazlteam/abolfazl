@@ -1,6 +1,7 @@
 import {
   connectDatabase,
   getOneBlog,
+  insertNewDoc,
   updateOneBlogViews,
 } from "@/utils/db-utils";
 import { NextRequest } from "next/server";
@@ -45,29 +46,53 @@ export async function GET(req: NextRequest) {
 
   const blogData = (await getOneBlog(client, "counts", slug)) as TDocumentType;
 
-  // the slug exists in the database
-  if (blogData) {
-    viewCounter = blogData?.views;
+  const isProduction = process.env.NODE_ENV === "production";
 
-    // increment by 1
-    viewCounter += 1;
-    // update the views inside db
-    await updateOneBlogViews(client, "counts", slug, viewCounter);
+  if (isProduction) {
+    // the slug exists in the database
+    if (blogData) {
+      viewCounter = blogData?.views;
 
-    return Response.json(
-      { message: "The request was successful!", views: viewCounter },
-      { status: 200 },
-    );
+      // increment by 1
+      viewCounter += 1;
+      // update the views inside db
+      await updateOneBlogViews(client, "counts", slug, viewCounter);
+
+      return Response.json(
+        { message: "The request was successful!", views: viewCounter },
+        { status: 200 },
+      );
+    } else {
+      // if the blog slug actually exists but not in the database ==>insert to the db
+      const newDocument = { slug: slug, views: 1, likes: 0 };
+      await insertNewDoc(client, "counts", newDocument);
+      return Response.json(
+        {
+          message: "Document was successfully added to database.",
+          views: newDocument?.views,
+        },
+        { status: 200 },
+      );
+    }
   } else {
-    // if the blog slug actually exists but not in the database ==> create one for it and insert to the db
-    // finding the slug data from db
-    console.log(blogData, "blog data");
-
-    // if it is development ==> we do not want to increment the view number
-    // but if it is production ==> we have to increment it
-    // both ways we get the view number first from data base and then will replace it with viewCounter
-    // in production we need to add 1 to viewCounter
-
-    return Response.json({ message: "hi", views: 39 }, { status: 200 });
+    // we're in development mode
+    // 1. still the blogData existed in the db - just return its views
+    if (blogData) {
+      return Response.json(
+        { message: "The request was successful!", views: blogData?.views },
+        { status: 200 },
+      );
+    } else {
+      // 2. still we create and insert it into the db
+      const newDocument = { slug: slug, views: 1, likes: 0 };
+      await insertNewDoc(client, "counts", newDocument);
+      return Response.json(
+        {
+          message: "Document was successfully added to database.",
+          views: newDocument?.views,
+        },
+        { status: 200 },
+      );
+    }
   }
 }

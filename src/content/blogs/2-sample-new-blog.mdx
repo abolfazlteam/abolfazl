@@ -1,0 +1,53 @@
+---
+title: "Just Sample Blog"
+summary: "In software engineering, software design patterns are common solutions for common problems. Is it a piece of code? Of course, NOT! It could be a description or template which can be used in many different situations to solve a problem."
+publishedAt: "2019-11-28"
+tags: ["PHP", "Design Pattern", "Software Engineering", "OOP"]
+ogTitle: "Just Sample Blog"
+ogType: "website"
+ogUrl: "https://armancodes.com/articles/whtat-is-decorator-design-pattern"
+ogImage: "https://miro.medium.com/v2/resize:fit:1100/format:webp/0*4vadQVQcwdJnYm2U"
+twitterImage: "https://miro.medium.com/v2/resize:fit:1100/format:webp/0*4vadQVQcwdJnYm2U"
+twitterUrl: "https://armancodes.com/articles/whtat-is-decorator-design-pattern"
+twitterTitle: "Just Sample Blog"
+keywords: ["system design", "OOP"]
+author: "Abolfazl Jamshidi"
+isDraft: false
+sidebarLinks:
+  ["what is the design pattern", "problem", "solution decorator design pattern"]
+image: "/blogs/1-what-is-decorator-design-pattern/what-is-decorator-design-pattern.jpg"
+category: "tech"
+---
+
+## What is the design pattern?
+
+- Less time thinking of funky names <sup>1</sup>
+
+- Reduce the size of your CSS files <sup>2</sup>
+
+- Editing already existing styles feels safer <sup>3</sup>
+
+<div className="text-gray-2 text-sm mt-8">
+    1 - Tailwind helps you save time and effort by eliminating the need to create unique class names for every element in your UI. You no longer have to struggle to come up with abstract or irrelevant names such as "sidebar-inner-wrapper" or "content-container".
+
+    2 - making it easier to manage and maintain. Unlike traditional CSS, where you need to create new stylesheets for every new feature, Tailwind's utility classes can be easily reused throughout your project, significantly reducing the need to write new CSS code.
+
+    3 - because classes are local to the HTML elements. With global CSS, any change you make can have unforeseen consequences elsewhere in your project, but with Tailwind, you can make changes with confidence, knowing that you won't accidentally break anything.
+
+</div>
+
+### The Power of Reusable Components
+
+One of the key advantages of Tailwind CSS is its promotion of reusable components. Which is now a standard in the front-end world. By using pre-defined classes, Tailwind allows developers to create reusable components that can be easily used throughout the codebase.
+
+```tsx showLineNumbers
+const WeatherList = () => {
+  return (
+    <div className="my-8 flex flex-col gap-2">
+      {data.map((item, index) => (
+        <CityCard key={index} data={item} />
+      ))}
+    </div>
+  );
+};
+```
