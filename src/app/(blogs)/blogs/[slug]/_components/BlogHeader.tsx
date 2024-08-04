@@ -31,7 +31,7 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
 
       <div className="flex items-center justify-between py-2 md:py-4">
         <div className="flex items-center gap-8">
-          <ViewCounter slug={slug} />
+          <ViewCounter shouldIncrement slug={slug} />
           <p className="space-x-2">
             <span className="text-xs tracking-wide md:text-caption2">
               225,228 likes

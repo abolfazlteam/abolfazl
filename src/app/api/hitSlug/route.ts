@@ -7,7 +7,7 @@ import {
 import { NextRequest } from "next/server";
 import { ObjectId } from "mongodb";
 
-type TDocumentType = {
+export type TDocumentType = {
   _id: ObjectId;
   slug: string;
   views: number;
