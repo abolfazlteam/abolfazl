@@ -55,7 +55,6 @@ type Props = {
 // }
 
 const Page = async ({ params }: Props) => {
-  console.log(params.slug);
   const blog = allBlogs.find((post: BlogType) => post.slug === params.slug);
   const isBlogDraft = IS_PRODUCTION && blog?.isDraft;
   const noBlogFound = !blog;

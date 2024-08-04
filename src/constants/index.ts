@@ -15,6 +15,7 @@ export const IS_PRODUCTION = "production";
 
 export const NEWSLETTER_SUBSCRIBERS_CONSTANT = 50;
 export const VIEWS_COUNTER_DEFAULT_VALUE = 10;
+export const MAX_LIKE_NUM = 10;
 
 export {
   DARK_LOGO_SVG,
