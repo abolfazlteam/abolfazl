@@ -102,7 +102,12 @@ const Page = async ({ params }: Props) => {
     <main className="pt-6 md:pt-11">
       <BackLink href="/blogs">all blogs</BackLink>
 
-      <BlogHeader />
+      <BlogHeader
+        title={blog?.title}
+        slug={blog?.slug}
+        publishedAt={blog?.publishedAt}
+        shareLink={blog?.shareLink}
+      />
       <BlogHeroImage src="/images/blog-hover-img.png" />
 
       {/* body section */}

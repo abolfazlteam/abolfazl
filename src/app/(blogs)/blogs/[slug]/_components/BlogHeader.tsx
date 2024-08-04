@@ -1,34 +1,37 @@
 /* eslint-disable no-irregular-whitespace */
 import IconHeart from "@/assets/icons/HeartIcon";
 import ShareButton from "@/components/ui/ShareButton";
-// import ShareButton from "@/components/ui/ShareButton";
 import { isLikeArticleFeatureReleased } from "@/constants/FeatureFlag.constants";
-// import formatPublishedDateHandler from "@/utils/date";
+import ViewCounter from "./ViewCounter";
+import formatPublishedDateHandler from "@/utils/date";
 
-// interface IBlogHeaderProps {
-//   title: string;
-//   publishedAt: string;
-//   shareLink: string;
-//   readTime: number;
-// }
+interface IBlogHeaderProps {
+  title: string;
+  publishedAt: string;
+  shareLink: string;
+  slug: string;
+  readTime?: number;
+}
 
-const BlogHeader = () => {
+const BlogHeader: React.FC<IBlogHeaderProps> = ({
+  publishedAt,
+  shareLink,
+  title,
+  slug,
+}) => {
   return (
     <header className="mb-11 mt-12 space-y-2 md:mb-12 md:mt-14 md:space-y-5">
-      <span className="text-body2 text-gray-4">Aug 24, 2022</span>
+      <span className="text-body2 text-gray-4">
+        {formatPublishedDateHandler(publishedAt)}
+      </span>
 
       <h1 className="text-body2 font-semibold text-heading md:text-xl">
-        Build-Time Syntax Highlighting: Zero Client-Side JS, Support for
-        Languages and Any VSCode Theme
+        {title}
       </h1>
 
       <div className="flex items-center justify-between py-2 md:py-4">
         <div className="flex items-center gap-8">
-          <p className="space-x-2">
-            <span className="text-xs tracking-wide md:text-caption2">
-              21,189 views
-            </span>
-          </p>
+          <ViewCounter slug={slug} />
           <p className="space-x-2">
             <span className="text-xs tracking-wide md:text-caption2">
               225,228 likes
@@ -43,7 +46,7 @@ const BlogHeader = () => {
         </div>
 
         <div className="flex items-center gap-9">
-          <ShareButton url={"/sdd"} />
+          <ShareButton url={shareLink} />
           {isLikeArticleFeatureReleased && (
             <IconHeart
               viewBox="0 0 32 32"
