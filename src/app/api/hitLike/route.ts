@@ -55,9 +55,10 @@ export async function POST(req: NextRequest) {
   const blogData = (await getOneBlog(client, "counts", slug)) as TDocumentType;
 
   if (IS_PRODUCTION) {
+    const updatedLikes = blogData?.likes + count;
     // the slug exists in db
     if (blogData) {
-      await updateOneBlogLikes(client, "counts", slug, count);
+      await updateOneBlogLikes(client, "counts", slug, updatedLikes);
       const updatedBlog = (await getOneBlog(
         client,
         "counts",
