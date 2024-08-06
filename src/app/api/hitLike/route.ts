@@ -6,6 +6,7 @@ import {
   updateOneBlogLikes,
 } from "@/utils/db-utils";
 import { NextRequest } from "next/server";
+import { TDocumentType } from "../hitSlug/route";
 
 export async function POST(req: NextRequest) {
   const searchParams = req?.nextUrl.searchParams;
@@ -51,16 +52,22 @@ export async function POST(req: NextRequest) {
   }
 
   // find the blog with slug
-  const blogData = await getOneBlog(client, "counts", slug);
+  const blogData = (await getOneBlog(client, "counts", slug)) as TDocumentType;
 
   if (IS_PRODUCTION) {
     // the slug exists in db
     if (blogData) {
       await updateOneBlogLikes(client, "counts", slug, count);
+      const updatedBlog = (await getOneBlog(
+        client,
+        "counts",
+        slug,
+      )) as TDocumentType;
 
       return Response.json(
         {
           message: "Blog updated successfully!",
+          likes: updatedBlog?.likes,
         },
         { status: 200 },
       );
