@@ -30,22 +30,11 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
 }) => {
   const {
     counter,
-    counterDebounced,
     incrementCounterHandler,
     dbLikes,
     isLoading,
     heartIconCounter,
   } = useLike(slug);
-  console.log(
-    counter,
-    "counter",
-    counterDebounced,
-    "counterDebounced",
-    dbLikes,
-    "dblikes",
-    heartIconCounter,
-    "heart counter",
-  );
   const totalLikes = counter + dbLikes;
 
   return (

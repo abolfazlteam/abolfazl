@@ -29,8 +29,12 @@ export default function useLike(slug: string) {
   // Effect to update the database after debounced value changes
   useEffect(() => {
     if (+counterDebounced > 0) {
-      updateBlogLikesCount(slug, { count: +counterDebounced }).then(() => {
+      updateBlogLikesCount(slug, {
+        count: +counterDebounced,
+      }).then((data) => {
         setCounter(0); // Reset local counter after update
+        // set update the db counter when successful
+        setDbLikes(data?.likes);
       });
     }
   }, [counterDebounced, slug]);
@@ -52,7 +56,6 @@ export default function useLike(slug: string) {
 
   return {
     incrementCounterHandler,
-    counterDebounced,
     counter,
     dbLikes,
     heartIconCounter,
