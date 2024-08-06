@@ -17,7 +17,7 @@ const Input: React.FC<IInputProps> = ({
       {hasSearchIcon && (
         <SearchIcon
           data-testid="input-icon"
-          className="absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 stroke-2 [&_path]:stroke-primary"
+          className="absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 stroke-2 [&_path]:stroke-[#ABB2BF]"
           viewBox="0 0 24 24"
         />
       )}
