@@ -47,3 +47,17 @@ export const insertNewDoc = async (
   const document = await db.collection(collection).insertOne(documentData);
   return document;
 };
+
+export const updateOneBlogLikes = async (
+  client: MongoClient,
+  collection: string,
+  docSlug: string,
+  value: number,
+) => {
+  const db = client.db();
+  const document = await db
+    .collection(collection)
+    .updateOne({ slug: docSlug }, { $set: { likes: value } });
+
+  return document;
+};

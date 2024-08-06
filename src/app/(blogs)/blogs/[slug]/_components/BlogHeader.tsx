@@ -1,12 +1,12 @@
 "use client";
 
-/* eslint-disable no-irregular-whitespace */
 import ShareButton from "@/components/ui/ShareButton";
-// import { isLikeArticleFeatureReleased } from "@/constants/FeatureFlag.constants";
 import ViewCounter from "./ViewCounter";
 import formatPublishedDateHandler from "@/utils/date";
 import LikeIcon from "@/assets/icons/LikeIcon";
 import useLike from "@/hooks/useLike";
+import LikeCounter from "./LikeCounter";
+import { isLikeArticleFeatureReleased } from "@/constants/FeatureFlag.constants";
 
 interface IBlogHeaderProps {
   title: string;
@@ -28,8 +28,14 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
   title,
   slug,
 }) => {
-  const { counter, counterDebounced, incrementCounterHandler, dbLikes } =
-    useLike(slug);
+  const {
+    counter,
+    counterDebounced,
+    incrementCounterHandler,
+    dbLikes,
+    isLoading,
+    heartIconCounter,
+  } = useLike(slug);
   console.log(
     counter,
     "counter",
@@ -37,7 +43,10 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
     "counterDebounced",
     dbLikes,
     "dblikes",
+    heartIconCounter,
+    "heart counter",
   );
+  const totalLikes = counter + dbLikes;
 
   return (
     <header className="mb-11 mt-12 space-y-2 md:mb-12 md:mt-14 md:space-y-5">
@@ -52,11 +61,7 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
       <div className="flex items-center justify-between py-2 md:py-4">
         <div className="flex items-center gap-8">
           <ViewCounter shouldIncrement slug={slug} />
-          <p className="space-x-2">
-            <span className="text-xs tracking-wide md:text-caption2">
-              {counter} likes
-            </span>
-          </p>
+          <LikeCounter totalLikes={totalLikes} isLoading={isLoading} />
           <p className="space-x-2">
             <span className="text-xs tracking-wide md:text-caption2">
               {/* ${readTime > 1 ? "Mins" : "Min"} */}
@@ -67,17 +72,13 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
 
         <div className="flex items-center gap-9">
           <ShareButton url={shareLink} />
-          <LikeIcon
-            onClick={incrementCounterHandler}
-            className="mb-1 h-6 w-6 cursor-pointer md:h-8 md:w-8 [&_path]:stroke-text-primary"
-            likes={counter || 0}
-          />
-          {/* {isLikeArticleFeatureReleased && (
-            <IconHeart
-              viewBox="0 0 32 32"
-              className="h-6 w-6 cursor-pointer md:h-8 md:w-8 [&_path]:stroke-text-primary"
+          {isLikeArticleFeatureReleased && (
+            <LikeIcon
+              onClick={incrementCounterHandler}
+              className="mb-1 h-6 w-6 cursor-pointer md:h-8 md:w-8 [&_path]:stroke-text-primary"
+              likes={heartIconCounter || 0}
             />
-          )} */}
+          )}
         </div>
       </div>
     </header>
