@@ -1,22 +1,14 @@
+import { IS_PRODUCTION } from "@/constants";
 import {
   connectDatabase,
   getOneBlog,
   insertNewDoc,
-  updateOneBlogViews,
+  updateOneBlogLikes,
 } from "@/utils/db-utils";
 import { NextRequest } from "next/server";
-import { ObjectId } from "mongodb";
-import { IS_PRODUCTION } from "@/constants";
 
-export type TDocumentType = {
-  _id: ObjectId;
-  slug: string;
-  views: number;
-  likes: number;
-};
-
-export async function GET(req: NextRequest) {
-  const searchParams = req.nextUrl.searchParams;
+export async function POST(req: NextRequest) {
+  const searchParams = req?.nextUrl.searchParams;
   const slug = searchParams.get("slug");
 
   if (!slug) {
@@ -30,10 +22,23 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  let viewCounter = 0;
+  // request body - getting counter
+  const data = await req.json();
+  const count = data?.count;
+
+  if (!count) {
+    return Response.json(
+      {
+        message: "No valid count value received!",
+      },
+      {
+        status: 404,
+      },
+    );
+  }
+
   let client;
 
-  // connect to database and if not return
   try {
     client = await connectDatabase();
   } catch (err) {
@@ -45,50 +50,48 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const blogData = (await getOneBlog(client, "counts", slug)) as TDocumentType;
+  // find the blog with slug
+  const blogData = await getOneBlog(client, "counts", slug);
 
   if (IS_PRODUCTION) {
-    // the slug exists in the database
+    // the slug exists in db
     if (blogData) {
-      viewCounter = blogData?.views;
-
-      // increment by 1
-      viewCounter += 1;
-      // update the views inside db
-      await updateOneBlogViews(client, "counts", slug, viewCounter);
+      await updateOneBlogLikes(client, "counts", slug, count);
 
       return Response.json(
-        { message: "The request was successful!", views: viewCounter },
+        {
+          message: "Blog updated successfully!",
+        },
         { status: 200 },
       );
     } else {
       // if the blog slug actually exists but not in the database ==>insert to the db
-      const newDocument = { slug: slug, views: 1, likes: 0 };
+      const newDocument = { slug: slug, views: 1, likes: count };
       await insertNewDoc(client, "counts", newDocument);
       return Response.json(
         {
           message: "Document was successfully added to database.",
           views: newDocument?.views,
+          likes: newDocument.likes,
         },
         { status: 200 },
       );
     }
   } else {
-    // we're in development mode
-    // 1. still the blogData existed in the db - just return its views
     if (blogData) {
       return Response.json(
-        { message: "The request was successful!", views: blogData?.views },
+        { message: "The request was successful!", likes: blogData?.likes },
         { status: 200 },
       );
     } else {
       // 2. still we create and insert it into the db
-      const newDocument = { slug: slug, views: 1, likes: 0 };
+      const newDocument = { slug: slug, views: 1, likes: count };
       await insertNewDoc(client, "counts", newDocument);
       return Response.json(
         {
           message: "Document was successfully added to database.",
           views: newDocument?.views,
+          likes: newDocument.likes,
         },
         { status: 200 },
       );

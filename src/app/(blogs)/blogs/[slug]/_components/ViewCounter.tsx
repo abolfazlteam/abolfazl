@@ -46,7 +46,7 @@ const ViewCounter: React.FC<IViewCounterProps> = ({
         <DotsLoader />
       ) : (
         <span className="text-xs tracking-wide md:text-caption2">
-          {views && views > 1 ? `${views} view` : `${views} views`}
+          {views && views > 1 ? `${views} views` : `${views} view`}
         </span>
       )}
     </div>
