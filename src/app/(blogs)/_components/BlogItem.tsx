@@ -10,6 +10,8 @@ import textEllipsisFormatter from "@/utils/text-ellipsis";
 import formatPublishedDateHandler from "@/utils/date";
 import BlogItemHoverImage from "./BlogItemImageHover";
 import ViewCounter from "../blogs/[slug]/_components/ViewCounter";
+import LikeCounter from "../blogs/[slug]/_components/LikeCounter";
+import useLike from "@/hooks/useLike";
 
 const BlogItem: React.FC<IBlogItemProps> = ({
   shouldHaveAnimation = false,
@@ -17,6 +19,8 @@ const BlogItem: React.FC<IBlogItemProps> = ({
   data,
 }) => {
   const { slug, image, title, summary, publishedAt } = data;
+
+  const { isLoading, dbLikes } = useLike(slug);
 
   const [showImage, setShowImage] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<{
@@ -85,7 +89,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({
 
         <div className="mt-2 flex items-center gap-11 font-light text-text-secondary">
           <ViewCounter slug={slug} />
-          <span className="text-xs leading-6 md:text-sm">225,228 likes</span>
+          <LikeCounter isLoading={isLoading} totalLikes={dbLikes} />
         </div>
       </Link>
     </article>
