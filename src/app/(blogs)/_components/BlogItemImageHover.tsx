@@ -23,7 +23,15 @@ const BlogItemHoverImage: React.FC<IBlogItemHoverImageProps> = ({
   return (
     <>
       {loading && (
-        <div className="absolute z-10 h-full w-full animate-pulse rounded-[inherit] bg-gray-100"></div>
+        <div
+          style={{
+            top: mousePosition.y / height - offset,
+            left: mousePosition.x - width / 2,
+            width,
+            height,
+          }}
+          className="absolute z-10 animate-pulse rounded-10 bg-gray-100"
+        />
       )}
 
       <Image
