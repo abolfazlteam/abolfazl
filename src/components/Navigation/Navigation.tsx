@@ -7,21 +7,25 @@ import NavList from "./NavList";
 import ThemeSwitcher from "../ThemeSwitcher";
 import { DARK_LOGO_SVG, WHITE_LOGO_SVG } from "@/constants";
 import { NAVIGATION_LINKS } from "@/constants/Navigation.constants";
-import Link from "next/link";
-// import { isSearchSystemReleased } from "@/constants/FeatureFlag.constants";
+import { isSearchSystemReleased } from "@/constants/FeatureFlag.constants";
 import { useEffect, useState } from "react";
 import IconArrowDown from "@/assets/icons/ArrowDown";
 import { useMatchMedia } from "@/hooks/useMatchMedia";
 import MobileNavList from "./MobileNavList";
+import SearchModal from "../ui/SearchModal";
 
 const Navigation = () => {
   const { resolvedTheme } = useTheme();
   const [logoImage, setLogoImage] = useState<string>(DARK_LOGO_SVG);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [showSearchModal, setShowSearchModal] = useState<boolean>(true);
   const shouldShowMobileNavigation = useMatchMedia("(max-width:640px)");
 
   const handleOpenMenu = () => setIsMenuOpen(true);
   const handleCloseMenu = () => setIsMenuOpen(false);
+
+  const handleOpenSearchModal = () => setShowSearchModal(true);
+  const handleCloseSearchModal = () => setShowSearchModal(false);
 
   useEffect(() => {
     setLogoImage(DARK_LOGO_SVG);
@@ -56,19 +60,29 @@ const Navigation = () => {
           )}
 
           <div className="flex items-center gap-x-12 sm:order-2">
-            {/* {isSearchSystemReleased && ( */}
-            <Link href={"/search"} className="cursor-pointer">
-              <SearchIcon
-                viewBox="0 0 24 24"
-                className={`h-6 w-6 cursor-pointer [&_path]:stroke-text-primary`}
-                aria-hidden="true"
-              />
-              <span className="sr-only">search</span>
-            </Link>
-            {/* )} */}
+            {isSearchSystemReleased && (
+              <button
+                onClick={handleOpenSearchModal}
+                className="cursor-pointer"
+              >
+                <SearchIcon
+                  viewBox="0 0 24 24"
+                  className={`h-6 w-6 cursor-pointer [&_path]:stroke-text-primary`}
+                  aria-hidden="true"
+                />
+                <span className="sr-only">search</span>
+              </button>
+            )}
             <ThemeSwitcher />
           </div>
         </nav>
+
+        {showSearchModal && isSearchSystemReleased && (
+          <SearchModal
+            isOpen={showSearchModal}
+            onClose={handleCloseSearchModal}
+          />
+        )}
 
         {/* Mobile Navigation Menu Button */}
         {shouldShowMobileNavigation && (
@@ -84,9 +98,9 @@ const Navigation = () => {
       </header>
 
       {/* overlay */}
-      {shouldShowMobileNavigation && (
+      {(shouldShowMobileNavigation || showSearchModal) && (
         <div
-          className={`absolute left-0 top-0 z-[30] h-full w-full bg-[#00000066] backdrop-blur-sm transition-all duration-300 ease-linear ${isMenuOpen ? "visible opacity-100" : "invisible opacity-0"}`}
+          className={`absolute left-0 top-0 z-[15] h-full w-full bg-[#00000066] backdrop-blur-sm transition-all duration-300 ease-linear ${isMenuOpen || showSearchModal ? "visible opacity-100" : "invisible opacity-0"}`}
         ></div>
       )}
     </>
