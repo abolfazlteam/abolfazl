@@ -51,6 +51,7 @@ const SearchModal: React.FC<ISearchModalProps> = ({ isOpen, onClose }) => {
           searchResults?.map((item, index) => (
             <SearchLink
               key={item._id}
+              onClose={onClose}
               href={`/${item.linkPrefix}/${item.slug}`}
               category={item.type}
               className={`${index === searchResults.length - 1 && "border-none"}`}
