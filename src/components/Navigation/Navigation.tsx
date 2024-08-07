@@ -18,7 +18,7 @@ const Navigation = () => {
   const { resolvedTheme } = useTheme();
   const [logoImage, setLogoImage] = useState<string>(DARK_LOGO_SVG);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [showSearchModal, setShowSearchModal] = useState<boolean>(true);
+  const [showSearchModal, setShowSearchModal] = useState<boolean>(false);
   const shouldShowMobileNavigation = useMatchMedia("(max-width:640px)");
 
   const handleOpenMenu = () => setIsMenuOpen(true);
