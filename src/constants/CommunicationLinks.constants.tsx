@@ -6,7 +6,7 @@ export interface ICommunicationLinkProps {
   id?: string;
   href: string;
   children: string | ReactNode;
-  icon: ReactNode;
+  icon?: ReactNode;
   hasLinkIcon?: boolean;
 }
 

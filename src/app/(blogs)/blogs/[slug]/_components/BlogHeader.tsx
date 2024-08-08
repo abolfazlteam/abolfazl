@@ -16,12 +16,6 @@ interface IBlogHeaderProps {
   readTime?: number;
 }
 
-// What should clicking on the like btn do?
-// max like number that will fill the heart is 10 ==> we have to save this for each blog in local storage for next reloads
-// we should not send a request to update the db likes count - we have to have a deferredValue and use that
-// increment likes count and load its initial from db
-//
-
 const BlogHeader: React.FC<IBlogHeaderProps> = ({
   publishedAt,
   shareLink,
