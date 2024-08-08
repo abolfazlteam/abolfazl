@@ -41,6 +41,8 @@ describe("Text ellipsis helper function tests suite", () => {
 
   it("should throw error when the count is less than 0", () => {
     const text = "hello";
-    expect(() => textEllipsisFormatter(text, -2)).toThrow();
+    expect(() => textEllipsisFormatter(text, -2)).toThrowError(
+      "Count must be greater than zero",
+    );
   });
 });
