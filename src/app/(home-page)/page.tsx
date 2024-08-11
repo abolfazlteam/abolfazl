@@ -54,7 +54,7 @@ const Page = () => {
 
       <Section>
         <Header title="latest blogs" href="/" />
-        <BlogsList blogs={allBlogs} />
+        <BlogsList blogs={allBlogs.filter((blog) => !blog.isDraft)} />
       </Section>
 
       <Section>

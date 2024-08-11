@@ -1,3 +1,10 @@
+/**
+ * Gets the relative coordinates of a mouse event relative to a reference element.
+ * @param {React.MouseEvent<T>} event - The mouse event.
+ * @param {K} referenceElement - The reference element.
+ * @returns {{ x: number; y: number }} The relative coordinates.
+ */
+
 export default function getRelativeCoordinates<T, K extends HTMLElement>(
   event: React.MouseEvent<T>,
   referenceElement: K,

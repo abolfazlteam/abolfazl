@@ -32,6 +32,7 @@ const SearchModal: React.FC<ISearchModalProps> = ({ isOpen, onClose }) => {
   return (
     <article
       ref={ref}
+      data-testid="search-modal"
       className={`absolute left-1/2 top-[7.5rem] mx-auto w-full -translate-x-1/2 space-y-2 transition-all duration-300 ease-linear max-sm:max-w-[520px] sm:max-w-[800px] ${isOpen ? "visible z-40 gap-y-8 opacity-100" : "invisible -z-30 scale-0 opacity-0"}`}
     >
       {/* Input for search */}

@@ -43,20 +43,22 @@ import Newsletter from "@/components/ui/Newsletter";
 
 const Page = () => {
   return (
-    <main className="">
+    <main className="min-h-[500px]">
       <Section className="lg:mt-[80px]">
         <Header title="my blogs" />
       </Section>
 
       <section className="mt-6 space-y-8 lg:mt-8">
-        {allBlogs.map((blog, index) => (
-          <BlogItem
-            key={blog.slug}
-            data={blog}
-            shouldHaveAnimation
-            animationDirection={index % 2 === 0 ? "left" : "right"}
-          />
-        ))}
+        {allBlogs
+          ?.filter((blog) => !blog.isDraft)
+          .map((blog, index) => (
+            <BlogItem
+              key={blog.slug}
+              data={blog}
+              shouldHaveAnimation
+              animationDirection={index % 2 === 0 ? "left" : "right"}
+            />
+          ))}
       </section>
 
       <Newsletter />
