@@ -27,6 +27,10 @@ jobs:
             --build-arg NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID=${{ secrets.GOOGLE_ANALYTICS_MEASUREMENT_ID }} \
             --build-arg NEWSLETTER_USERNAME=${{ secrets.NEWSLETTER_USERNAME }} \
             --build-arg NEWSLETTER_PASSWORD=${{ secrets.NEWSLETTER_PASSWORD }} \
+            --build-arg MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} \
+            --build-arg MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} \
+            --build-arg MONGODB_CLUSTER_NAME=${{ secrets.MONGODB_CLUSTER_NAME }} \
+            --build-arg MONGODB_DB_NAME=${{ secrets.MONGODB_DB_NAME }} \
             -t ${{ env.IMAGE_NAME }} -f ${{ env.DOCKER_FILE }} .
 
       - name: Save Docker image to tarball
