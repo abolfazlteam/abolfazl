@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { ALL_BLOGS, IBlogsProps } from "@/constants/content";
 import { MetadataRoute } from "next";
-// import { allArticles, Article as ArticleType } from "contentlayer/generated";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // const publishedArticles: ArticleType[] = allArticles?.filter(
-  //   (article) => !article?.isDraft,
-  // );
+  const publishedBlogs: IBlogsProps[] = ALL_BLOGS?.filter(
+    (blog) => !blog?.isDraft,
+  );
 
-  // const articlesUrls = publishedArticles?.map((article) => ({
-  //   url: `${article?.baseUrl}articles/${article?.slug}`,
-  //   lastModified: article?.updatedAt
-  //     ? new Date(Date.parse(article?.updatedAt as string))
-  //     : new Date(article?.publishedAt),
-  //   priority: 0.6,
-  //   changeFrequency: "monthly",
-  // }));
+  const blogsUrls = publishedBlogs?.map((blog) => ({
+    url: `${blog?.baseUrl}blogs/${blog?.slug}`,
+    lastModified: blog?.updatedAt
+      ? new Date(Date.parse(blog?.updatedAt as string))
+      : new Date(blog?.publishedAt),
+    priority: 0.6,
+    changeFrequency: "monthly",
+  }));
 
   return [
     {
@@ -36,6 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     // @ts-ignore
-    // ...articlesUrls,
+    ...blogsUrls,
   ];
 }

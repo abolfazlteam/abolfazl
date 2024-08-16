@@ -1,7 +1,6 @@
-// import { Metadata } from "next";
+import { Metadata } from "next";
 
 import type { Blog as BlogType } from "contentlayer/generated";
-import { allBlogs } from "contentlayer/generated";
 
 import BackLink from "@/components/ui/BackLink";
 import BlogHeader from "./_components/BlogHeader";
@@ -14,78 +13,79 @@ import { IS_PRODUCTION } from "@/constants";
 import { notFound } from "next/navigation";
 import MdxWrapper from "./_components/mdx/MdxWrapper";
 import readingTime from "@/utils/reading-time";
+import { ALL_BLOGS } from "@/constants/content";
+import JsonLd from "@/components/seo/JsonLd";
 
 type Props = {
   params: { slug: string };
 };
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   // read route params
-//   const slug = params.slug;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const slug = params.slug;
 
-//   // finding article data
-//   const articleData = allArticles?.find((article) => article.slug === slug);
+  // finding blog data
+  const blogData = ALL_BLOGS?.find((blog) => blog.slug === slug);
 
-//   return {
-//     metadataBase: articleData?.baseUrl as unknown as URL,
-//     title: `Arman Ahmadi - ${articleData?.title}`,
-//     description: articleData?.metaDescription,
-//     authors: { name: articleData?.author },
-//     keywords: articleData?.keywords,
-//     openGraph: {
-//       images: [articleData?.ogImage as string],
-//       type: "website",
-//       description: articleData?.ogDescription,
-//       title: articleData?.ogTitle,
-//       url: articleData?.ogUrl,
-//     },
-//     robots: articleData?.robots,
-//     alternates: {
-//       canonical:
-//         articleData?.canonical ||
-//         `${articleData?.baseUrl}${articleData?.shareLink}`,
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       creator: articleData?.author,
-//       description: articleData?.twitterDescription,
-//       title: articleData?.twitterTitle,
-//       images: articleData?.twitterImage,
-//     },
-//   };
-// }
+  return {
+    metadataBase: blogData?.baseUrl as unknown as URL,
+    title: `Abolfazl Jamshidi - ${blogData?.title}`,
+    description: blogData?.metaDescription,
+    authors: { name: blogData?.author },
+    keywords: blogData?.keywords,
+    openGraph: {
+      images: [blogData?.ogImage as string],
+      type: "website",
+      description: blogData?.ogDescription,
+      title: blogData?.ogTitle,
+      url: blogData?.ogUrl,
+    },
+    robots: blogData?.robots,
+    alternates: {
+      canonical:
+        blogData?.canonical || `${blogData?.baseUrl}${blogData?.shareLink}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: blogData?.author,
+      description: blogData?.twitterDescription,
+      title: blogData?.twitterTitle,
+      images: blogData?.twitterImage,
+    },
+  };
+}
 
 const Page = async ({ params }: Props) => {
-  const blog = allBlogs.find((post: BlogType) => post.slug === params.slug);
+  const blog = ALL_BLOGS.find((post: BlogType) => post.slug === params.slug);
   const isBlogDraft = IS_PRODUCTION && blog?.isDraft;
   const noBlogFound = !blog;
 
   // create JSON+LD data
-  // const jsonLd = {
-  //   "@context": "https://schema.org",
-  //   "@type": "Article",
-  //   mainEntityOfPage: {
-  //     "@type": "WebPage",
-  //     "@id": `${blog?.baseUrl}blogs/${blog?.slug}`,
-  //   },
-  //   author: {
-  //     "@type": "Person",
-  //     name: "Arman Ahmadi",
-  //     url: "https://armancodes.com/",
-  //   },
-  //   publisher: {
-  //     "@type": "Organization",
-  //     name: "armancodes.com",
-  //     logo: {
-  //       "@type": "ImageObject",
-  //       url: "https://armancodes.com/images/dark-logo.png",
-  //     },
-  //   },
-  //   headline: blog?.title,
-  //   image: blog?.image,
-  //   datePublished: new Date(blog?.publishedAt as string),
-  //   dateModified: new Date(blog?.updatedAt as string),
-  // };
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${blog?.baseUrl}blogs/${blog?.slug}`,
+    },
+    author: {
+      "@type": "Person",
+      name: "Arman Ahmadi",
+      url: "https://armancodes.com/",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "armancodes.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://armancodes.com/images/dark-logo.png",
+      },
+    },
+    headline: blog?.title,
+    image: blog?.image,
+    datePublished: new Date(blog?.publishedAt as string),
+    dateModified: new Date(blog?.updatedAt as string),
+  };
 
   // handle redirect when article is draft or slut not found
   if (isBlogDraft || noBlogFound) {
@@ -139,7 +139,7 @@ const Page = async ({ params }: Props) => {
       <Newsletter />
 
       {/* JSON+LD data */}
-      {/* <JsonLd data={jsonLd} /> */}
+      <JsonLd data={jsonLd} />
     </main>
   );
 };
