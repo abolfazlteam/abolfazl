@@ -13,6 +13,7 @@ import Newsletter from "@/components/ui/Newsletter";
 import { IS_PRODUCTION } from "@/constants";
 import { notFound } from "next/navigation";
 import MdxWrapper from "./_components/mdx/MdxWrapper";
+import readingTime from "@/utils/reading-time";
 
 type Props = {
   params: { slug: string };
@@ -97,6 +98,8 @@ const Page = async ({ params }: Props) => {
       href: linkItem?.toLowerCase()?.split(" ")?.join("-"),
     }));
 
+  const readingTimeData = readingTime(blog?.body?.raw as string);
+
   return (
     <main className="pt-6 md:pt-11">
       <BackLink href="/blogs">all blogs</BackLink>
@@ -106,6 +109,7 @@ const Page = async ({ params }: Props) => {
         slug={blog?.slug}
         publishedAt={blog?.publishedAt}
         shareLink={blog?.shareLink}
+        readTime={readingTimeData?.minutes}
       />
       <BlogHeroImage src="/images/blog-hover-img.png" />
 

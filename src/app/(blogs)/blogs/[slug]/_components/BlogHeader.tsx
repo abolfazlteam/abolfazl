@@ -13,7 +13,7 @@ interface IBlogHeaderProps {
   publishedAt: string;
   shareLink: string;
   slug: string;
-  readTime?: number;
+  readTime: number;
 }
 
 const BlogHeader: React.FC<IBlogHeaderProps> = ({
@@ -21,6 +21,7 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
   shareLink,
   title,
   slug,
+  readTime,
 }) => {
   const {
     counter,
@@ -47,8 +48,8 @@ const BlogHeader: React.FC<IBlogHeaderProps> = ({
           <LikeCounter totalLikes={totalLikes} isLoading={isLoading} />
           <p className="space-x-2">
             <span className="text-xs tracking-wide md:text-caption2">
-              {/* ${readTime > 1 ? "Mins" : "Min"} */}
-              {`2 Mins`}
+              {readTime}
+              {readTime > 1 ? " Mins" : " Min"}
             </span>
           </p>
         </div>
