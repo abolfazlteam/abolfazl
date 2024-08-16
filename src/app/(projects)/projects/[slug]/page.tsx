@@ -1,5 +1,4 @@
-// import type { Project as ProjectType } from "contentlayer/generated";
-import { allProjects } from "contentlayer/generated";
+import { Metadata } from "next";
 
 import BackLink from "@/components/ui/BackLink";
 import ProjectHeader from "./_components/ProjectHeader";
@@ -8,14 +7,51 @@ import TagsList from "@/app/(blogs)/blogs/[slug]/_components/TagsList";
 import Newsletter from "@/components/ui/Newsletter";
 import { IS_PRODUCTION } from "@/constants";
 import { notFound } from "next/navigation";
+import { ALL_PROJECTS } from "@/constants/content";
 
 type Props = {
   params: { slug: string };
 };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const slug = params.slug;
+
+  // finding blog data
+  const projectData = ALL_PROJECTS?.find((project) => project.slug === slug);
+
+  return {
+    metadataBase: projectData?.baseUrl as unknown as URL,
+    title: `Abolfazl Jamshidi - ${projectData?.title}`,
+    description: projectData?.metaDescription,
+    authors: { name: projectData?.author },
+    keywords: projectData?.keywords,
+    openGraph: {
+      images: [projectData?.ogImage as string],
+      type: "website",
+      description: projectData?.ogDescription,
+      title: projectData?.ogTitle,
+      url: projectData?.ogUrl,
+    },
+    robots: projectData?.robots,
+    alternates: {
+      canonical:
+        projectData?.canonical ||
+        `${projectData?.baseUrl}${projectData?.shareLink}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: projectData?.author,
+      description: projectData?.twitterDescription,
+      title: projectData?.twitterTitle,
+      images: projectData?.twitterImage,
+    },
+  };
+}
+
 const Page = ({ params }: Props) => {
   const projectSLug = params.slug;
-  const project = allProjects.find(
+  const project = ALL_PROJECTS.find(
     (projectItem) => projectItem.slug === projectSLug,
   );
   const isProjectDraft = IS_PRODUCTION && project?.isDraft;

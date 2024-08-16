@@ -1,8 +1,8 @@
+import { ALL_BLOGS } from "@/constants/content";
 import RSS from "rss";
-// import { allArticles } from "contentlayer/generated";
 
 export async function GET() {
-  //   // creating an RSS instance
+  // creating an RSS instance
   const feed = new RSS({
     title: "Abolfazl Jamshidi - Frontend Engineer | Blogs RSS Feed",
     description: `Hey there! This is where I share my journey through software engineering, personal anecdotes, and articles covering a wide range of topics.`,
@@ -17,20 +17,18 @@ export async function GET() {
     pubDate: new Date().toUTCString(),
     ttl: 60,
   });
-  // if (allArticles) {
-  //   allArticles
-  //     .filter((article) => !article.isDraft)
-  //     .map((article) => {
-  //       feed.item({
-  //         title: article.title,
-  //         description: article.summary,
-  //         url: `${article.baseUrl}/articles/${article.slug}`,
-  //         categories: article.tags || [],
-  //         author: article.author,
-  //         date: article.publishedAt,
-  //       });
-  //     });
-  // }
+  if (ALL_BLOGS) {
+    ALL_BLOGS.filter((blog) => !blog.isDraft).map((blog) => {
+      feed.item({
+        title: blog.title,
+        description: blog.summary,
+        url: `${blog.baseUrl}/blogs/${blog.slug}`,
+        categories: blog.tags || [],
+        author: blog.author,
+        date: blog.publishedAt,
+      });
+    });
+  }
   return new Response(feed.xml({ indent: true }), {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",
