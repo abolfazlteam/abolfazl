@@ -21,8 +21,8 @@ export default function useLike(slug: string) {
   const incrementCounterHandler = () => {
     if (counter < MAX_LIKE_NUM) {
       setLocalStorageValue({ count: counter + 1 });
+      setHeartIconCounter((prevState) => prevState + 1);
     }
-
     setCounter((prevState) => prevState + 1);
   };
 
