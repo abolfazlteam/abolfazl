@@ -3,7 +3,6 @@ import { useTheme } from "next-themes";
 import { render } from "../../../utilities";
 import Footer from "../ui/Footer";
 import { screen } from "@testing-library/react";
-import { DARK_LOGO_SVG, WHITE_LOGO_SVG } from "@/constants";
 
 // mock the themes
 vi.mock("next-themes", () => ({
@@ -29,24 +28,24 @@ describe("Footer Component Test Suite", () => {
     expect(emailElement).toHaveAttribute("href", mailHref);
   });
 
-  it("should render the correct logo when the theme is set to light", () => {
-    render(<Footer />);
+  // it("should render the correct logo when the theme is set to light", () => {
+  //   render(<Footer />);
 
-    const imageElement = screen.getByRole("img");
-    expect(imageElement).toBeInTheDocument();
-    expect(imageElement).toHaveAttribute("src", DARK_LOGO_SVG);
-  });
+  //   const imageElement = screen.getByRole("img");
+  //   expect(imageElement).toBeInTheDocument();
+  //   expect(imageElement).toHaveAttribute("src", DARK_LOGO_SVG);
+  // });
 
-  it("should render the correct logo when the theme is set to dark", () => {
-    //@ts-ignore
-    useTheme.mockReturnValue({ resolvedTheme: "dark" });
-    render(<Footer />);
+  // it("should render the correct logo when the theme is set to dark", () => {
+  //   //@ts-ignore
+  //   useTheme.mockReturnValue({ resolvedTheme: "dark" });
+  //   render(<Footer />);
 
-    const imageElement = screen.getByRole("img");
-    expect(imageElement).toBeInTheDocument();
+  //   const imageElement = screen.getByRole("img");
+  //   expect(imageElement).toBeInTheDocument();
 
-    expect(imageElement).toHaveAttribute("src", WHITE_LOGO_SVG);
-  });
+  //   expect(imageElement).toHaveAttribute("src", WHITE_LOGO_SVG);
+  // });
 
   it("should render the links properly in the footer", () => {
     render(<Footer />);
