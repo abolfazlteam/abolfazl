@@ -1,5 +1,3 @@
-import DARK_LOGO_SVG from "../../public/images/dark-logo.svg";
-import WHITE_LOGO_SVG from "../../public/images/white-logo.svg";
 import SADAF_PROJECT from "../../public/projects/sadaf.png";
 import ARMAN_PORTFOLIO from "../../public/projects/arman-portfolio.gif";
 import MY_COMPANY_PROJECT from "../../public/projects/my-company.gif";
@@ -18,8 +16,6 @@ export const VIEWS_COUNTER_DEFAULT_VALUE = 10;
 export const MAX_LIKE_NUM = 10;
 
 export {
-  DARK_LOGO_SVG,
-  WHITE_LOGO_SVG,
   SADAF_PROJECT,
   ARMAN_PORTFOLIO,
   PROJECT_TEST_IMAGE,
