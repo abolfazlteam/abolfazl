@@ -35,6 +35,9 @@ const ProjectHeader: React.FC<IProjectHeaderProps> = ({
           <LinkButton hasLinkIcon icon={null} href={websiteUrl}>
             Open project
           </LinkButton>
+          <span aria-label="open project link" className="sr-only">
+            open project link
+          </span>
         </button>
       )}
     </header>
