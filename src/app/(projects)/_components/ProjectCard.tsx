@@ -59,9 +59,9 @@ const ProjectCard: React.FC<TProjectCardProps> = ({
 
         <div className="absolute left-0 top-full z-[2] flex h-full w-full flex-col justify-end space-y-6 px-4 pb-3 pt-[41px] transition-all duration-500 ease-in-out group-hover:top-0">
           <div className="space-y-3">
-            <h4 className="text-lg font-extrabold capitalize text-white">
+            <h3 className="text-lg font-extrabold capitalize text-white">
               {title}
-            </h4>
+            </h3>
             <p className="text-base leading-6 text-white">
               {description.slice(0, 55)}...
             </p>
