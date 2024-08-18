@@ -5,7 +5,6 @@ import AboutMeHeroSection from "../_components/AboutMeHeroSection";
 import { ConnectionSkeletons } from "../_components/ConnectionItemSkeleton";
 import WorkExperienceSection from "../_components/WorkExperienceSection";
 import JsonLd from "@/components/seo/JsonLd";
-// import JsonLd from "@/components/seo/JsonLd";
 
 const DynamicConnectionSection = dynamic(
   () => import("../_components/ConnectionListSection"),
@@ -20,7 +19,13 @@ export const metadata: Metadata = {
   description:
     "Hey, I'm Abolfazl Jamshidi! I currently live in Iran and work as a full-time front-end developer. I love excitement and experience different fun activities.",
   authors: { name: "Abolfazl Jamshidi", url: "http://iabolfazl.dev" },
-  keywords: ["php", "software engineering", "backend"],
+  keywords: [
+    "React",
+    "Next.JS",
+    "frontend-engineer",
+    "software engineering",
+    "frontend",
+  ],
   alternates: {
     canonical: "https://iabolfazl.dev/about-me",
   },

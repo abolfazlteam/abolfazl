@@ -1,24 +1,12 @@
-"use client";
-
 import { alexandria } from "@/app/fonts";
 import GithubIcon from "@/assets/icons/GithubIcon";
 import IconLinkedIn from "@/assets/icons/LinkedIcon";
 import IconMedium from "@/assets/icons/MediumIcon";
 import IconRss from "@/assets/icons/RSS";
-import { DARK_LOGO_SVG, WHITE_LOGO_SVG } from "@/constants";
-import { useTheme } from "next-themes";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import Logo from "./Logo";
 
 const Footer = () => {
-  const { resolvedTheme } = useTheme();
-  const [logoImage, setLogoImage] = useState<string>(DARK_LOGO_SVG);
-
-  useEffect(() => {
-    setLogoImage(DARK_LOGO_SVG);
-  }, []);
-
   return (
     <footer
       className="mt-25 border-t border-border-articles bg-bgColor px-4 py-5 md:mt-45 md:px-0 md:py-8"
@@ -28,20 +16,7 @@ const Footer = () => {
         <div className="flex justify-between">
           <div>
             <div className="mb-4 flex flex-wrap items-center gap-4">
-              {resolvedTheme === "light" ? (
-                <Image
-                  src={logoImage || DARK_LOGO_SVG}
-                  alt="logo"
-                  width={40}
-                  height={40}
-                />
-              ) : (
-                <Image src={WHITE_LOGO_SVG} alt="logo" width={40} height={40} />
-              )}
-
-              <p className="text-body2 font-bold capitalize text-text-primary">
-                Abolfazl
-              </p>
+              <Logo />
               <Link
                 href={"mailto:abolfazljamshididev@gmail.com"}
                 className={`text-caption2 text-text-primary md:text-body2 ${alexandria.className}`}
