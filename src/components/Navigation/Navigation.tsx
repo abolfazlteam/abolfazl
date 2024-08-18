@@ -80,7 +80,7 @@ const Navigation = () => {
       {/* overlay */}
       {(shouldShowMobileNavigation || showSearchModal) && (
         <div
-          className={`absolute left-0 top-0 z-[15] h-full w-full bg-[#00000066] backdrop-blur-sm transition-all duration-300 ease-linear ${isMenuOpen || showSearchModal ? "visible opacity-100" : "invisible opacity-0"}`}
+          className={`fixed left-0 top-0 z-[15] h-full w-full bg-[#00000066] backdrop-blur-sm transition-all duration-300 ease-linear ${isMenuOpen || showSearchModal ? "visible opacity-100" : "invisible opacity-0"}`}
         ></div>
       )}
     </>
