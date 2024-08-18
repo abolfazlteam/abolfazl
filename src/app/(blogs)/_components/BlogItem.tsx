@@ -52,7 +52,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({
   const imageOffset = 164;
 
   return (
-    <article
+    <li
       className={`group rounded-10 transition-all duration-300 ease-in-out ${shouldHaveAnimation ? (isInView ? "translate-x-0 opacity-100" : `${animationDirection === "left" ? "-translate-x-40" : "translate-x-40"} opacity-0`) : "translate-x-0 opacity-100"}`}
       ref={blogItemRef}
     >
@@ -92,7 +92,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({
           <LikeCounter isLoading={isLoading} totalLikes={dbLikes} />
         </div>
       </Link>
-    </article>
+    </li>
   );
 };
 
