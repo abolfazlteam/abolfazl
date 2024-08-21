@@ -20,7 +20,7 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
       <Link
         {...props}
         href={href}
-        className="text-text-primary underline underline-offset-4"
+        className="text-text-secondary underline underline-offset-4"
       >
         {props.children}
       </Link>
@@ -30,7 +30,7 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
     <a
       target="_blank"
       rel="noopener noreferrer"
-      className="font-normal text-text-primary underline underline-offset-4"
+      className="font-normal text-text-secondary underline underline-offset-4"
       {...props}
       aria-label={"link"}
     >

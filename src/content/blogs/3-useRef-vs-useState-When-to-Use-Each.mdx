@@ -1,0 +1,198 @@
+---
+title: "useRef vs. useState - When to Use Each?"
+summary: "As React developers, we save data, update it, or even change our application's UI daily. So, it is a must to know our day-to-day tools inside out. Today, we want to start briefly with useState and useRef and then dive deeper into their use cases and how they behave differently."
+publishedAt: "2024-08-21"
+tags: ["React", "Next.JS", "JavaScript", "Software Development", "Hooks"]
+hasSeries: false
+ogTitle: "useRef vs. useState - When to Use Each?"
+ogType: "website"
+ogUrl: "https://iabolfazl.dev/blogs/useRef-vs-useState-When-to-Use-Each"
+ogImage: "https://iabolfazl.dev/blogs/useRef-vs-useState-When-to-Use-Each.jpg"
+twitterImage: "https://iabolfazl.dev/blogs/useRef-vs-useState-When-to-Use-Each.jpg"
+twitterUrl: "https://iabolfazl.dev/blogs/useRef-vs-useState-When-to-Use-Each"
+twitterTitle: "useRef vs. useState - When to Use Each?"
+keywords: ["React", "Next.JS", "JavaScript", "Software Development", "Hooks"]
+author: "Abolfazl Jamshidi"
+isDraft: false
+image: "/blogs/useRef-vs-useState-When-to-Use-Each.jpg"
+imageCaption: "caption"
+category: "tech"
+---
+
+As React developers, we save data, update it, or even change our applications' UI daily. So, it is a must to know our day-to-day tools inside out.
+
+Today, we want to start briefly with `useState` and `useRef` and then dive deeper into their use cases and how they behave differently.
+
+## Anatomy of useState
+
+You have used `useState` a lot so far. But, have you considered why useState? How does it behave? What does it add to our application? We want to cover these questions and know what happens in our code whenever we use this hook. This is a simple app that uses `useState` syntax to store so-called data as the state of the component.
+
+```tsx
+const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+```
+
+## Please, Remember Me
+
+Whenever we use `useState` we are telling React that this data is special to us. Please, remember it between renders so I may use it. In our code above, we want to remember the `isModalOpen` data. The convention is to name the state like this `[someValue, setSomeValue]`. Though the name can be anything, make sure you follow the rules.
+
+This hook only takes one argument which is the initial data of your state. It returns two important things in an array (tuple) for us. The first one is the data itself, and the second one is the setter function we need to update the data. For example, this code shows how a modal is shown in the UI.
+
+```tsx showLineNumbers
+import { ChangeEvent, useState } from "react";
+
+const UserInformation = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const openModalHandler = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModalHandler = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="flex min-h-72 min-w-96 flex-col gap-10 rounded-md bg-white p-4 text-center shadow-md">
+      <div className="flex items-center justify-between">
+        <span>Modal is: {`${isModalOpen ? "visible" : "invisible"}`}</span>
+
+        <div className="space-x-4">
+          <button onClick={openModalHandler}>Open</button>
+          <button onClick={closeModalHandler}>X</button>
+        </div>
+      </div>
+      {/* Modal here */}
+      {isModalOpen && <Modal />}
+    </div>
+  );
+};
+
+export default UserInformation;
+
+const Modal = () => {
+  const [userName, setUserName] = useState<string>("");
+
+  const changeUserNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUserName(value);
+  };
+
+  return (
+    <div className="flex flex-col gap-4">
+      <input
+        className="rounded-md border border-teal-800 px-2 py-1 focus:border-2 focus:border-teal-900 focus:outline-none"
+        value={userName}
+        placeholder="Enter your name"
+        onChange={changeUserNameHandler}
+      />
+      <span>User's name is {userName}</span>
+    </div>
+  );
+};
+```
+
+The modal shows a user's name that you can fill in the input and see how it gets updated in our application accordingly.
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  alt="useState code snippet"
+  src="/blogs/useState-code.gif"
+  caption="Sample React App - Showcasing modal and useState"
+/>
+
+We should only update the state using the setter function. Only in this case, <strong>React will update the state, and updating the state will trigger the component to re-render.</strong> Now, what happens if we close the modal? Will it remember the state data?
+
+## State and Component's Position in the UI
+
+Our data will get reset when we close the modal and open it again you see that the data is an empty string. This is what we should expect and know about React when we make use of useState. React uses a Virtual DOM which is a javascript object representation of the real DOM. It makes the computation of UI differences easier and whenever a change happens - like our modal getting removed from DOM - React creates a new VDOM.
+
+With the help of the reconciliation process and diffing algorithm, it updates the DOM efficiently. If you wish to learn more about it, you can check out my [React Behind the Scenes](https://javascript.plainenglish.io/how-react-actually-renders-40bc7d4ca2c7?source=user_profile---------2----------------------------).
+
+Key Takeaways:
+
+- States will get destroyed when the DOM node is removed from the DOM or its position has changed inside the tree.
+- To keep our UI updated and synced with our data, we need to store it as a state.
+- To update a state, we must use the state setter function to trigger re-render.
+
+## Isolation
+
+States are local to components. It means even if you render multiple instances of the `Modal` component, each one will have its own state. Changing any of them won't affect the others.
+
+This is another important reason why it is better to use `useState` for <strong>data we want React to remember and update UI accordingly.</strong> Imagine you had used a normal variable for storing data. Not only, would not it get retained between renders, but also we would encounter mutations.
+
+## Do not Overuse
+
+Though you can have multiple states inside one component, be careful not to overuse it and store everything inside a state since we don't want our component to re-render when every data changes.
+
+There are 3 questions you ask yourself when you want to store data as a state:
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  alt="State Questions Table"
+  src="/blogs/useRef-vs-useState-table.jpg"
+  caption="State Questions Table"
+/>
+
+Well done for keeping it up down here. It was a brief and good summary of the React `useState`. Let's go for useRef.
+
+## The useRef Hook
+
+This hook is somehow similar to `useState`. We use this hook when we want Reach to remember some data for us. Wait! Did not we say `useState` was supposed to do this job for us? Yes, you are right. But - there is always a but -` useRef` <strong>will tell React to remember data but it won't trigger a re-render.</strong> This is a key point that distinguishes these two hooks.
+
+We can use `useRef` and pass initial data to it like this.
+
+```tsx
+const ref = useRef(0);
+```
+
+It returns an object with a property called current which holds the data inside itself.
+
+```tsx
+// ref object will be like this
+{
+  current: 0;
+}
+```
+
+Despite states that we must not mutate, we can easily mutate a ref and read and write to it.
+
+Supposing we have a counter. We have a `incrementCounterHandler` which whenever invoked, will update our ref. But wait, why don't we see any changes in the UI? The answer is simple. Because refs do not trigger a re-render in React.
+
+<Image
+  rounded
+  width={400}
+  height={200}
+  alt="Sample app counter using useRef"
+  src="/blogs/useRef-code.gif"
+  caption="Sample app counter using useRef"
+/>
+
+## When to use Refs
+
+We mostly use refs when we want to store data that does not affect the component's UI. For example, we can use refs for:
+
+- Storing timeout IDS
+- Storing DOM elements
+- Storing objects/data that ous JSX does not rely on
+
+## Summary
+
+Here, I have already summarized and pulled out key points and takeaways from this article in a way you can refer to it easily whenever you need.
+
+- We use both `useState` and `useRef` when we want React to remember the data.
+- `useState` is used when our UI depends on the changes of the data and we need to trigger a re-render!
+- `useRef` is used when we do not want to trigger a re-render!
+- The state of our components is isolated inside them and having multiple instances of the same component won't affect each other.
+- React will keep track of the state as long as the component is inside the DOM or in the same position in the UI tree.
+
+## Conclusion
+
+And there it is. Henceforth, you will always remember these important points whenever using states and refs. I hope you have found this useful. Thank you for reading. Please share and like if you found this article helpful.
+
+##### Credits:
+
+Cover image is from: le le StSaPhoto by [Rahul Mishra](https://unsplash.com/@rahuulmiishra?utm_source=medium&utm_medium=referral) on Unsplash
