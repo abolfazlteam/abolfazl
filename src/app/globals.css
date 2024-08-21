@@ -267,3 +267,8 @@ div[data-rehype-pretty-code-fragment] pre {
   color: #bbb; /* Line number color */
   content: attr(line);
 }
+
+/* inline code */
+p code {
+  @apply mx-2 bg-[#0000000d] !px-2 !py-1 dark:bg-gray-400 dark:text-text-secondary;
+}
