@@ -111,7 +111,7 @@ const Page = async ({ params }: Props) => {
         shareLink={blog?.shareLink}
         readTime={readingTimeData?.minutes}
       />
-      <BlogHeroImage src="/images/blog-hover-img.png" />
+      {blog?.image && <BlogHeroImage src={blog?.image} />}
 
       {/* body section */}
       <section className="flex sm:gap-x-6 md:gap-x-14">

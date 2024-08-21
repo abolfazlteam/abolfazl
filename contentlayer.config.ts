@@ -121,6 +121,7 @@ export const Blog = defineDocumentType(() => ({
     isDraft: { type: "boolean", required: false, default: true },
     hasSidebarLinks: { type: "boolean", required: false, default: false },
     image: { type: "string", required: false, default: "" },
+    imageCaption: { type: "string", required: false, default: "" },
     isFeatured: { type: "boolean", required: false, default: false },
   },
   computedFields: blogComputedFields,
