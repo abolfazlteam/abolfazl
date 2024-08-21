@@ -53,7 +53,7 @@ const BlogItem: React.FC<IBlogItemProps> = ({
 
   return (
     <li
-      className={`group rounded-10 transition-all duration-300 ease-in-out ${shouldHaveAnimation ? (isInView ? "translate-x-0 opacity-100" : `${animationDirection === "left" ? "-translate-x-40" : "translate-x-40"} opacity-0`) : "translate-x-0 opacity-100"}`}
+      className={`group list-none rounded-10 transition-all duration-300 ease-in-out ${shouldHaveAnimation ? (isInView ? "translate-x-0 opacity-100" : `${animationDirection === "left" ? "-translate-x-40" : "translate-x-40"} opacity-0`) : "translate-x-0 opacity-100"}`}
       ref={blogItemRef}
     >
       <Link
