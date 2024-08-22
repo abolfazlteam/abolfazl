@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-import type { Blog as BlogType } from "contentlayer/generated";
-
 import BackLink from "@/components/ui/BackLink";
 import BlogHeader from "./_components/BlogHeader";
 import BlogHeroImage from "./_components/BlogHeroImage";
@@ -13,8 +11,9 @@ import { IS_PRODUCTION } from "@/constants";
 import { notFound } from "next/navigation";
 import MdxWrapper from "./_components/mdx/MdxWrapper";
 import readingTime from "@/utils/reading-time";
-import { ALL_BLOGS } from "@/constants/content";
+import { ALL_BLOGS, IBlogsProps } from "@/constants/content";
 import JsonLd from "@/components/seo/JsonLd";
+import formatPublishedDateHandler from "@/utils/date";
 
 type Props = {
   params: { slug: string };
@@ -29,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     metadataBase: blogData?.baseUrl as unknown as URL,
-    title: `Abolfazl Jamshidi - ${blogData?.title}`,
+    title: `${blogData?.title} | by Abolfazl Jamshidi | ${formatPublishedDateHandler(blogData?.publishedAt as string, "en-US", { month: "short", year: "numeric" })}`,
     description: blogData?.metaDescription,
     authors: { name: blogData?.author },
     keywords: blogData?.keywords,
@@ -56,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const Page = async ({ params }: Props) => {
-  const blog = ALL_BLOGS.find((post: BlogType) => post.slug === params.slug);
+  const blog = ALL_BLOGS.find((post: IBlogsProps) => post.slug === params.slug);
   const isBlogDraft = IS_PRODUCTION && blog?.isDraft;
   const noBlogFound = !blog;
 
