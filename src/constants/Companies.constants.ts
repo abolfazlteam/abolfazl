@@ -31,7 +31,7 @@ export const COMPANIES_DATA: ICompanyInfoProps[] = [
     jobType: "Hybrid",
     location: "Tehran, Iran",
     role: "Frontend Developer",
-    startDate: "2022",
+    startDate: "2021",
     endData: "2023",
   },
 ];
