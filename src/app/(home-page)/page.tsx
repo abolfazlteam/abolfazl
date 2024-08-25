@@ -53,12 +53,12 @@ const Page = () => {
       <HomePageHeroSection />
 
       <Section>
-        <Header title="latest blogs" href="/" />
+        <Header title="latest blogs" href="/blogs" />
         <BlogsList blogs={allBlogs.filter((blog) => !blog.isDraft)} />
       </Section>
 
       <Section>
-        <Header title="latest projects" />
+        <Header title="latest projects" href="/projects" />
         <section className="hidden md:block">
           <DynamicProjectList />
         </section>
