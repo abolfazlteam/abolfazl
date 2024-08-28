@@ -31,7 +31,7 @@ const ShareButton = ({ url }: { url: string }) => {
       />
       {tooltip && (
         <div
-          data-testid="share-button-tooltip"
+          data-testid="tooltip-wrapper"
           className={`absolute left-1/2 top-[120%] z-10 -translate-x-1/2 whitespace-nowrap rounded-5 bg-primary p-2 text-caption2 font-light text-white ${alexandria.className}`}
         >
           copied

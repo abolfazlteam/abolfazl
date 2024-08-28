@@ -2,7 +2,7 @@ import { rammettoOne } from "@/app/fonts";
 
 interface ISectionHeaderProps {
   title: string;
-  description: string;
+  description?: string;
 }
 
 const SectionHeader: React.FC<ISectionHeaderProps> = ({
@@ -16,7 +16,12 @@ const SectionHeader: React.FC<ISectionHeaderProps> = ({
       </h2>
 
       {description && (
-        <p className="text-body2 font-light md:text-lg">{description}</p>
+        <p
+          data-testid="section-header-description"
+          className="text-body2 font-light md:text-lg"
+        >
+          {description}
+        </p>
       )}
     </header>
   );
