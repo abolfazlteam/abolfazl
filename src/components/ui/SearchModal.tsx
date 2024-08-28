@@ -64,7 +64,10 @@ const SearchModal: React.FC<ISearchModalProps> = ({ isOpen, onClose }) => {
           typeof searchResults !== "string" &&
           searchResults &&
           searchResults.length === 0 && (
-            <span className="inline-block w-full px-6 py-4 text-center text-base text-heading">
+            <span
+              data-testid="search-not-found-text"
+              className="inline-block w-full px-6 py-4 text-center text-base text-heading"
+            >
               Nothing was found! Please try something else.
             </span>
           )}

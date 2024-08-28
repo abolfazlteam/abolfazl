@@ -18,11 +18,14 @@ const NotFoundLayout = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center px-4 pt-4 md:gap-y-16 md:pt-24">
+    <div
+      className="flex items-center justify-center px-4 pt-4 md:gap-y-16 md:pt-24"
+      data-testid="notFoundLayout-wrapper"
+    >
       {resolvedTheme === "light" || initialIcon === "light" ? (
-        <IconNotFoundLight />
+        <IconNotFoundLight data-testid="light-notFound-icon" />
       ) : (
-        <IconNotFoundDark />
+        <IconNotFoundDark data-testid="dark-notFound-icon" />
       )}
     </div>
   );
