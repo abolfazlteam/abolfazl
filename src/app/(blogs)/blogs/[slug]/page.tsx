@@ -26,18 +26,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // finding blog data
   const blogData = ALL_BLOGS?.find((blog) => blog.slug === slug);
 
+  const ogTitle = `${blogData?.title} | by Abolfazl Jamshidi | ${formatPublishedDateHandler(blogData?.publishedAt as string, "en-US", { month: "short", year: "numeric" })}`;
+
   return {
     metadataBase: blogData?.baseUrl as unknown as URL,
-    title: `${blogData?.title} | by Abolfazl Jamshidi | ${formatPublishedDateHandler(blogData?.publishedAt as string, "en-US", { month: "short", year: "numeric" })}`,
+    title: ogTitle,
     description: blogData?.metaDescription,
     authors: { name: blogData?.author },
     keywords: blogData?.keywords,
     openGraph: {
       images: [blogData?.ogImage as string],
-      type: "website",
+      type: "article",
       description: blogData?.ogDescription,
-      title: blogData?.ogTitle,
+      title: ogTitle,
       url: blogData?.ogUrl,
+      siteName: blogData?.baseUrl,
     },
     robots: blogData?.robots,
     alternates: {
@@ -48,8 +51,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       creator: blogData?.author,
       description: blogData?.twitterDescription,
-      title: blogData?.twitterTitle,
+      title: ogTitle,
       images: blogData?.twitterImage,
+      site: blogData?.baseUrl,
     },
   };
 }
