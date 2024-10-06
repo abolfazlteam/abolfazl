@@ -18,6 +18,11 @@ export const metadata: Metadata = {
     "tech",
     "personal weblog",
     "frontend articles",
+    "front-end",
+    "software engineering",
+    "abolfazl jamshidi",
+    "developer",
+    "JavaScript",
   ],
   alternates: {
     canonical: "https://iabolfazl.dev/blogs",
