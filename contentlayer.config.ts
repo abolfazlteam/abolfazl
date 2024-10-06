@@ -48,6 +48,14 @@ const blogComputedFields: ComputedFields = {
   },
 };
 
+const projectComputedFields: ComputedFields = {
+  ...blogComputedFields,
+  shareLink: {
+    type: "string",
+    resolve: (doc) => `/projects/${getSlug(doc)}`,
+  },
+};
+
 export const Project = defineDocumentType(() => ({
   name: "Project",
   contentType: "mdx",
@@ -81,7 +89,7 @@ export const Project = defineDocumentType(() => ({
     image: { type: "string", required: false, default: "" },
     websiteUrl: { type: "string", required: false, default: "" },
   },
-  computedFields: blogComputedFields,
+  computedFields: projectComputedFields,
 }));
 
 export const Blog = defineDocumentType(() => ({

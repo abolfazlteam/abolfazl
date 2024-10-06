@@ -21,9 +21,9 @@ const Header: React.FC<THeaderProps> = (props) => {
 
   return (
     <header className="flex items-center justify-between">
-      <h2 className={`${rammettoOne.className} text-lg capitalize md:text-2xl`}>
+      <h1 className={`${rammettoOne.className} text-lg capitalize md:text-2xl`}>
         {title}
-      </h2>
+      </h1>
 
       {"href" in props && (
         <Link

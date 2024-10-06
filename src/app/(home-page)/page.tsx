@@ -24,15 +24,22 @@ const DynamicTinderProjectList = dynamic(
 
 export const metadata: Metadata = {
   title: "Abolfazl Jamshidi - Frontend Engineer - Content Creator",
-  description: `Hey there! Here, I share my insights on technology tools, my experience using tools and life updates.`,
+  description: `Hey there! Here, I share my insights on technology tools, my experience using tools and life updates. I'm a frontend developer, optimist, and supportive team player. I love creating and presenting content about JavaScript, TypeScript, React, Next.js and more.`,
   authors: { name: "Abolfazl Jamshidi", url: "http://iabolfazl.dev" },
-  keywords: ["php", "software engineering", "backend"],
+  keywords: [
+    "frontend",
+    "software engineering",
+    "abolfazl jamshidi",
+    "developer",
+    "personal portfolio",
+    "engineer",
+  ],
   alternates: {
     canonical: "https://iabolfazl.dev",
   },
   openGraph: {
     title: "Abolfazl Jamshidi - Frontend Engineer - Content Creator",
-    description: `Hey there! Here, I share my insights on technology tools, my experience using tools and life updates.`,
+    description: `Hey there! Here, I share my insights on technology tools, my experience using tools and life updates. I'm a frontend developer, optimist, and supportive team player. I love creating and presenting content about JavaScript, TypeScript, React, Next.js and more.`,
     url: "http://iabolfazl.dev",
     type: "website",
     images: "https://iabolfazl.dev/images/me-1.jpg",
@@ -41,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     creator: "Abolfazl Jamshidi",
     title: "Abolfazl Jamshidi - Frontend Engineer - Content Creator",
-    description: `Hey there! Here, I share my insights on technology tools, my experience using tools and life updates.`,
+    description: `Hey there! Here, I share my insights on technology tools, my experience using tools and life updates. I'm a frontend developer, optimist, and supportive team player. I love creating and presenting content about JavaScript, TypeScript, React, Next.js and more.`,
     images: ["https://iabolfazl.dev/images/me-1.jpg"],
     site: "http://iabolfazl.dev",
   },

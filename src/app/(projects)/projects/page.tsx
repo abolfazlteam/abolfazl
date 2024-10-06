@@ -10,10 +10,14 @@ export const metadata: Metadata = {
   authors: { name: "Abolfazl Jamshidi", url: "http://iabolfazl.dev" },
   keywords: [
     "frontend",
+    "front-end development",
     "software engineering",
     "react",
     "portfolio",
     "next.js",
+    "developer",
+    "personal portfolio",
+    "engineer",
   ],
   alternates: {
     canonical: "https://iabolfazl.dev/projects",
