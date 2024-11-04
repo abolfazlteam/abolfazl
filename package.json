@@ -39,7 +39,7 @@
     "@chromatic-com/storybook": "^2.0.2",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.3.5",
-    "@storybook/addon-links": "^8.3.5",
+    "@storybook/addon-links": "^8.4.1",
     "@storybook/addon-onboarding": "^8.2.9",
     "@storybook/blocks": "^8.3.4",
     "@storybook/nextjs": "^8.2.9",
