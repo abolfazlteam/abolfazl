@@ -114,26 +114,28 @@ const Page = async ({ params }: Props) => {
         shareLink={blog?.shareLink}
         readTime={readingTimeData?.minutes}
       />
-      {blog?.image && <BlogHeroImage src={blog?.image} />}
+      <div className="relative">
+        {blog?.image && <BlogHeroImage src={blog?.image} />}
 
-      {/* body section */}
-      <section className="flex sm:gap-x-6 md:gap-x-14">
-        <div
-          className={`${blog?.hasSidebarLinks ? "max-w-[600px]" : "w-full"} space-y-6`}
-        >
-          {blog?.hasSeries && (
-            <BlogSeries seriesLinks={blog?.blogSeriesLinks} />
-          )}
+        {/* body section */}
+        <section className="flex sm:gap-x-6 md:gap-x-14">
+          <div
+            className={`${blog?.hasSidebarLinks ? "max-w-[600px]" : "w-full"} space-y-6`}
+          >
+            {blog?.hasSeries && (
+              <BlogSeries seriesLinks={blog?.blogSeriesLinks} />
+            )}
 
-          {/* main content */}
-          <MdxWrapper code={blog?.body?.code as string} />
-        </div>
+            {/* main content */}
+            <MdxWrapper code={blog?.body?.code as string} />
+          </div>
+        </section>
 
         {/* SIDEBAR OF SINGLE ARTICLES */}
         {sidebarLinks && sidebarLinks.length > 0 && (
           <SidebarLinks links={sidebarLinks} />
         )}
-      </section>
+      </div>
 
       {/* TAGS SECTION */}
       <TagsList tags={blog?.tags} />
