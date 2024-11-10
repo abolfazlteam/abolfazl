@@ -1,0 +1,284 @@
+---
+title: "useEffect - Deep Dive Into It"
+summary: "Effects let you specify side effects caused by rendering itself, rather than by a particular event. Generally speaking, effects help us operate a piece of code automatically when a part of the application becomes visible in the UI. In web applications, posting a comment, deleting a row from a table, connecting to a chatroom server, etc. are all side effects."
+publishedAt: "2024-11-10"
+tags:
+  [
+    "useEffect",
+    "React",
+    "side effects",
+    "Next.JS",
+    "JavaScript",
+    "Software Development",
+    "software engineering",
+    "front-end",
+    "hooks",
+  ]
+hasSeries: false
+ogTitle: "useEffect - Deep Dive Into It"
+ogType: "article"
+ogUrl: "https://iabolfazl.dev/blogs/useEffect-deep-dive-into-it"
+ogImage: "https://iabolfazl.dev/blogs/useEffect.webp"
+twitterImage: "https://iabolfazl.dev/blogs/useEffect.webp"
+twitterUrl: "https://iabolfazl.dev/blogs/useEffect-deep-dive-into-it"
+twitterTitle: "useEffect - Deep Dive Into It"
+keywords:
+  [
+    "react",
+    "beginners",
+    "programming",
+    "software",
+    "coding",
+    "development",
+    "Next.JS",
+    "hooks",
+    "react blogs",
+    "useEffect",
+    "side effects",
+    "abolfazl jamshidi",
+  ]
+author: "Abolfazl Jamshidi"
+isDraft: false
+image: "/blogs/useEffect.webp"
+category: tech
+---
+
+> Effects let you specify side effects caused by rendering itself, rather than by a particular event.
+
+## What is a side effect?
+
+Generally, a piece of code with a side effect is an operation with an observable impact other than its primary effect. In React, we can categorize them into these two:
+
+1. Cannot happen during the rendering phase (as it should be pure).
+2. Event handlers are used to perform side effects (sometimes we do not need an event click to perform an operation).
+
+Generally speaking, effects help us operate a piece of code automatically when a part of the application becomes visible in the UI. In web applications, posting a comment, deleting a row from a table, connecting to a chatroom server, etc. are all side effects.
+
+## Synchronizing with Effects
+
+Effects run after the commit phase - after the screen updates. Every time our state/props change, React will re-render the components and update the UI as a result, and then the code inside `useEffect` runs. In other words, `useEffect` <strong>"delays"</strong> the piece of code from running until that render is reflected on the screen. If you want to know more about how React renders, you can check my blog ["How React Works Behind the Scenes"](https://javascript.plainenglish.io/how-react-actually-renders-40bc7d4ca2c7) in which I explain it in detail.
+
+Consider this piece of code as an example in which we want to play a short video. How do you think it will behave?
+
+```tsx showLineNumbers
+import { useState, useRef, useEffect } from "react";
+
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  if (isPlaying) {
+    ref.current.play();
+  } else {
+    ref.current.pause();
+  }
+
+  return <video ref={ref} src={src} loop playsInline />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  return (
+    <>
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? "Pause" : "Play"}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="/blogs/useEffect/sample-video.mp4"
+      />
+    </>
+  );
+}
+```
+
+You nailed it! It won't work. When React renders the `VideoPlayer` component, in the rendering phase, it sees this code `ref.current.play()` and it crashes. Because, in the first render there is no `ref` available yet. In other words, there is no video tag in the DOM available. So, we need to <strong>"delay"</strong> this piece of code until the render is complete. The updated version will be:
+
+```tsx showLineNumbers
+import { useState, useRef, useEffect } from "react";
+
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  });
+
+  return <video ref={ref} src={src} loop playsInline />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  return (
+    <>
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? "Pause" : "Play"}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="https://iabolfazl.dev/projects/arman-portfolio.gif"
+      />
+    </>
+  );
+}
+```
+
+## How to Control Effects
+
+By default, Effects will run on every render. Hence, if you're changing a state like the code below, you are prone to experience an infinite loop.
+
+```tsx showLineNumbers
+const [count, setCount] = useState(0);
+
+useEffect(() => {
+  setCount(count + 1);
+});
+```
+
+We know that Effects run after the render phase and from [How React Works Behind the Scenes](https://javascript.plainenglish.io/how-react-actually-renders-40bc7d4ca2c7) the Scenes we learned that states will cause a re-render. Here we are updating the `count` state and after updating it the `useEffect` will run and again updating the state happens which makes the cycle of effect and state updates.
+
+## Different Effect states
+
+1. Running a side effect after every render:
+
+```tsx showLineNumbers {4}
+// no array of dependencies provided
+useEffect(() => {
+  // do something here
+});
+```
+
+2. Running a side effect only on mount - when the component appears:
+
+```tsx showLineNumbers {4}
+// empty array of dependencies provided
+useEffect(() => {
+  // do something here
+}, []);
+```
+
+3. Running a side effect on the mount and if either count or shouldShow have changed since the last render.
+
+```tsx showLineNumbers {7}
+const [count, setCount] = useState(false);
+const [shouldShow, setShouldShow] = useState(false);
+
+// empty array of dependencies provided
+useEffect(() => {
+  // do something here
+}, [count, shouldShow]);
+```
+
+## Clean it Up!
+
+Every time we have effects, we must also take care of cleaning the side effects. Imagine you have a faq list with different categories on your website. Whenever a user selects a different category, you want to fetch the relevant data. If the user selects the `sport` category by mistake and changes to `travel` fast, you must cancel the previous fetch request and start fetching the final category. This is how we can write a clean-up function in effects.
+
+```tsx showLineNumbers {6-10}
+export default function FaqsList({ category }) {
+  useEffect(() => {
+    // fetch data
+    fetchFaqDate(category);
+
+    return () => {
+      // cancel the previous request
+      abortRetchRequest();
+    };
+  }, [category]);
+
+  return <>{/* render the faqs here ... */}</>;
+}
+```
+
+## The Lifecycle of an Effect
+
+Every component goes through these steps as its lifecycle:
+
+1. A component mounts when it is added to the screen.
+2. A component updates when a prop or state changes - usually in response to interaction.
+3. A component unmounts when it is removed from the screen.
+
+Effects' lifecycle is different from the components. <strong>Do not think the same way as your components when you write an effect.</strong>
+
+Consider the faqs component. The user selects the `"general"` category when the component mounts to the UI and the faq data related to this category will be rendered. But What will React do when the user selects the `"sport"` category as soon as it selected the `"general"`?
+
+```tsx showLineNumbers
+export default function FaqsList({ category }) {
+  useEffect(() => {
+    // fetch data
+    fetchFaqDate(category);
+
+    return () => {
+      // cancel the previous request
+      abortRetchRequest();
+    };
+  }, [category]);
+
+  return <>{/* render the faqs here ... */}</>;
+}
+
+export default function App() {
+  const [category, setCategory] = useState("");
+
+  const selectCategoryHandler = (value) => {
+    setCategory(value);
+  };
+
+  return (
+    <>
+      <select>
+        <option>general</option>
+        <option>sport</option>
+        <option>travel</option>
+      </select>
+      <FaqsList category={isPlaying} />
+    </>
+  );
+}
+```
+
+React will:
+
+1. Stop synchronizing with the old category (cancel the previous request)
+2. Start synchronizing with the new category (fetch sport data)
+
+```tsx showLineNumbers
+useEffect(() => {
+  // fetch data
+  fetchFaqDate(category); // highlight
+
+  return () => {
+    // cancel the previous request
+    abortRetchRequest(); // highlight first
+  };
+}, [category]);
+```
+
+React will run the effect during this render. In this render, the category is `general` when the user changes the category it will call the clean-up function first and after the second render it will call the effect with the new category data `sport`.
+
+## How React Synchronizes the Effect
+
+React knows when it needs to re-synchronize the effect because we wanted it to do so by passing the `category` as a dependency on the effect's array.
+
+Every time a state or prop changes, React will re-render. So, React will look at the array of dependencies that you have provided. If any of the values - even one of them - is different from the value passed at the same spot during the previous render, React will re-synchronize the Effect. Like our example, the first prop was set to `"general"` during the initial render, and then it changed to `"sport"` during the next render. React uses `Object.is()` to compare `'genral'` and `'sport'` they are different, so it will re-synchronize.
+
+On the other hand, it won't do it and the side effect will happen with the same value as before.
+
+## Summaries
+
+- Effects should usually synchronize your component with an external system.
+- If there is no external system to connect to like a chat room server, so there is no need to use an Effect.
+- Effects only run on the client. No server side.
+- You cannot choose your dependencies. Your dependencies must include every "reactive value" you use in the Effect.
+- If your Effect does not synchronize anything, it might be unnecessary.
+- Avoid Relying on objects and functions as dependencies. If you are creating them in the rendering phase - inside the component itself - they will be recreated on every render. So, it will go into an infinite loop.
+
+## Conclusion
+
+And there it is. Henceforth, you will always remember these important points whenever using `useEffect`. I hope you have found this useful. Thank you for reading. Please share, like, and comment on your opinions. If you would like to know about any other topic in detail, please let me know the topic to make an article about it.
+
+##### Credits:
+
+Cover image is from [Rahul Mishra](https://unsplash.com/@rahuulmiishra?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on Unsplash
