@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
-import { allBlogs } from "contentlayer/generated";
-
 import Header from "@/components/ui/Header";
 import Section from "@/components/ui/Section";
 import BlogItem from "../_components/BlogItem";
 import Newsletter from "@/components/ui/Newsletter";
+import { ALL_BLOGS, PUBLISHED_BLOGS } from "@/constants/content";
+import { IS_PRODUCTION } from "@/constants";
 
 export const metadata: Metadata = {
   title: "Blogs | Abolfazl Jamshidi",
@@ -47,6 +47,8 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
+  const displayedArticles = IS_PRODUCTION ? PUBLISHED_BLOGS : ALL_BLOGS;
+
   return (
     <main className="min-h-[500px]">
       <Section className="lg:mt-[80px]">
@@ -54,16 +56,14 @@ const Page = () => {
       </Section>
 
       <section className="mt-6 space-y-8 lg:mt-8">
-        {allBlogs
-          ?.filter((blog) => !blog.isDraft)
-          .map((blog, index) => (
-            <BlogItem
-              key={blog.slug}
-              data={blog}
-              shouldHaveAnimation
-              animationDirection={index % 2 === 0 ? "left" : "right"}
-            />
-          ))}
+        {displayedArticles.map((blog, index) => (
+          <BlogItem
+            key={blog.slug}
+            data={blog}
+            shouldHaveAnimation
+            animationDirection={index % 2 === 0 ? "left" : "right"}
+          />
+        ))}
       </section>
 
       <Newsletter />

@@ -115,7 +115,7 @@ const Page = async ({ params }: Props) => {
         readTime={readingTimeData?.minutes}
       />
       <div className="relative">
-        {blog?.image && <BlogHeroImage src={blog?.image} />}
+        {blog?.image && <BlogHeroImage src={blog?.image} alt={blog?.title} />}
 
         {/* body section */}
         <section className="flex sm:gap-x-6 md:gap-x-14">
