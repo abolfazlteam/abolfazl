@@ -8,6 +8,7 @@ import ABOLFAZL_FIRST_IMAGE from "../../public/images/me-1.jpg";
 import ABOLFAZL_SECOND_IMAGE from "../../public/images/me-2.jpg";
 import ABOLFAZL_AND_BIKE_FIRST_IMAGE from "../../public/images/me-and-bike.jpg";
 import ABOLFAZL_AND_BIKE_SECOND_IMAGE from "../../public/images/me-and-bike-2.jpg";
+import CMS_PANEL_PROJECT_IMAGE from "../../public/projects/cms/dash-desktop.png";
 
 export const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
@@ -26,4 +27,5 @@ export {
   ABOLFAZL_SECOND_IMAGE,
   ABOLFAZL_AND_BIKE_FIRST_IMAGE,
   ABOLFAZL_AND_BIKE_SECOND_IMAGE,
+  CMS_PANEL_PROJECT_IMAGE,
 };

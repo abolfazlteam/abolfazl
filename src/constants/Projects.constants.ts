@@ -1,6 +1,7 @@
 import { StaticImageData } from "next/image";
 import {
   ARMAN_PORTFOLIO,
+  CMS_PANEL_PROJECT_IMAGE,
   MY_COMPANY_PROJECT,
   PROJECT_TEST_IMAGE,
   SADAF_PROJECT,
@@ -22,6 +23,17 @@ export type TProjectProps = {
 };
 
 export const PROJECTS_DATA: TProjectProps[] = [
+  {
+    id: 5,
+    title: "CMS Panel for Websites",
+    description:
+      "This project is a base CMS for our websites. On top this we developed different CMSs for other projects with different requirements.",
+    src: CMS_PANEL_PROJECT_IMAGE,
+    tags: ["next.js", "typescript", "tailwind", "react", "storybook", "vitest"],
+    siteLink: "",
+    slug: "cms-panel",
+    isDraft: false,
+  },
   {
     id: 1,
     title: "Arman's Portfolio",
@@ -67,16 +79,6 @@ export const PROJECTS_DATA: TProjectProps[] = [
       "cypress",
     ],
     slug: "mail-room-dashboard",
-  },
-  {
-    id: 5,
-    title: "Wild Oasis",
-    description: "",
-    src: PROJECT_TEST_IMAGE,
-    tags: ["react", "javascript", "react query", "tailwind"],
-    siteLink: "https://site.techpark.ir/fa",
-    slug: "tech-park-website",
-    isDraft: true,
   },
   {
     id: 6,
