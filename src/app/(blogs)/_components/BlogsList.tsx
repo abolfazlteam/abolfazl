@@ -1,5 +1,4 @@
 import { Blog as BlogType } from "contentlayer/generated";
-
 import BlogItem from "./BlogItem";
 
 interface IBlogsListProps {

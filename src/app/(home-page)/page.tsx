@@ -7,6 +7,7 @@ import HomePageHeroSection from "./_components/HomePageHeroSection";
 import Header from "@/components/ui/Header";
 import Section from "@/components/ui/Section";
 import BlogsList from "../(blogs)/_components/BlogsList";
+import { mergeSortHandler } from "@/utils/index.utils";
 
 const DynamicProjectList = dynamic(
   () => import("../(projects)/_components/ProjectsList"),
@@ -33,6 +34,9 @@ export const metadata: Metadata = {
     "developer",
     "personal portfolio",
     "engineer",
+    "front-end portfolio",
+    "skilled frontend developer",
+    "content creator",
   ],
   alternates: {
     canonical: "https://iabolfazl.dev",
@@ -55,13 +59,18 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
+  const homePageFilteredBlogs = allBlogs?.filter(
+    (item) => item?.featured && !item?.isDraft,
+  );
+  const reverseSortedBlogs = mergeSortHandler(homePageFilteredBlogs);
+
   return (
     <main className="min-h-svh">
       <HomePageHeroSection />
 
       <Section>
         <Header title="latest blogs" href="/blogs" />
-        <BlogsList blogs={allBlogs.filter((blog) => !blog.isDraft)} />
+        <BlogsList blogs={reverseSortedBlogs} />
       </Section>
 
       <Section>
