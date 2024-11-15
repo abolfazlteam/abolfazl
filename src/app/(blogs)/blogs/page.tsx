@@ -6,6 +6,7 @@ import BlogItem from "../_components/BlogItem";
 import Newsletter from "@/components/ui/Newsletter";
 import { ALL_BLOGS, PUBLISHED_BLOGS } from "@/constants/content";
 import { IS_PRODUCTION } from "@/constants";
+import { mergeSortHandler } from "@/utils/index.utils";
 
 export const metadata: Metadata = {
   title: "Blogs | Abolfazl Jamshidi",
@@ -48,6 +49,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   const displayedArticles = IS_PRODUCTION ? PUBLISHED_BLOGS : ALL_BLOGS;
+  const reverseSortedBlogsByPublishedAt = mergeSortHandler(displayedArticles);
 
   return (
     <main className="min-h-[500px]">
@@ -56,7 +58,7 @@ const Page = () => {
       </Section>
 
       <section className="mt-6 space-y-8 lg:mt-8">
-        {displayedArticles.map((blog, index) => (
+        {reverseSortedBlogsByPublishedAt.map((blog, index) => (
           <BlogItem
             key={blog.slug}
             data={blog}
