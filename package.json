@@ -54,7 +54,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/rss": "^0.0.32",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.3",
     "@vitest/coverage-istanbul": "^2.0.2",
