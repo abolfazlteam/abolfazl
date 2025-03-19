@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import { CSSProperties, ReactNode, useRef } from "react";
+import photopaper from "../../../../public/images/photopaper.png";
 
 type TPhotoCardProps = {
   src: string | StaticImageData;
@@ -15,6 +16,7 @@ type TPhotoCardProps = {
   index: number;
   flipDirection?: "right" | "left";
   filename?: string;
+  alt?: string;
   meta?: ReactNode;
 };
 
@@ -28,6 +30,7 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
   flipDirection = "left",
   filename,
   meta,
+  alt = "",
 }) => {
   const fileName =
     filename ||
@@ -87,7 +90,7 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
         <div className={shared} style={{ backfaceVisibility: "hidden" }}>
           <Image
             src={src}
-            alt={""}
+            alt={alt}
             width={width}
             height={height}
             className="pointer-events-none absolute inset-0 h-full w-full rounded-2xl object-cover object-top"
@@ -102,22 +105,22 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
         <div
           className={clsx(
             shared,
-            "flex items-center overflow-hidden rounded-2xl bg-[#FFFAF2]",
+            "relative flex items-center overflow-hidden rounded-2xl",
           )}
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
+          <Image src={photopaper} fill alt="" className="h-full w-full" />
           <motion.div
             className={clsx(
               "relative flex h-full w-full items-center overflow-hidden",
             )}
             ref={ref}
-            whileHover="hover"
           >
             <motion.div
-              className="pointer-events-none absolute inset-0 z-50 translate-x-[var(--x)] translate-y-[var(--y)] opacity-0 transition-opacity"
+              className="pointer-events-none absolute inset-0 z-50"
               style={
                 {
                   "--x": `${x ? x - offset : -offset}px`,
@@ -128,18 +131,19 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
                     "radial-gradient(#FFFFFF 0%, rgba(188, 255, 219, 0) 60%)",
                 } as CSSProperties
               }
-              variants={{
-                hover: {
-                  opacity: 50 / 100,
-                },
-              }}
             >
               <span className="absolute h-[500px] rotate-[-20deg] bg-red-500 bg-[length:280px]" />
 
-              <div className="z-[1] px-6">
-                <div className={clsx("flex flex-col gap-1 uppercase")}>
+              <div className="z-[1] h-full">
+                <div
+                  className={clsx(
+                    "flex h-full flex-col items-start gap-1 px-2 pt-24 uppercase",
+                  )}
+                >
                   <p className="text-sm text-text-secondary">{fileName}</p>
-                  {meta && <p>{meta}</p>}
+                  {meta && (
+                    <p className="text-xs text-text-secondary">{meta}</p>
+                  )}
                 </div>
               </div>
             </motion.div>

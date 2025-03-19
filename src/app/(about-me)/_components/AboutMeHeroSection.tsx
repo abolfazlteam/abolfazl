@@ -24,7 +24,7 @@ const AboutMeHeroSection = () => {
         <figure className="relative left-0 top-0 block h-[240px] w-[270px] -rotate-6 self-center overflow-hidden rounded-20 transition-all duration-150 ease-in-out hover:z-10 md:h-[240px] md:w-[320px] md:hover:left-24">
           <Image
             src={ABOLFAZL_FIRST_IMAGE}
-            alt=""
+            alt="Abolfazl's image"
             width={300}
             height={300}
             priority
@@ -37,7 +37,7 @@ const AboutMeHeroSection = () => {
         <figure className="relative -left-6 top-4 block h-[255px] w-[250px] rotate-[7.39deg] select-none overflow-hidden rounded-20 transition-all duration-150 ease-in-out hover:z-10 md:left-14 md:top-8 md:h-[250px] md:w-[230px] md:hover:left-16">
           <Image
             src={ABOLFAZL_SECOND_IMAGE}
-            alt=""
+            alt="Abolfazl's image"
             width={300}
             height={300}
             priority
@@ -56,10 +56,11 @@ const AboutMeHeroSection = () => {
 
       {/* description */}
       <p className="text-base font-light leading-6 md:text-lg">
-        Hey, I'm Abolfazl. I have been coding for 3 years and currently work as
-        a frontend developer at Pardis Technology Park. In addition to coding, I
-        like exploring and writing about technology, self-development and
-        lifestyle.
+        Hey, I'm Abolfazl. I have been developing software for{" "}
+        <strong>4 years</strong> and currently work as a frontend developer at
+        Pardis Technology Park. In addition to coding, I like exploring and
+        writing about <strong>technology</strong>,{" "}
+        <strong>self-development</strong> and <strong>lifestyle</strong>.
       </p>
       <p className="text-base font-light leading-6 md:text-lg">
         While I'm not at my desk, I am probably lifting weights, riding my
