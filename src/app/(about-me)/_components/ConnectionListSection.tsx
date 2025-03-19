@@ -5,7 +5,7 @@ import ConnectLinksList from "./ConnectList";
 const ConnectionListSection = () => {
   return (
     <Section>
-      <Header title="connect" />
+      <Header title="let's connect" />
       <ConnectLinksList />
     </Section>
   );

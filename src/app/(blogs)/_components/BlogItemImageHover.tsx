@@ -20,12 +20,16 @@ const BlogItemHoverImage: React.FC<IBlogItemHoverImageProps> = ({
 }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
+  // y should be between -5 and 290 to be inside the blog item block
+  const yPosition =
+    mousePosition.y < -5 ? -5 : mousePosition.y > 290 ? 290 : mousePosition.y;
+
   return (
     <>
       {loading && (
         <div
           style={{
-            top: mousePosition.y / height - offset,
+            top: yPosition - offset,
             left: mousePosition.x - width / 2,
             width,
             height,
@@ -37,7 +41,7 @@ const BlogItemHoverImage: React.FC<IBlogItemHoverImageProps> = ({
       <Image
         src={src}
         style={{
-          top: mousePosition.y / height - offset,
+          top: yPosition - offset,
           left: mousePosition.x - width / 2,
           visibility: loading ? "hidden" : "visible",
         }}

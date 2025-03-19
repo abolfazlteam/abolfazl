@@ -37,16 +37,16 @@ const BlogItem: React.FC<IBlogItemProps> = ({
   // heading hover ref
   const headingRef = useRef(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLHeadingElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLLIElement>) => {
     setShowImage(true);
     const position = getRelativeCoordinates(
       e,
-      headingRef.current as unknown as HTMLHeadingElement,
+      headingRef.current as unknown as HTMLLIElement,
     );
 
     setMousePosition(position);
   };
-  console.log(summary);
+  console.log(mousePosition, "position");
 
   const imageWidth = 300;
   const imageHeight = 150;
@@ -56,6 +56,8 @@ const BlogItem: React.FC<IBlogItemProps> = ({
     <li
       className={`group list-none rounded-10 transition-all duration-300 ease-in-out ${shouldHaveAnimation ? (isInView ? "translate-x-0 opacity-100" : `${animationDirection === "left" ? "-translate-x-40" : "translate-x-40"} opacity-0`) : "translate-x-0 opacity-100"}`}
       ref={blogItemRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setShowImage(false)}
     >
       <Link
         href={`/blogs/${slug}`}
@@ -68,8 +70,6 @@ const BlogItem: React.FC<IBlogItemProps> = ({
         <h2
           ref={headingRef}
           className="relative text-lg font-semibold leading-9 text-text-secondary md:text-xl"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={() => setShowImage(false)}
         >
           {title}
           {/* image */}
