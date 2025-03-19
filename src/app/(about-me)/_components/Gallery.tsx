@@ -16,7 +16,8 @@ const Gallery = () => {
         rotate={-6}
         left={-20}
         index={1}
-        meta="hi"
+        meta="Me looking at horizon"
+        alt="abolfazl looking at horizon"
       />
       <PhotoCard
         src={ABOLFAZL_SECOND_IMAGE}
@@ -25,6 +26,7 @@ const Gallery = () => {
         rotate={6.3}
         left={186}
         index={2}
+        alt="abolfazl looking toward cameraman"
       />
       <PhotoCard
         src={ABOLFAZL_AND_BIKE_FIRST_IMAGE}
@@ -33,6 +35,8 @@ const Gallery = () => {
         rotate={-5.4}
         left={343}
         index={3}
+        alt="abolfazl and his bike"
+        meta="me and my bike"
       />
       <PhotoCard
         src={ABOLFAZL_AND_BIKE_SECOND_IMAGE}
@@ -41,6 +45,7 @@ const Gallery = () => {
         rotate={7.6}
         left={580}
         index={4}
+        alt="abolfazl and his bike"
       />
     </div>
   );

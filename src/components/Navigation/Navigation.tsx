@@ -43,7 +43,7 @@ const Navigation = () => {
             {isSearchSystemReleased && (
               <button
                 onClick={handleOpenSearchModal}
-                className="cursor-pointer"
+                className="cursor-pointer transition-all duration-300 ease-linear hover:scale-90"
               >
                 <SearchIcon
                   viewBox="0 0 24 24"
