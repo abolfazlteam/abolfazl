@@ -1,12 +1,5 @@
 import { StaticImageData } from "next/image";
-import {
-  ARMAN_PORTFOLIO,
-  CMS_PANEL_PROJECT_IMAGE,
-  MY_COMPANY_PROJECT,
-  PROJECT_TEST_IMAGE,
-  SADAF_PROJECT,
-  TECH_PARK_GIF,
-} from ".";
+import { ALL_PROJECTS } from "./content";
 
 export type TProjectProps = {
   id: number;
@@ -22,72 +15,15 @@ export type TProjectProps = {
   isDraft?: boolean;
 };
 
-export const PROJECTS_DATA: TProjectProps[] = [
-  {
-    id: 5,
-    title: "CMS Panel for Websites",
-    description:
-      "This project is a base CMS for our websites. On top this we developed different CMSs for other projects with different requirements.",
-    src: CMS_PANEL_PROJECT_IMAGE,
-    tags: ["next.js", "typescript", "tailwind", "react", "storybook", "vitest"],
-    siteLink: "",
-    slug: "cms-panel",
-    isDraft: false,
-  },
-  {
-    id: 1,
-    title: "Arman's Portfolio",
-    description:
-      "It's a personal branding website for Arman Ahmadi based - a backend engineer.",
-    src: ARMAN_PORTFOLIO,
-    tags: ["next.js", "typescript", "MDX", "tailwind"],
-    siteLink: "https://armancodes.com",
-    slug: "arman-portfolio",
-  },
-  {
-    id: 2,
-    title: "sadaf job seeking platform",
-    description:
-      "It's a job seeking platform in which employers can post their job positions and applicant can apply. They can track their job postings or applications, etc.",
-    src: SADAF_PROJECT,
-    tags: ["react", "next.js", "typescript", "tailwind"],
-    siteLink: "https://isadaf.techpark.ir/",
-    slug: "sadaf-job-seeking-platform",
-  },
-  {
-    id: 3,
-    title: "Tech Park Website",
-    description: "This is the offical redesign of the Pardis Technology Park.",
-    src: TECH_PARK_GIF,
-    tags: ["react", "next.js", "typescript", "tailwind", "swipper", "zustand"],
-    siteLink: "https://site.techpark.ir/fa",
-    slug: "tech-park-website",
-  },
-  {
-    id: 4,
-    title: "Mail Room Dashboard",
-    description:
-      "This project is an admin panel for companies inside Pardis Technology Park which can do everything related to their bureaucracy such as sending mails, archiving letters or event track the letters that were created.",
-    src: MY_COMPANY_PROJECT,
-    tags: [
-      "vite",
-      "react",
-      "typescript",
-      "tailwind",
-      "framer motion",
-      "vitest",
-      "cypress",
-    ],
-    slug: "mail-room-dashboard",
-  },
-  {
-    id: 6,
-    title: "Norway Tourism",
-    description: "",
-    src: PROJECT_TEST_IMAGE,
-    tags: ["HTML", "javascript", "sass"],
-    siteLink: "https://site.techpark.ir/fa",
-    slug: "tech-park-website",
-    isDraft: true,
-  },
-];
+export const PROJECTS_DATA: TProjectProps[] = ALL_PROJECTS?.map(
+  (projectItem, index) => ({
+    id: index,
+    title: projectItem?.title,
+    description: projectItem?.summary,
+    src: projectItem?.image,
+    tags: projectItem?.tags,
+    isDraft: projectItem?.isDraft,
+    siteLink: projectItem?.ogUrl,
+    slug: projectItem?.slug,
+  }),
+);

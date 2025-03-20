@@ -46,7 +46,6 @@ const BlogItem: React.FC<IBlogItemProps> = ({
 
     setMousePosition(position);
   };
-  console.log(mousePosition, "position");
 
   const imageWidth = 300;
   const imageHeight = 150;
