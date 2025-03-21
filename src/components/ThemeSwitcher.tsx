@@ -8,9 +8,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import LightThemeButton from "./ThemeItemButton";
 
-interface IThemeSwitcherProps {}
-
-const ThemeSwitcher: React.FC<IThemeSwitcherProps> = () => {
+const ThemeSwitcher = () => {
   const [isMounted, setIsMounted] = useState(false);
   const { setTheme, resolvedTheme, themes } = useTheme();
   const [showMenu, setShowMenu] = useState(false);
@@ -63,12 +61,16 @@ const ThemeSwitcher: React.FC<IThemeSwitcherProps> = () => {
   };
 
   return (
-    <div className="relative flex h-8 w-8 cursor-pointer items-center gap-2">
+    <div
+      className="relative flex h-8 w-8 cursor-pointer items-center gap-2"
+      data-testid="theme-switcher-component"
+    >
       {renderThemeIcon()}
 
       <ul
         // @ts-ignore
         ref={ref}
+        data-testid="theme-menu-list"
         className={`absolute left-0 top-10 flex w-max -translate-x-full flex-col overflow-hidden rounded-10 bg-bgColor shadow-md transition-all duration-200 ease-in-out ${showMenu ? "visible z-40 opacity-100" : "invisible -z-30 scale-0 opacity-0"}`}
       >
         {themes.map((theme) => (

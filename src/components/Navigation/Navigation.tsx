@@ -25,7 +25,10 @@ const Navigation = () => {
 
   return (
     <>
-      <header className="bg-white/30 md:py relative top-0 z-20 px-4 py-2 backdrop-blur-md md:sticky md:px-0">
+      <header
+        data-testid="navigation-menu"
+        className="bg-white/30 md:py relative top-0 z-20 px-4 py-2 backdrop-blur-md md:sticky md:px-0"
+      >
         <nav className="mx-auto flex max-w-[800px] flex-wrap items-center justify-between pt-10 sm:pt-0">
           <Logo />
 
@@ -44,6 +47,7 @@ const Navigation = () => {
               <button
                 onClick={handleOpenSearchModal}
                 className="cursor-pointer transition-all duration-300 ease-linear hover:scale-90"
+                data-testid="toggle-search-btn"
               >
                 <SearchIcon
                   viewBox="0 0 24 24"
@@ -80,6 +84,7 @@ const Navigation = () => {
       {/* overlay */}
       {(shouldShowMobileNavigation || showSearchModal) && (
         <div
+          data-testid="menu-overlay"
           className={`fixed left-0 top-0 z-[15] h-full w-full bg-[#00000066] backdrop-blur-sm transition-all duration-300 ease-linear ${isMenuOpen || showSearchModal ? "visible opacity-100" : "invisible opacity-0"}`}
         ></div>
       )}
