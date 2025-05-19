@@ -44,7 +44,7 @@
     "@storybook/blocks": "^8.4.7",
     "@storybook/nextjs": "^8.2.9",
     "@storybook/react": "^8.4.2",
-    "@storybook/test": "^8.3.6",
+    "@storybook/test": "^8.6.14",
     "@tailwindcss/typography": "^0.5.14",
     "@testing-library/react": "^16.0.1",
     "@types/gtag.js": "^0.0.20",
