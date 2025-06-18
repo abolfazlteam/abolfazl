@@ -1,6 +1,6 @@
 import Gallery from "./Gallery";
 import Image from "next/image";
-import { ABOLFAZL_FIRST_IMAGE, ABOLFAZL_SECOND_IMAGE } from "@/constants";
+import { ABOLFAZL_AND_CAFE, ABOLFAZL_SECOND_IMAGE } from "@/constants";
 import { rammettoOne } from "@/app/fonts";
 
 const AboutMeHeroSection = () => {
@@ -23,13 +23,13 @@ const AboutMeHeroSection = () => {
       <div className="mb-8 flex items-center justify-center md:hidden">
         <figure className="relative left-0 top-0 block h-[240px] w-[270px] -rotate-6 self-center overflow-hidden rounded-20 transition-all duration-150 ease-in-out hover:z-10 md:h-[240px] md:w-[320px] md:hover:left-24">
           <Image
-            src={ABOLFAZL_FIRST_IMAGE}
-            alt="Abolfazl's image"
+            src={ABOLFAZL_AND_CAFE}
+            alt="Abolfazl's image in a cozy cafe"
             width={300}
             height={300}
             priority
             decoding="sync"
-            quality={75}
+            quality={90}
             sizes="(max-width: 500px) 50vw, (max-width: 750px) 33vw, (max-width: 995px) 25vw, (max-width: 1125px) 22vw, (max-width: 1280px) 21vw, 33vw"
             className="h-full w-full object-cover object-top"
           />
@@ -42,7 +42,7 @@ const AboutMeHeroSection = () => {
             height={300}
             priority
             decoding="sync"
-            quality={75}
+            quality={90}
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 26vw, (max-width: 1560px) 14vw, 15vw"
             className="h-full w-full object-cover object-top"
           />

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import { CSSProperties, ReactNode, useRef } from "react";
 import photopaper from "../../../../public/images/photopaper.png";
+import { twMerge } from "tailwind-merge";
 
 type TPhotoCardProps = {
   src: string | StaticImageData;
@@ -18,6 +19,9 @@ type TPhotoCardProps = {
   filename?: string;
   alt?: string;
   meta?: ReactNode;
+  customClasses?: {
+    image?: string;
+  };
 };
 
 const PhotoCard: React.FC<TPhotoCardProps> = ({
@@ -31,6 +35,7 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
   filename,
   meta,
   alt = "",
+  customClasses,
 }) => {
   const fileName =
     filename ||
@@ -93,9 +98,12 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
             alt={alt}
             width={width}
             height={height}
-            className="pointer-events-none absolute inset-0 h-full w-full rounded-2xl object-cover object-top"
+            className={twMerge(
+              "pointer-events-none absolute inset-0 h-full w-full rounded-2xl object-cover object-top",
+              customClasses?.image,
+            )}
             priority
-            quality={80}
+            quality={100}
             decoding="sync"
             placeholder="blur"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 26vw, (max-width: 1560px) 14vw, 15vw"
@@ -142,7 +150,7 @@ const PhotoCard: React.FC<TPhotoCardProps> = ({
                 >
                   <p className="text-sm text-text-secondary">{fileName}</p>
                   {meta && (
-                    <p className="text-xs text-text-secondary">{meta}</p>
+                    <p className="text-[10px] text-text-secondary">{meta}</p>
                   )}
                 </div>
               </div>
