@@ -1,7 +1,6 @@
-import { TBlogPartial } from "@/types";
-
+import { IBlogsProps } from "@/constants/content";
 export interface IBlogItemProps {
   shouldHaveAnimation?: boolean;
   animationDirection?: "left" | "right";
-  data: TBlogPartial;
+  data: IBlogsProps;
 }
