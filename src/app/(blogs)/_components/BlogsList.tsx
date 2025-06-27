@@ -1,8 +1,8 @@
-import { Blog } from "contentlayer/generated";
+import { Blog as BlogType } from "contentlayer/generated";
 import BlogItem from "./BlogItem";
 
 interface IBlogsListProps {
-  blogs: Blog[];
+  blogs: BlogType[];
 }
 
 const BlogsList: React.FC<IBlogsListProps> = ({ blogs }) => {

@@ -1,6 +1,7 @@
-import { IBlogsProps } from "@/constants/content";
+import { Blog as BlogType } from "contentlayer/generated";
+
 export interface IBlogItemProps {
   shouldHaveAnimation?: boolean;
   animationDirection?: "left" | "right";
-  data: IBlogsProps;
+  data: BlogType;
 }
