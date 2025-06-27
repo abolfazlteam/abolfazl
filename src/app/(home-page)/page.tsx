@@ -59,19 +59,20 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  const homePageFilteredBlogs = allBlogs?.filter(
-    (item) => item?.featured && !item?.isDraft,
-  );
+  const homePageFilteredBlogs = allBlogs
+    ?.filter((item) => item?.featured && !item?.isDraft)
+    ?.map(({ slug, image, title, summary, publishedAt }) => ({
+      slug,
+      image,
+      title,
+      summary,
+      publishedAt,
+    }));
   const reverseSortedBlogs = mergeSortHandler(homePageFilteredBlogs);
 
   return (
     <main className="min-h-svh">
       <HomePageHeroSection />
-
-      <Section>
-        <Header title="latest blogs" href="/blogs" />
-        <BlogsList blogs={reverseSortedBlogs} />
-      </Section>
 
       <Section>
         <Header title="latest projects" href="/projects" />
@@ -82,6 +83,11 @@ const Page = () => {
         <section className="block md:hidden">
           <DynamicTinderProjectList />
         </section>
+      </Section>
+
+      <Section>
+        <Header title="latest blogs" href="/blogs" />
+        <BlogsList blogs={reverseSortedBlogs} />
       </Section>
     </main>
   );

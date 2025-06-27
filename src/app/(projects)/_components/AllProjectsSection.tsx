@@ -14,7 +14,7 @@ const AllProjectsSection = () => {
 
   return (
     <section className="mt-6 flex flex-col justify-center gap-8 gap-x-8 md:flex-row lg:mt-8">
-      <div className="flex w-full flex-col justify-center gap-8">
+      <div className="flex w-full flex-col items-center justify-center gap-8">
         {evenIndexedProjects.map((project, index) => (
           <ProjectCard
             key={project.id}
@@ -25,7 +25,7 @@ const AllProjectsSection = () => {
           />
         ))}
       </div>
-      <div className="flex w-full flex-col gap-8">
+      <div className="flex w-full flex-col items-center gap-8">
         {oddIndexedProjects.map((project, index) => (
           <ProjectCard
             key={project.id}

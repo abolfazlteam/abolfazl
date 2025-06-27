@@ -23,6 +23,7 @@
     "contentlayer": "^0.3.4",
     "framer-motion": "^11.11.10",
     "mongodb": "^6.12.0",
+    "motion": "^12.19.2",
     "next": "14.2.22",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.3.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^2.0.2",
+    "@next/bundle-analyzer": "^15.3.4",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.3.5",
     "@storybook/addon-links": "^8.4.1",

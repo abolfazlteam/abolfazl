@@ -7,20 +7,13 @@ export function middleware(request: NextRequest) {
   // script-src 'self' 'nonce-${nonce}' 'unsafe-inline';
   // style-src 'self' 'nonce-${nonce}' 'unsafe-inline';
   const cspHeader = `
-    default-src 'self' 'strict-dynamic' 'unsafe-inline' 'nonce-${nonce}'; 
-    script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com 'unsafe-eval' 'unsafe-inline' 'strict-dynamic' 'nonce-${nonce}'; 
-    img-src 'self' blob: data: https://www.google-analytics.com; 
+    default-src 'self'; 
+    script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com 'nonce-${nonce}'; 
     style-src 'self' 'unsafe-inline';
-    script-src-elem 'self' https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-inline';
+    img-src 'self' blob: data: https://www.google-analytics.com; 
     font-src 'self'; 
-    connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://newsletter.armancodes.com/api/subscribers 'unsafe-inline'; 
-    media-src 'self'; 
-    object-src 'self'; 
-    frame-src 'self'; 
-    frame-ancestors 'self'; 
-    form-action 'self'; 
-    base-uri 'self';
-    upgrade-insecure-requests; 
+    connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://newsletter.armancodes.com/api/subscribers; 
+    upgrade-insecure-requests;
   `;
 
   // Replace newline characters and spaces
@@ -37,16 +30,9 @@ export function middleware(request: NextRequest) {
     contentSecurityPolicyHeaderValue,
   );
 
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
-
-  response.headers.set(
-    "Content-Security-Policy",
-    contentSecurityPolicyHeaderValue,
-  );
+  const response = NextResponse.next();
+  response.headers.set("Content-Security-Policy", cspHeader);
+  response.headers.set("x-nonce", nonce);
 
   return response;
 }

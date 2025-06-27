@@ -40,12 +40,12 @@ const SearchModal: React.FC<ISearchModalProps> = ({ isOpen, onClose }) => {
         value={query}
         onChange={handleQueryChange}
         hasSearchIcon
-        placeholder="Search"
+        placeholder="type what you are looking for ..."
         className="bg-bgColor"
       />
 
       {/* list of found items */}
-      <ul className="rounded-10 border border-[#ABB2BF] bg-bgColor">
+      <ul className="rounded-10 bg-bgColor">
         {typeof searchResults !== "string" &&
           searchResults &&
           searchResults.length > 0 &&
@@ -71,12 +71,6 @@ const SearchModal: React.FC<ISearchModalProps> = ({ isOpen, onClose }) => {
               Nothing was found! Please try something else.
             </span>
           )}
-
-        {!query && (
-          <span className="inline-block w-full px-6 py-4 text-center text-base text-heading">
-            Please, type what you are looking for ...
-          </span>
-        )}
       </ul>
     </article>
   );

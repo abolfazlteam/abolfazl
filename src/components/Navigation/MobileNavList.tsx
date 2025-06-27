@@ -1,47 +1,63 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import IconCloseCircle from "@/assets/icons/CloseCircle";
 import NavLink from "./NavLink";
 import { INavLinksProps } from "@/constants/Navigation.constants";
-import useClickOutside from "@/hooks/useClickOutside";
-import { createPortal } from "react-dom";
+import { motion } from "motion/react";
 
 interface INavListProps {
+  isOpen: boolean;
   links: INavLinksProps[];
   onCloseMenu: () => void;
-  isMenuOpen: boolean;
 }
 
 const MobileNavList: React.FC<INavListProps> = ({
   links,
-  isMenuOpen,
   onCloseMenu,
+  isOpen,
 }) => {
-  const { ref } = useClickOutside(onCloseMenu);
-
-  return createPortal(
-    <ul
-      // @ts-ignore
-      ref={ref}
-      className={`absolute left-4 top-[140px] z-40 flex w-[95%] flex-col gap-y-8 rounded-10 bg-bgColor pb-6 pl-6 pr-4 pt-4 transition-all duration-300 ease-linear sm:hidden ${isMenuOpen ? "visible z-40 gap-y-8 opacity-100" : "invisible -z-30 scale-0 opacity-0"}`}
+  return (
+    <motion.ul
+      className={`!z-[41] flex w-full flex-col gap-y-8 rounded-10 bg-bgColor pb-6 pl-6 pr-4 pt-4 transition-all duration-300 ease-linear`}
+      animate={isOpen ? "open" : "close"}
       data-testid="mobile-navigation"
+      variants={{
+        open: {
+          width: "100%",
+        },
+        close: {
+          width: 0,
+        },
+      }}
+      transition={{
+        duration: 0.7,
+        staggerChildren: 0.05,
+        delayChildren: isOpen ? 0.3 : 0,
+        ease: [0.08, 0.65, 0.53, 0.96],
+      }}
     >
-      <div className="flex items-center justify-end sm:hidden">
-        <IconCloseCircle
-          className="cursor-pointer stroke-[#ABB2BF]"
-          onClick={onCloseMenu}
-          data-testid="mobile-navigation-close-btn"
-        />
-      </div>
-
       {links.map((link) => (
-        <li key={link.id}>
-          <button onClick={onCloseMenu}>
+        <motion.li
+          key={`/${link}`}
+          variants={{
+            open: {
+              scale: 1,
+              opacity: 1,
+              filter: "blur(0px)",
+            },
+            close: {
+              scale: 0.5,
+              opacity: 0,
+              filter: "blur(10px)",
+            },
+          }}
+        >
+          <button
+            data-testid="mobile-navigation-close-btn"
+            onClick={onCloseMenu}
+          >
             <NavLink href={link.href}>{link.title}</NavLink>
           </button>
-        </li>
+        </motion.li>
       ))}
-    </ul>,
-    document.body,
+    </motion.ul>
   );
 };
 
