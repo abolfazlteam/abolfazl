@@ -74,6 +74,3 @@ const Page = () => {
 };
 
 export default Page;
-
-// changes:
-// 5. cache the website static parts --> no refresh should be triggered

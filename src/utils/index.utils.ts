@@ -4,7 +4,7 @@
 // it accepts a function (func) and a delay as arguments and returns a function
 // that, when called, will only call the func function at most once per every delay milliseconds
 
-import { TBlogPartial } from "@/types";
+import { Blog } from "contentlayer/generated";
 
 export function throttle<T extends (...args: any[]) => any>(
   func: T,
@@ -29,7 +29,7 @@ export function throttle<T extends (...args: any[]) => any>(
  * @param {Blog[]} blogs - The Blogs Type.
  * @returns {Blog[]} The sorted Blogs Data
  */
-export function mergeSortHandler(blogs: TBlogPartial[]): TBlogPartial[] {
+export function mergeSortHandler(blogs: Blog[]): Blog[] {
   // base case ==> if the blog's length is 1 or 0, it is already sorted
   if (blogs.length <= 1) {
     return blogs;
@@ -48,11 +48,8 @@ export function mergeSortHandler(blogs: TBlogPartial[]): TBlogPartial[] {
   return mergeSortDatesHandler(sortedLeftSide, sortedRightSide);
 }
 
-function mergeSortDatesHandler(
-  leftSide: TBlogPartial[],
-  rightSide: TBlogPartial[],
-): TBlogPartial[] {
-  const result: TBlogPartial[] = [];
+function mergeSortDatesHandler(leftSide: Blog[], rightSide: Blog[]): Blog[] {
+  const result: Blog[] = [];
   let leftIndex = 0;
   let rightIndex = 0;
 
