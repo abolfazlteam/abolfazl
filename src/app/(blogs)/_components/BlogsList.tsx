@@ -5,6 +5,11 @@ interface IBlogsListProps {
   blogs: Blog[];
 }
 
+
+interface IBlogsListProps {
+  blogs: Blog[];
+}
+
 const BlogsList: React.FC<IBlogsListProps> = ({ blogs }) => {
   return (
     <ul className="flex flex-col gap-8">
