@@ -69,11 +69,6 @@ const Page = () => {
       <HomePageHeroSection />
 
       <Section>
-        <Header title="latest blogs" href="/blogs" />
-        <BlogsList blogs={reverseSortedBlogs} />
-      </Section>
-
-      <Section>
         <Header title="latest projects" href="/projects" />
         <section className="hidden md:block">
           <DynamicProjectList />
@@ -82,6 +77,11 @@ const Page = () => {
         <section className="block md:hidden">
           <DynamicTinderProjectList />
         </section>
+      </Section>
+
+      <Section>
+        <Header title="latest blogs" href="/blogs" />
+        <BlogsList blogs={reverseSortedBlogs} />
       </Section>
     </main>
   );

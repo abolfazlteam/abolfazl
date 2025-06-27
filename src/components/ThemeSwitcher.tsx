@@ -30,7 +30,7 @@ const ThemeSwitcher = () => {
         <>
           <SunIcon
             viewBox="0 0 24 24"
-            className={`absolute -left-7 top-1/2 h-7 w-7 -translate-y-1/2 transition-all duration-200 ease-in-out hover:scale-90 [&_path]:stroke-text-primary`}
+            className={`absolute left-0 top-1/2 h-7 w-7 -translate-y-1/2 transition-all duration-200 ease-in-out hover:scale-90 [&_path]:stroke-text-primary`}
             onClick={() => setShowMenu(!showMenu)}
           />
           <span aria-label="sun icon" className="sr-only">
@@ -44,7 +44,7 @@ const ThemeSwitcher = () => {
         <>
           <MoonIcon
             viewBox="0 0 24 24"
-            className={`absolute -left-5 top-1/2 mt-[2px] h-6 w-6 -translate-y-1/2 transition-all duration-200 ease-in-out hover:scale-90 [&_path]:stroke-text-primary`}
+            className={`absolute left-1 top-1/2 mt-[2px] h-6 w-6 -translate-y-1/2 transition-all duration-200 ease-in-out hover:scale-90 [&_path]:stroke-text-primary`}
             onClick={() => setShowMenu(!showMenu)}
           />
           <span aria-label="moon icon" className="sr-only">

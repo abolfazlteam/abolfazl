@@ -3,11 +3,12 @@ import ProjectCard from "./ProjectCard";
 
 const ProjectsList = () => {
   const publishedProjects = PROJECTS_DATA.filter((project) => !project.isDraft);
+  const firstThreeProjects = publishedProjects.slice(0, 2);
 
   return (
     <div className="flex flex-wrap items-center gap-6">
-      {publishedProjects?.map((project) => (
-        <ProjectCard key={project.id} {...project} />
+      {firstThreeProjects?.map((project) => (
+        <ProjectCard key={project.id} {...project} width={372} />
       ))}
     </div>
   );
