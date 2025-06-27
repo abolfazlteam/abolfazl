@@ -1,4 +1,3 @@
-
 import { IBlogsProps } from "@/constants/content";
 export interface IBlogItemProps {
   shouldHaveAnimation?: boolean;
