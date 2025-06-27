@@ -1,7 +1,7 @@
-import { Blog as BlogType } from "contentlayer/generated";
+import { TBlogPartial } from "@/types";
 
 export interface IBlogItemProps {
   shouldHaveAnimation?: boolean;
   animationDirection?: "left" | "right";
-  data: BlogType;
+  data: TBlogPartial;
 }

@@ -1,15 +1,19 @@
-import { Blog as BlogType } from "contentlayer/generated";
-import BlogItem from "./BlogItem";
+import dynamic from "next/dynamic";
+import { TBlogPartial } from "@/types";
+
+const DynamicBlogItem = dynamic(() => import("./BlogItem"), {
+  ssr: false,
+});
 
 interface IBlogsListProps {
-  blogs: BlogType[];
+  blogs: TBlogPartial[];
 }
 
 const BlogsList: React.FC<IBlogsListProps> = ({ blogs }) => {
   return (
     <ul className="flex flex-col gap-8">
       {blogs.map((blog) => (
-        <BlogItem key={blog.slug} data={blog} />
+        <DynamicBlogItem key={blog.slug} data={blog} />
       ))}
     </ul>
   );

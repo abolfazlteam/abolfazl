@@ -59,9 +59,15 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-  const homePageFilteredBlogs = allBlogs?.filter(
-    (item) => item?.featured && !item?.isDraft,
-  );
+  const homePageFilteredBlogs = allBlogs
+    ?.filter((item) => item?.featured && !item?.isDraft)
+    ?.map(({ slug, image, title, summary, publishedAt }) => ({
+      slug,
+      image,
+      title,
+      summary,
+      publishedAt,
+    }));
   const reverseSortedBlogs = mergeSortHandler(homePageFilteredBlogs);
 
   return (
