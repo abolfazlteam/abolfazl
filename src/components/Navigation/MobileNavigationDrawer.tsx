@@ -36,7 +36,7 @@ const MobileNavigationDrawer: React.FC<IMobileNavigationDrawerProps> = ({
           open: { x: 0 },
           close: { x: "-100%" },
         }}
-        className="rounded-l-16 fixed left-0 top-0 z-40 h-full w-4/5 max-w-xs overflow-y-auto bg-white shadow-lg md:hidden"
+        className="rounded-l-16 fixed left-0 top-0 z-40 h-full w-4/5 max-w-xs overflow-y-auto bg-bgColor shadow-lg md:hidden"
         transition={{ duration: 0.3 }}
       >
         {children}
