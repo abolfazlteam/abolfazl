@@ -76,6 +76,7 @@ const Navigation = () => {
                 <span className="sr-only">search</span>
               </button>
             )}
+
             <ThemeSwitcher />
 
             {shouldShowMobileNavigation && (

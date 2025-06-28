@@ -15,7 +15,7 @@ const MobileNavList: React.FC<INavListProps> = ({
 }) => {
   return (
     <motion.ul
-      className={`!z-[41] flex w-full flex-col gap-y-8 rounded-10 bg-bgColor pb-6 pl-6 pr-4 pt-4 transition-all duration-300 ease-linear`}
+      className={`!z-[41] flex w-full flex-col gap-y-8 rounded-10 pb-6 pl-6 pr-4 pt-4 transition-all duration-300 ease-linear`}
       animate={isOpen ? "open" : "close"}
       data-testid="mobile-navigation"
       variants={{
