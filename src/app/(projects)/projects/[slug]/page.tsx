@@ -1,3 +1,5 @@
+export const revalidate = 60 * 60 * 24 * 7; // each week
+
 import { Metadata } from "next";
 
 import BackLink from "@/components/ui/BackLink";
@@ -87,3 +89,9 @@ const Page = ({ params }: Props) => {
 };
 
 export default Page;
+
+export async function generateStaticParams() {
+  return ALL_PROJECTS.map((project) => ({
+    slug: project.slug,
+  }));
+}
