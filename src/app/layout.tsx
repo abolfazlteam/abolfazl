@@ -1,8 +1,6 @@
 import "./globals.css";
-import "../../public/prism/one-dark.css";
 
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import NextTopLoader from "nextjs-toploader";
 import ThemeProvider from "@/components/ThemeProvider";
 import { alexandria } from "./fonts";
@@ -10,7 +8,6 @@ import Navigation from "@/components/Navigation/Navigation";
 import ToolbarLinks from "@/components/Navigation/ToolbarLinks";
 import { toolbarLinks } from "@/constants/toolbarlinks.constants";
 import Footer from "@/components/ui/Footer";
-import GoogleAnalytics from "@/services/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "Abolfazl Jamshidi",
@@ -22,12 +19,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const nonce = headers().get("x-nonce");
-
   return (
     <html lang="en">
-      <GoogleAnalytics nonce={nonce!} />
-
       <body className={`${alexandria.className} ellipse bg-bgColor`}>
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <NextTopLoader
