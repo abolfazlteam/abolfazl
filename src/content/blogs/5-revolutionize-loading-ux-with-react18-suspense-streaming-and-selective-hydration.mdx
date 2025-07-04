@@ -1,0 +1,373 @@
+---
+title: "Revolutionize Loading UX with React 18: Suspense, Streaming & Selective Hydration"
+summary: "A deep dive into how Suspense, Streaming, and Selective Hydration change the way we build with React. React 18 fundamentally changes how we think about loading, rendering, and hydration. Instead of waiting for the entire app to load and hydrate, we can now stream what's ready and hydrate what matters - exactly when the user needs it."
+publishedAt: "2025-07-04"
+tags:
+  ["React", "Software Engineering", "Front-End", "Next.js", "Suspense", "SSR"]
+ogTitle: "Revolutionize Loading UX with React 18: Suspense, Streaming & Selective Hydration"
+ogType: "website"
+ogUrl: "https://iabolfazl.dev/blogs/revolutionize-loading-ux-with-react18-suspense-streaming-and-selective-hydration"
+ogImage: "https://iabolfazl.dev/blogs/revolutionized-suspense/hero-img.jpg"
+twitterImage: "https://iabolfazl.dev/blogs/revolutionized-suspense/hero-img.jpg"
+twitterUrl: "https://iabolfazl.dev/blogs/revolutionize-loading-ux-with-react18-suspense-streaming-and-selective-hydration"
+twitterTitle: "Revolutionize Loading UX with React 18: Suspense, Streaming & Selective Hydration"
+keywords:
+  [
+    "React",
+    "SSR",
+    "Software Engineering",
+    "Front-End",
+    "Next.js",
+    "Suspense",
+    "SSG",
+    "server side rendering",
+  ]
+author: "Abolfazl Jamshidi"
+isDraft: false
+hasSeries: false
+image: "/blogs/revolutionized-suspense/hero-img.jpg"
+category: tech
+---
+
+## The Loading Problem with Traditional React
+
+Not long ago, most React apps relied entirely on client-side rendering. You'd show a spinner, wait for the data to load, and finally render your UI. Later, with frameworks like Next.js, SSR (server-side rendering) became mainstream, mostly for performance and SEO. But this came at a cost.
+
+1 - <strong>You had to fetch everything before you could show anything</strong> (fetch data for the entire app and send the HTML)
+
+2 - <strong>You had to load everything before you could hydrate anything</strong> (On the client, load the JavaScript for the entire app)
+
+3 - <strong>You had to hydrate everything before you could interact with anything</strong> (Add JavaScript to all pre-built HTML on the server)
+
+The main problem was that all of these steps had to be done before each other so the next step could start. This was not efficient. Why did the user have to wait for everything to load just to click on a button in the sidebar?
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/traditional-ssr.png"
+  alt="traditional server side rendering waterfall"
+/>
+
+That is where React Suspense and its streaming model came in, not to break this waterfall but to rethink its way of making user-first experiences. React changed the game by letting us perform these steps independently - per component - instead of waiting for the whole app.
+
+## How React Suspense Transforms Loading
+
+There are two major changes in React 18 unlocked by Suspense:
+
+1 - Streaming HTML on the server.
+
+2 - Selective Hydration on the client.
+
+Imagine that we have a website that has a `Header`, `Sidebar`, `Blogs`, and a `Project` section. With the traditional approach, we had to first render all HTML like this:
+
+```tsx showLineNumbers
+<main>
+  <header className="flex h-20 items-center justify-center bg-gray-200">
+    <ul className="flex items-center justify-center gap-x-4">
+      <li>home</li>
+      <li>blogs</li>
+      <li>projects</li>
+    </ul>
+  </header>
+  <section className="space-y-10 border border-black">
+    <header>
+      <h1 className="text-2xl font-bold">Hello Streaming</h1>
+    </header>
+    <div className="flex gap-5 border border-red-500">
+      <aside className="flex w-full max-w-[300px] items-center justify-center bg-gray-200">
+        sidebar
+      </aside>
+      <section className="flex-[1] space-y-5">
+        <div className="flex h-40 items-center justify-center bg-gray-200">
+          projects
+        </div>
+        <div className="flex h-40 items-center justify-center bg-gray-200">
+          blogs
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+```
+
+And the client would eventually get this as a result:
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/first-result.png"
+  alt="First result of traditional ssr"
+/>
+
+When the JavaScript was sent and loaded on the client, the event handlers and everything were attached to DOM items, and they would become responsive to interactions. This process is called Hydration. The outcome would be like this - by green color, I mean the section is totally interactive.
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/second-result.png"
+  alt="second result of traditional ssr"
+/>
+
+## Streaming SSR: Breaking the Loading Bottleneck
+
+Before diving into Suspense and fallback UIs, it's important to understand how React enables streaming in the first place. Under the hood, React uses a function called ‍ `renderToPipeableStream()` which begins rendering HTML immediately as a stream instead of waiting for the entire tree to be ready. This allows the server to send HTML to the browser in chunks, unlocking partial rendering and faster Time To First Byte (TTFB).
+
+```tsx showLineNumbers
+import { renderToPipeableStream } from "react-dom/server";
+
+const { pipe } = renderToPipeableStream(<App />, {
+  onShellReady() {
+    pipe(response);
+  },
+});
+```
+
+This function is the backbone of streaming SSR - it lets React "flush" whatever part of the HTML is ready and postpone slower parts (like `Suspense` boundaries) for later. Use it in server frameworks like Express or Node handlers.
+
+So, with the new model, we can wrap a part of our page within `Suspense`. For example, the `Blogs` component. This `Suspense` gets a fallback prop that accepts a UI to be shown in place of the main component.
+
+```tsx showLineNumbers
+<main>
+  <header className="flex h-20 items-center justify-center bg-gray-200">
+    <ul className="flex items-center justify-center gap-x-4">
+      <li>home</li>
+      <li>blogs</li>
+      <li>projects</li>
+    </ul>
+  </header>
+  <section className="space-y-10 border border-black">
+    <header>
+      <h1 className="text-2xl font-bold">Hello Streaming</h1>
+    </header>
+    <div className="flex gap-5 border border-red-500">
+      <aside className="flex w-full max-w-[300px] items-center justify-center bg-gray-200">
+        sidebar
+      </aside>
+      <section className="flex-[1] space-y-5">
+        <div className="flex h-40 items-center justify-center bg-gray-200">
+          projects
+        </div>
+        <Suspense fallback={<div>Loading blogs...</div>}>
+          <Blogs />
+        </Suspense>
+      </section>
+    </div>
+  </section>
+</main>
+```
+
+What does the above code mean? It will tell React that it does not have to wait for the `Blogs` content to start streaming the HTML for the rest of the page. So, show the fallback UI instead, and will send this:
+
+```tsx showLineNumbers
+<main>
+      <header className="h-20 bg-gray-200 flex items-center justify-center">
+        <ul className="flex items-center justify-center gap-x-4">
+          <li>home</li>
+          <li>blogs</li>
+          <li>projects</li>
+        </ul>
+      </header>
+<section className="border border-black space-y-10">
+        <header>
+          <h1 className="font-bold text-2xl">Hello Streaming</h1>
+        </header>
+        <div className="flex border gap-5 border-red-500">
+          <aside className="w-full max-w-[300px] flex items-center justify-center bg-gray-200">
+            sidebar
+          </aside>
+          <section className="flex-[1] space-y-5">
+            <div className="h-40 bg-gray-200 flex items-center justify-center">
+              projects
+            </div>
+             <!--$?-->
+                <template id="B:0"></template>
+                <div>Loading blogs...</div>
+             <!--/$-->
+          </section>
+        </div>
+      </section>
+    </main>
+```
+
+The result of this will be
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/third-result.png"
+  alt="first result of ssr using suspense"
+/>
+
+But the story doesn't end there. When the page first loads, React inserts a fallback - like a loading skeleton - and assigns it a unique ID, such as `id="B:0"`. Meanwhile, the real content (for example, the blog posts) is still being processed and streamed.
+Once it's ready, React includes it in the ongoing HTML stream, along with a lightweight `<script>` that handles the magic: replacing the placeholder `(B:0)` with the actual content.
+
+🔄 This makes the transition feel smooth and effortless to the user - no full rerenders, no flickers, just progressive enhancement.
+
+```html showLineNumbers
+<script>
+  self.__next_f.push([
+    1,
+    '25:["$","div",null,{"children":"✅ Comments loaded!"},"$26",[["Comments","file:///C:/Users/Abolfazl/Desktop/cache-practice/.next/server/chunks/ssr/src__components_comments_tsx_436f2c30._.js",15,263]],1]\n',
+  ]);
+</script>
+<div hidden id="S:0">
+  <div>✅ Comments loaded!</div>
+</div>
+<script>
+  $RC = function (b, c, e) {
+    c = document.getElementById(c);
+    c.parentNode.removeChild(c);
+    var a = document.getElementById(b);
+    if (a) {
+      b = a.previousSibling;
+      if (e) (b.data = "$!"), a.setAttribute("data-dgst", e);
+      else {
+        e = b.parentNode;
+        a = b.nextSibling;
+        var f = 0;
+        do {
+          if (a && 8 === a.nodeType) {
+            var d = a.data;
+            if ("/$" === d)
+              if (0 === f) break;
+              else f--;
+            else ("$" !== d && "$?" !== d && "$!" !== d) || f++;
+          }
+          d = a.nextSibling;
+          e.removeChild(a);
+          a = d;
+        } while (a);
+        for (; c.firstChild; ) e.insertBefore(c.firstChild, a);
+        b.data = "$";
+      }
+      b._reactRetry && b._reactRetry();
+    }
+  };
+  $RC("B:0", "S:0");
+</script>
+```
+
+During streaming, React inserts the fallback UI in the HTML where the content isn't ready yet. Later, when that content becomes available, React sends a small `<script>` like this: `$RC("B:0", "S:0")`
+
+In this script:
+
+- `B:0` refers to the <strong>placeholder block</strong> (like your loading spinner)
+
+- `S:0` Is the actual content to be inserted
+
+React's client-side runtime uses an internal function `decodeReply()` to manage incoming streamed data and match it with placeholders created during rendering.
+
+This function is responsible for:
+
+- Receiving streamed segments (like blog post content)
+
+- Locating the right fallback (like `B:0`)
+
+- Replacing it in the DOM, without re-rendering the full page
+
+It's part of React's internal streaming runtime and not something you use manually, but understanding it helps connect the dots between the fallback you see on screen and the moment it's seamlessly replaced by real content.
+
+While this isn't exposed directly, you can observe its behavior through the `<script>` tags injected during server-side streaming, which execute logic like:
+
+```html showLineNumbers
+<script>
+  $RC("B:0", "S:0");
+</script>
+```
+
+💡 This is what makes the streaming experience feel seamless - your UI gradually fills in, piece by piece, as content becomes ready. This process will solve the first problem we had <strong>(You have to fetch everything before you can show anything)</strong>.
+
+## Selective Hydration: Fast Interaction Where It Counts
+
+Now, even if we stream the initial HTML quickly, there's still a problem:
+The page can't become fully interactive until the JavaScript bundle for each widget (like the blog post list) is downloaded and executed. If that JS is large, hydration will be delayed, and so will user interaction. To solve this, we use <strong>code splitting</strong>. It lets us separate parts of the app into smaller bundles. That way, lower-priority features can load later, improving initial load time. For example, you can use `React.lazy()` to split the `Blogs` section out of the main bundle and load it only when needed.
+
+```tsx showLineNumbers
+import { lazy, Suspense } from "react";
+const Blogs = lazy(() => import("../_components/comments"));
+
+<Suspense fallback={<div>Loading blogs ...</div>}>
+  <Blogs />
+</Suspense>;
+```
+
+React 18 changes the game: even if the blog posts haven't loaded yet, hydration can begin. The result? From the user's perspective, the page starts responding much sooner - no more waiting for every component to be ready.
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/fourth-result.png"
+  alt="fourth result of ssr using suspense"
+  caption="First loading the section"
+/>
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/fifth-result.png"
+  alt="fifth result of ssr using suspense"
+  caption="Then the Blogs is loaded as well"
+/>
+
+Since the blog post code isn't available yet, React doesn't wait around.
+It hydrates the parts of the UI that are ready - like the navigation or footer - so the user can interact with them immediately.
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/sixth-result.png"
+  alt="sixth result of ssr using suspense"
+  caption="All other sections are loaded except the blogs"
+/>
+
+This is a clear example of <strong>Selective Hydration</strong> in action. By wrapping the blog post section in a `<Suspense>` boundary, you're telling React:
+
+> "Don't let this part block the rest of the page."
+
+And React takes it one step further - it doesn't just continue streaming the rest of the HTML; it also starts <strong>hydrating</strong> other parts of the page immediately.
+
+💡 That solves a major bottleneck: you no longer need to wait for all JavaScript to load before hydration begins. Instead, React hydrates what's ready and returns to the rest once its code finishes loading.
+
+<Image
+  rounded
+  width={600}
+  height={400}
+  src="/blogs/revolutionized-suspense/seventh-result.png"
+  alt="seventh result of ssr using suspense"
+/>
+
+The beauty of it is that <strong>React handles all of this for you automatically</strong>. Let's say the HTML is delayed, but the JavaScript bundle arrives first. React doesn't wait. It begins by hydrating the parts of the page that are ready, even if some HTML hasn't been received yet. This ensures your app becomes interactive as soon as possible, without blocking slower sections.
+
+## Bonus: Smarter Hydration for Smoother Interaction
+
+When we wrapped the blog posts in a `<Suspense>` boundary, something subtle but powerful also happened behind the scenes. <strong>Their hydration no longer blocks the browser from handling other tasks</strong>. For example, imagine the blog posts are still being hydrated, and the user clicks on the sidebar. In React 18, hydration inside Suspense boundaries happens in small chunks, allowing the browser to briefly pause React's work to handle that click. This means the UI stays responsive, even during long hydration processes, especially helpful on low-end devices. The user can interact, navigate away, or trigger events <strong>without the page feeling stuck</strong>.
+
+Now, imagine if the sidebar was also inside a Suspense boundary, just like the blog posts. Both could stream from the server <strong>independently</strong>, right after the initial HTML shell (which might contain the header and navigation).
+
+Once the JavaScript bundle containing the code for both the sidebar and the blog posts arrives, React attempts to hydrate both components. By default, React starts with the <strong>first Suspense boundary it encounters in the tree</strong> - in this case, the sidebar. But now, imagine the user clicks on the blog section before it's hydrated. Instead of waiting for the sidebar to finish, <strong>React intercepts the event during the capture phase and synchronously hydrates the blog section first</strong>, so the interaction works immediately.
+
+🎯 This is <strong>Selective Hydration</strong> in action - solving the third major SSR problem - You no longer have to hydrate everything before interacting with anything.
+
+React begins hydration as soon as possible, but it <strong>prioritizes</strong> what matters most to the user - the part they touch. This creates the illusion of instant hydration because interactive components are hydrated first, even if they're deeper in the component tree.
+
+## Conclusion
+
+React 18 fundamentally changes how we think about loading, rendering, and hydration. Instead of waiting for the entire app to load and hydrate, we can now stream what's ready and hydrate what matters - exactly when the user needs it.
+
+By combining `renderToPipeableStream()` on the server with smart client-side hydration (driven by `decodeReply()`) and event priority handling), React gives us the tools to build faster, more responsive, and user-centric applications - even on slower devices and networks.
+
+If you've ever struggled with loading performance or interaction delays in React apps, this new model is worth exploring in depth.
+
+Thanks for reading!
+If you found this useful, feel free to like, share, or drop your thoughts in the comments.
+
+##### Credits:
+
+Cover image is from [Hal Gatewood](https://unsplash.com/@halacious?utm_source=medium&utm_medium=referral) on Unsplash
