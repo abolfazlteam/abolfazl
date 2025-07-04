@@ -1,4 +1,7 @@
+"use client";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Link from "next/link";
 import CustomHeading from "./CustomHeading";
@@ -77,6 +80,18 @@ const components = {
 
 const MdxWrapper = ({ code }: { code: string }) => {
   const Component = useMDXComponent(code, { components });
+
+  useEffect(() => {
+    const id = "one-dark-theme-style";
+
+    if (!document.getElementById(id)) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "/prism/one-dark.css";
+      link.id = id;
+      document.head.appendChild(link);
+    }
+  }, []);
 
   return (
     <div

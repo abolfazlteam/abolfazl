@@ -1,6 +1,7 @@
 export const revalidate = 60 * 60 * 24 * 7;
 
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import dynamic from "next/dynamic";
 
 import { allBlogs } from "contentlayer/generated";
@@ -10,18 +11,19 @@ import Header from "@/components/ui/Header";
 import Section from "@/components/ui/Section";
 import BlogsList from "../(blogs)/_components/BlogsList";
 import { mergeSortHandler } from "@/utils/index.utils";
+import GoogleAnalytics from "@/services/GoogleAnalytics";
 
 const DynamicProjectList = dynamic(
   () => import("../(projects)/_components/ProjectsList"),
   {
-    ssr: false,
+    ssr: true,
   },
 );
 
 const DynamicTinderProjectList = dynamic(
   () => import("../(projects)/_components/TinderProjectsWrapper"),
   {
-    ssr: false,
+    ssr: true,
   },
 );
 
@@ -61,31 +63,35 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
+  const nonce = headers().get("x-nonce");
   const homePageFilteredBlogs = allBlogs?.filter(
     (item) => item?.featured && !item?.isDraft,
   );
   const reverseSortedBlogs = mergeSortHandler(homePageFilteredBlogs);
 
   return (
-    <main className="min-h-svh">
-      <HomePageHeroSection />
+    <>
+      <main className="min-h-svh">
+        <HomePageHeroSection />
 
-      <Section>
-        <Header title="latest projects" href="/projects" />
-        <section className="hidden md:block">
-          <DynamicProjectList />
-        </section>
+        <Section>
+          <Header title="latest projects" href="/projects" />
+          <section className="hidden md:block">
+            <DynamicProjectList />
+          </section>
 
-        <section className="block md:hidden">
-          <DynamicTinderProjectList />
-        </section>
-      </Section>
+          <section className="block md:hidden">
+            <DynamicTinderProjectList />
+          </section>
+        </Section>
 
-      <Section>
-        <Header title="latest blogs" href="/blogs" />
-        <BlogsList blogs={reverseSortedBlogs} />
-      </Section>
-    </main>
+        <Section>
+          <Header title="latest blogs" href="/blogs" />
+          <BlogsList blogs={reverseSortedBlogs} />
+        </Section>
+      </main>
+      <GoogleAnalytics nonce={nonce!} />
+    </>
   );
 };
 
