@@ -2,10 +2,9 @@ import { MongoClient } from "mongodb";
 
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
-const cluster_name = process.env.MONGODB_CLUSTER_NAME;
 const db_name = process.env.MONGODB_DB_NAME;
 
-const connectionString = `mongodb+srv://${username}:${password}@${cluster_name}.6fz8ugz.mongodb.net/${db_name}?retryWrites=true&w=majority`;
+const connectionString = `mongodb://${username}:${password}@mongodb.iabolfazl.dev/${db_name}`;
 
 export const connectDatabase = async () => {
   const client = await MongoClient.connect(connectionString);
