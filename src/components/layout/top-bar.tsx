@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { useSearch } from "@/components/search/search-provider";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Icon } from "@/components/ui/icon";
 import { NAV_LINKS, pathForPage } from "@/data";
@@ -18,6 +19,7 @@ function isActivePath(pathname: string, id: PageId): boolean {
 
 export function TopBar() {
   const pathname = usePathname();
+  const { open: openSearch } = useSearch();
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
@@ -59,9 +61,9 @@ export function TopBar() {
             })}
           </span>
 
-          {/* Search trigger — wired to the ⌘K modal in P6. */}
           <button
             type="button"
+            onClick={openSearch}
             aria-label="Search"
             title="Search — ⌘K"
             className="inline-flex cursor-pointer items-center gap-[7px] rounded-full border border-border bg-surface px-2.5 py-1.5 text-dim transition hover:brightness-105"

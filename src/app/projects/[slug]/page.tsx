@@ -1,7 +1,19 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { ProjectDetail } from "@/components/projects/project-detail";
 import { getProjectById, PROJECTS } from "@/data";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectById(slug);
+  if (!project) return {};
+  return { title: project.name, description: project.blurb };
+}
 
 // No `unstable_instant` here: the route is fully prerendered via
 // generateStaticParams (a fixed project set), so Next prefetches the entire

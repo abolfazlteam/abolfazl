@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
+
 import { BlogList } from "@/components/blog/blog-list";
 import { PageHeader } from "@/components/ui/page-header";
 
 export const unstable_instant = { prefetch: "static" };
+
+export const metadata: Metadata = {
+  title: "Writing",
+  description: "Notes on front-end, DevOps and lessons learned the hard way.",
+};
 
 export default function BlogsPage() {
   return (

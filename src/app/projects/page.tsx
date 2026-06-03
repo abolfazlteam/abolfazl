@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { WorkGallery } from "@/components/projects/work-gallery";
 import { WorkList } from "@/components/projects/work-list";
 import { PageHeader } from "@/components/ui/page-header";
@@ -5,6 +7,11 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
 
 export const unstable_instant = { prefetch: "static" };
+
+export const metadata: Metadata = {
+  title: "Work",
+  description: "Selected projects — web apps, DevOps tooling and the things I've shipped.",
+};
 
 export default function WorkPage() {
   return (
