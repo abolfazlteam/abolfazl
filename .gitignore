@@ -43,3 +43,5 @@ next-env.d.ts
 
 # design files
 design-schema
+
+.claude
