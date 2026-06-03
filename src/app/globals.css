@@ -28,6 +28,17 @@
   --accent-violet: #a78bfa;
   --accent-sky: #38bdf8;
   --accent-rose: #fb7185;
+
+  /* Code syntax highlighting */
+  --code-bg: #0c0e0c;
+  --code-text: #d7dbd4;
+  --code-comment: #6f7e6c;
+  --code-string: #9ece6a;
+  --code-number: #e0a458;
+  --code-keyword: #bb9af7;
+  --code-tag: #7aa2f7;
+  --code-fn: #7dcfff;
+  --code-prop: #34e5a8;
 }
 
 :root[data-theme="light"] {
@@ -49,6 +60,16 @@
   --accent-violet: #7c5cf0;
   --accent-sky: #0a90d6;
   --accent-rose: #e0436a;
+
+  --code-bg: #f8f7f1;
+  --code-text: #1c1e21;
+  --code-comment: #8a948a;
+  --code-string: #1f7a3a;
+  --code-number: #a96a16;
+  --code-keyword: #7c3aed;
+  --code-tag: #1d4ed8;
+  --code-fn: #0e7490;
+  --code-prop: #0c8a5e;
 }
 
 /* ──────────────────────────────────────────────────────────────────────────

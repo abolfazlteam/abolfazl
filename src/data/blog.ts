@@ -152,6 +152,6 @@ export const BLOGS: BlogPost[] = [
   },
 ];
 
-/** Lookup a post by its id (used by `/writing/[slug]`). */
+/** Lookup a post by its id (used by `/blogs/[slug]`). */
 export const getBlogById = (id: string): BlogPost | undefined =>
   BLOGS.find((post) => post.id === id);

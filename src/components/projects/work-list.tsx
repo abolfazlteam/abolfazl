@@ -24,7 +24,7 @@ export function WorkList() {
           return (
             <Link
               key={project.id}
-              href={`/work/${project.id}`}
+              href={`/projects/${project.id}`}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() =>
                 setHoveredId((current) => (current === project.id ? null : current))

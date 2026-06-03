@@ -25,7 +25,11 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 
 ## Routes
 
-`/` · `/work` · `/work/[slug]` · `/about` · `/writing` · `/writing/[slug]` · `/contact`
+`/` · `/projects` · `/projects/[slug]` · `/about-me` · `/blogs` · `/blogs/[slug]` · `/contact`
+
+> Paths match the previously-deployed site (`/projects`, `/blogs`, `/about-me`) to
+> preserve existing search rankings / inbound links. `/contact` is new. Nav labels
+> stay Work / About / Writing per the design; only the URLs are pinned.
 
 ## Phases
 
@@ -34,7 +38,7 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] **P2 — Home**
 - [x] **P3 — Work + Project detail**
 - [x] **P4 — About**
-- [ ] **P5 — Writing + Blog detail**
+- [x] **P5 — Writing + Blog detail**
 - [ ] **P6 — Contact, ⌘K search & polish**
 
 ---
@@ -77,10 +81,11 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] "How I got here" timeline + CTA
 
 ### P5 — Writing + Blog detail
-- [ ] Writing list with search
-- [ ] Blog detail: sticky scroll-spy TOC
-- [ ] CodeBlock with syntax highlighting + copy
-- [ ] Newsletter, comments, related posts
+- [x] Writing list with search (`/blogs`)
+- [x] Blog detail (`/blogs/[slug]`, generateStaticParams): sticky scroll-spy TOC
+- [x] CodeBlock with syntax highlighting + copy (theme-aware via CSS vars)
+- [x] Newsletter, comments, related posts
+- [x] Align URLs to the deployed site (work→/projects, about→/about-me, writing→/blogs)
 
 ### P6 — Contact, ⌘K search & polish
 - [ ] Contact page: form (mock submit) + social links

@@ -125,6 +125,8 @@ export interface Activity {
 export interface NavLink {
   id: PageId;
   label: string;
+  /** URL path. Decoupled from `id` to preserve the previously-indexed routes. */
+  path: string;
   /** Two-digit section number, e.g. "00". */
   n: string;
 }

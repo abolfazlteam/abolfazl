@@ -141,6 +141,6 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-/** Lookup a project by its id (used by `/work/[slug]`). */
+/** Lookup a project by its id (used by `/projects/[slug]`). */
 export const getProjectById = (id: string): Project | undefined =>
   PROJECTS.find((project) => project.id === id);
