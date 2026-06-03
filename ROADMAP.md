@@ -33,7 +33,7 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] **P1 — App shell & navigation**
 - [x] **P2 — Home**
 - [x] **P3 — Work + Project detail**
-- [ ] **P4 — About**
+- [x] **P4 — About**
 - [ ] **P5 — Writing + Blog detail**
 - [ ] **P6 — Contact, ⌘K search & polish**
 
@@ -71,10 +71,10 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] `/work/[slug]` statically generated (generateStaticParams) for all projects
 
 ### P4 — About
-- [ ] Bio + portrait placeholder + status panel
-- [ ] Work experience rows
-- [ ] Grouped skills (level dots / "learning" badges)
-- [ ] "How I got here" timeline + CTA
+- [x] Bio + portrait placeholder + status panel
+- [x] Work experience rows
+- [x] Grouped skills (level dots / "learning" badges)
+- [x] "How I got here" timeline + CTA
 
 ### P5 — Writing + Blog detail
 - [ ] Writing list with search
