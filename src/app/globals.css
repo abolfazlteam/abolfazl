@@ -1,26 +1,178 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Design tokens
+   Raw values live here as CSS variables and switch by theme. Dark is the
+   default (bare `:root`); `[data-theme="light"]` overrides. The semantic
+   `@theme` block below maps these to Tailwind utilities (bg-bg, text-dim, …).
+   ────────────────────────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces & text */
+  --bg: #0a0b0a;
+  --bg-soft: #121412;
+  --surface: #151715;
+  --text: #edefea;
+  --dim: #9aa099;
+  --faint: #5f655e;
+  --border: #23271f;
+  --border-soft: #191c18;
+  --line: #2a2e28;
+
+  /* Brand accent (mirrors the mint project accent) */
+  --accent: #34e5a8;
+  --accent-ink: #04231a;
+
+  /* Per-project accents */
+  --accent-mint: #34e5a8;
+  --accent-amber: #fbbf24;
+  --accent-violet: #a78bfa;
+  --accent-sky: #38bdf8;
+  --accent-rose: #fb7185;
 }
 
+:root[data-theme="light"] {
+  --bg: #fafaf6;
+  --bg-soft: #f0efe8;
+  --surface: #ffffff;
+  --text: #0f100d;
+  --dim: #56584f;
+  --faint: #9a9c90;
+  --border: #e2e0d6;
+  --border-soft: #edebe2;
+  --line: #d8d6cb;
+
+  --accent: #0c9d6b;
+  --accent-ink: #ffffff;
+
+  --accent-mint: #0c9d6b;
+  --accent-amber: #d98315;
+  --accent-violet: #7c5cf0;
+  --accent-sky: #0a90d6;
+  --accent-rose: #e0436a;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Tailwind theme — semantic tokens mapped to utilities.
+   `inline` keeps the var reference in the utility so theme switching works at
+   runtime. Font families resolve the raw next/font variables.
+   ────────────────────────────────────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-dim: var(--dim);
+  --color-faint: var(--faint);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+
+  --color-accent-mint: var(--accent-mint);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-sky: var(--accent-sky);
+  --color-accent-rose: var(--accent-rose);
+
+  --font-display: var(--font-bricolage), "Space Grotesk", system-ui, sans-serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Animation tokens — enable `animate-pulse-dot`, `animate-marquee`, … */
+  --animate-pulse-dot: pulse-dot 2.1s ease-in-out infinite;
+  --animate-marquee: marquee 55s linear infinite;
+  --animate-drift: drift 15s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease both;
+  --animate-pop: pop 0.26s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ──────────────────────────────────────────────────────────────────────────
+   Keyframes (design-system motion primitives)
+   ────────────────────────────────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.5;
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, 28px) scale(1.12);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Base
+   ────────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+::selection {
+  background: rgba(52, 229, 168, 0.32);
+}
+
+/* Respect users who prefer less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
