@@ -13,7 +13,7 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       ref={ref}
-      href={`/work/${project.id}`}
+      href={`/projects/${project.id}`}
       className="block overflow-hidden rounded-[14px] border border-border bg-surface no-underline transition-[transform,box-shadow,border-color] duration-[400ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:shadow-[0_22px_54px_rgba(0,0,0,0.22)]"
     >
       <div

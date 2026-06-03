@@ -48,7 +48,7 @@ export function Hero() {
             </Reveal>
             <Reveal delay={220}>
               <div className="mt-[30px] flex flex-wrap gap-3">
-                <Button variant="primary" href="/work">
+                <Button variant="primary" href="/projects">
                   View work →
                 </Button>
                 <Button href="/contact">Get in touch</Button>

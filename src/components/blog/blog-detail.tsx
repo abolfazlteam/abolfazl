@@ -1,0 +1,111 @@
+import Link from "next/link";
+
+import { BlogToc } from "@/components/blog/blog-toc";
+import { CodeBlock } from "@/components/blog/code-block";
+import { Newsletter } from "@/components/blog/newsletter";
+import { Comments } from "@/components/comments/comments";
+import { Icon } from "@/components/ui/icon";
+import { ImagePlaceholder } from "@/components/ui/image-placeholder";
+import { LikeButton } from "@/components/ui/like-button";
+import { SectionHead } from "@/components/ui/section-head";
+import { BLOGS } from "@/data";
+import type { BlogPost } from "@/types";
+
+export function BlogDetail({ blog }: { blog: BlogPost }) {
+  const others = BLOGS.filter((post) => post.id !== blog.id).slice(0, 2);
+
+  return (
+    <div className="px-[clamp(20px,4vw,52px)] pt-[clamp(28px,4vw,48px)]">
+      <Link
+        href="/blogs"
+        className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[1px] text-dim no-underline transition-opacity hover:opacity-60"
+      >
+        <Icon name="back" size={15} /> All writing
+      </Link>
+
+      <div className="grid grid-cols-1 items-start gap-[clamp(28px,4vw,56px)] min-[980px]:grid-cols-[200px_minmax(0,1fr)]">
+        <BlogToc sections={blog.sections} />
+
+        <article>
+          <div className="font-mono text-xs text-dim">{blog.date}</div>
+          <div className="mt-2 inline-flex">
+            <span className="rounded-[3px] border border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[1px] text-accent">
+              {blog.tag}
+            </span>
+          </div>
+          <h1 className="mt-4 max-w-[760px] font-display text-[clamp(32px,4.6vw,56px)] font-bold leading-[1.04] tracking-[-0.03em] text-text">
+            {blog.title}
+          </h1>
+
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-6">
+            <div className="flex gap-[18px] font-mono text-xs text-faint">
+              <span>{blog.views.toLocaleString("en-US")} views</span>
+              <span>{blog.read}</span>
+            </div>
+            <div className="flex gap-2.5">
+              <button
+                type="button"
+                className="inline-flex items-center gap-[7px] rounded-full border-[1.5px] border-line px-3.5 py-1.5 font-mono text-xs text-text"
+              >
+                <Icon name="share" size={14} /> Share
+              </button>
+              <LikeButton initial={blog.likes} />
+            </div>
+          </div>
+
+          <div className="my-7">
+            <ImagePlaceholder label="Drop a cover image" aspect="16 / 9" className="rounded-[14px]" />
+          </div>
+
+          {blog.sections.map((section) => (
+            <section
+              key={section.id}
+              id={`sec-${section.id}`}
+              data-sec={section.id}
+              className="mt-[38px] scroll-mt-[90px]"
+            >
+              <h2 className="m-0 font-display text-[clamp(22px,2.8vw,30px)] font-bold tracking-[-0.6px] text-text">
+                {section.h}
+              </h2>
+              {section.body.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="mt-4 max-w-[720px] font-sans text-[17px] leading-[1.72] text-text opacity-90"
+                >
+                  {paragraph}
+                </p>
+              ))}
+              {section.code ? <CodeBlock code={section.code} /> : null}
+            </section>
+          ))}
+
+          <div className="mt-[clamp(48px,6vw,80px)]">
+            <Newsletter />
+          </div>
+
+          <Comments contentId={blog.id} />
+
+          <div className="mt-[clamp(48px,6vw,80px)]">
+            <SectionHead n="→" title="Keep reading" />
+            <div className="grid grid-cols-1 gap-4 min-[640px]:grid-cols-2">
+              {others.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/blogs/${post.id}`}
+                  className="rounded-xl border border-border bg-surface p-5 no-underline transition-[box-shadow,border-color] duration-200 hover:shadow-[0_22px_54px_rgba(0,0,0,0.22)]"
+                >
+                  <div className="font-mono text-[10px] uppercase tracking-[1px] text-accent">
+                    {post.tag} · {post.read}
+                  </div>
+                  <div className="mt-2.5 font-display text-[19px] font-semibold leading-tight tracking-[-0.5px] text-text">
+                    {post.title}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+}

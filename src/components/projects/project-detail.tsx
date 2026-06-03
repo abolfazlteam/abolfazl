@@ -17,7 +17,7 @@ export function ProjectDetail({ project }: { project: Project }) {
   return (
     <div className="px-[clamp(20px,4vw,52px)] pt-[clamp(28px,4vw,48px)]">
       <Link
-        href="/work"
+        href="/projects"
         className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[1px] text-dim no-underline transition-opacity hover:opacity-60"
       >
         <Icon name="back" size={15} /> All work
@@ -144,7 +144,7 @@ export function ProjectDetail({ project }: { project: Project }) {
 
       {/* Next project */}
       <Link
-        href={`/work/${next.id}`}
+        href={`/projects/${next.id}`}
         className="mt-[clamp(40px,5vw,64px)] flex items-center justify-between gap-4 border-t border-line py-7 no-underline transition-[padding-left] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:pl-2"
       >
         <div>

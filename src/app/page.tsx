@@ -23,7 +23,7 @@ export default function HomePage() {
             title="Selected work"
             right={
               <Link
-                href="/work"
+                href="/projects"
                 className="font-mono text-[11px] uppercase tracking-[1px] text-text no-underline transition-opacity hover:opacity-60"
               >
                 All {PROJECTS.length} →
