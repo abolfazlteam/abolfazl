@@ -29,7 +29,7 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 
 ## Phases
 
-- [ ] **P0 — Foundations**
+- [x] **P0 — Foundations**
 - [ ] **P1 — App shell & navigation**
 - [ ] **P2 — Home**
 - [ ] **P3 — Work + Project detail**
@@ -40,11 +40,11 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 ---
 
 ### P0 — Foundations
-- [ ] Load fonts via `next/font` (Bricolage Grotesque, Inter, JetBrains Mono)
-- [ ] Port the dark+light theme to CSS variables + Tailwind v4 `@theme`
-- [ ] Theme switching: dark default, `localStorage` persistence, no flash on load
-- [ ] Per-project accent color pairs (mint / amber / violet / sky / rose) as CSS vars
-- [ ] Typed data layer in `src/data` (PERSON, SKILLS, PROJECTS, BLOGS, EXPERIENCE, COMMENTS, ACTIVITY)
+- [x] Load fonts via `next/font` (Bricolage Grotesque, Inter, JetBrains Mono)
+- [x] Port the dark+light theme to CSS variables + Tailwind v4 `@theme`
+- [x] Theme switching: dark default, `localStorage` persistence, no flash on load
+- [x] Per-project accent color pairs (mint / amber / violet / sky / rose) as CSS vars
+- [x] Typed data layer in `src/data` (PERSON, SKILLS, PROJECTS, BLOGS, EXPERIENCE, COMMENTS, ACTIVITY)
 
 ### P1 — App shell & navigation
 - [ ] Root layout, base styles, reduced-motion handling
