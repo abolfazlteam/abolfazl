@@ -15,6 +15,10 @@ export const isTheme = (value: unknown): value is Theme =>
 /** Resolve a project accent name to its theme-aware CSS variable. */
 export const accentVar = (accent: AccentName): string => `var(--accent-${accent})`;
 
+/** A project accent mixed toward transparent — used for gradient ends. */
+export const accentSoft = (accent: AccentName, percent: number): string =>
+  `color-mix(in oklab, var(--accent-${accent}) ${percent}%, transparent)`;
+
 /**
  * The live theme, read from the document. The no-flash script and `applyTheme`
  * keep `data-theme` authoritative, so this never disagrees with what's painted.

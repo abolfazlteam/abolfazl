@@ -1,37 +1,75 @@
-import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/reveal";
-import { PERSON } from "@/data";
+import Link from "next/link";
 
-// P1 shell placeholder — the full hero, work list and tickers land in P2.
+import { Hero } from "@/components/home/hero";
+import { ProjectCard } from "@/components/projects/project-card";
+import { WorkList } from "@/components/projects/work-list";
+import { Reveal } from "@/components/ui/reveal";
+import { SectionHead } from "@/components/ui/section-head";
+import { ActivityTicker } from "@/components/widgets/activity-ticker";
+import { Marquee } from "@/components/widgets/marquee";
+import { PROJECTS } from "@/data";
+
 export const unstable_instant = { prefetch: "static" };
 
 export default function HomePage() {
   return (
-    <section className="mx-auto max-w-5xl px-[clamp(20px,4vw,52px)] py-[clamp(48px,8vw,96px)]">
-      <Reveal>
-        <p className="inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-3.5 py-1.5 font-mono text-[11.5px] uppercase tracking-wide text-dim">
-          <span className="size-[7px] rounded-full bg-accent animate-pulse-dot" />
-          Frontend developer · DevOps intern
-        </p>
-      </Reveal>
-      <Reveal delay={70}>
-        <h1 className="mt-7 font-display text-[clamp(46px,7vw,104px)] font-bold leading-[0.96] tracking-[-0.04em] text-text">
-          I build things
-          <br />
-          that work.
-        </h1>
-      </Reveal>
-      <Reveal delay={150}>
-        <p className="mt-7 max-w-xl font-sans text-lg leading-relaxed text-dim">{PERSON.blurb}</p>
-      </Reveal>
-      <Reveal delay={220}>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Button variant="primary" href="/work">
-            View work →
-          </Button>
-          <Button href="/contact">Get in touch</Button>
+    <div className="px-[clamp(20px,4vw,52px)]">
+      <Hero />
+
+      <section className="mt-[clamp(64px,8vw,104px)]">
+        <Reveal>
+          <SectionHead
+            n="01"
+            title="Selected work"
+            right={
+              <Link
+                href="/work"
+                className="font-mono text-[11px] uppercase tracking-[1px] text-text no-underline transition-opacity hover:opacity-60"
+              >
+                All {PROJECTS.length} →
+              </Link>
+            }
+          />
+        </Reveal>
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] gap-[18px]">
+          {PROJECTS.slice(0, 3).map((project, i) => (
+            <Reveal key={project.id} delay={80 + i * 70}>
+              <ProjectCard project={project} />
+            </Reveal>
+          ))}
         </div>
-      </Reveal>
-    </section>
+      </section>
+
+      <section className="mt-[clamp(56px,7vw,88px)]">
+        <Reveal>
+          <SectionHead
+            n="02"
+            title="The full list"
+            right={
+              <span className="font-mono text-[10.5px] uppercase tracking-[1px] text-faint">
+                hover ✦
+              </span>
+            }
+          />
+        </Reveal>
+        <Reveal delay={60}>
+          <WorkList />
+        </Reveal>
+      </section>
+
+      <section className="mt-[clamp(56px,7vw,88px)]">
+        <Reveal>
+          <SectionHead n="03" title="Toolbox & signal" />
+        </Reveal>
+        <Reveal delay={60}>
+          <Marquee />
+        </Reveal>
+        <Reveal delay={120}>
+          <div className="mt-7">
+            <ActivityTicker />
+          </div>
+        </Reveal>
+      </section>
+    </div>
   );
 }
