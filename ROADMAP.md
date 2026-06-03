@@ -39,7 +39,7 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] **P3 — Work + Project detail**
 - [x] **P4 — About**
 - [x] **P5 — Writing + Blog detail**
-- [ ] **P6 — Contact, ⌘K search & polish**
+- [x] **P6 — Contact, ⌘K search & polish**
 
 ---
 
@@ -88,12 +88,13 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] Align URLs to the deployed site (work→/projects, about→/about-me, writing→/blogs)
 
 ### P6 — Contact, ⌘K search & polish
-- [ ] Contact page: form (mock submit) + social links
-- [ ] Global ⌘K search modal (projects + writing)
-- [ ] Responsive breakpoints (980 / 880 / 760 / 600 / 560)
-- [ ] Reduced-motion, accessibility pass
-- [ ] Per-route metadata / OpenGraph, favicon
-- [ ] Lint + production build green
+- [x] Contact page: form (mock submit) + social links
+- [x] Global ⌘K search modal (projects + writing), wired to the TopBar trigger
+- [x] Responsive breakpoints (per-component, matching the design's 980/880/760/600/560)
+- [x] Reduced-motion (global) + a11y pass + no-JS scroll-reveal fallback
+- [x] Per-route metadata / OpenGraph (root template + generateMetadata for [slug])
+- [x] sitemap.xml + rss.xml (parity with the deployed site)
+- [x] Lint + production build green
 
 ## Workflow
 

@@ -21,6 +21,7 @@ export function Reveal({ children, delay = 0, y = 14, className, style }: Reveal
   return (
     <div
       ref={ref}
+      data-reveal=""
       className={className}
       style={{
         transform: inView ? "translateY(0)" : `translateY(${y}px)`,
