@@ -32,7 +32,7 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] **P0 — Foundations**
 - [x] **P1 — App shell & navigation**
 - [x] **P2 — Home**
-- [ ] **P3 — Work + Project detail**
+- [x] **P3 — Work + Project detail**
 - [ ] **P4 — About**
 - [ ] **P5 — Writing + Blog detail**
 - [ ] **P6 — Contact, ⌘K search & polish**
@@ -65,9 +65,10 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] Skills marquee + live-git ActivityTicker
 
 ### P3 — Work + Project detail
-- [ ] Work page: filter tabs, card grid, work index list
-- [ ] Project detail: hero band, overview, highlights, meta card
-- [ ] Gallery (placeholder image slots), comments, next-project nav, like button
+- [x] Work page: filter tabs, card grid, work index list
+- [x] Project detail: hero band, overview, highlights, meta card
+- [x] Gallery (placeholder image slots), comments, next-project nav, like button
+- [x] `/work/[slug]` statically generated (generateStaticParams) for all projects
 
 ### P4 — About
 - [ ] Bio + portrait placeholder + status panel
