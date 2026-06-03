@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
+import { Footer } from "@/components/layout/footer";
+import { TopBar } from "@/components/layout/top-bar";
 import { ThemeScript } from "@/components/theme/theme-script";
 import { PERSON } from "@/data";
 import { fontVariables } from "@/lib/fonts";
@@ -16,9 +18,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     // suppressHydrationWarning: the no-flash script sets data-theme before React hydrates.
     <html lang="en" className={fontVariables} suppressHydrationWarning>
-      <body className="font-sans">
+      <body className="flex min-h-dvh flex-col font-sans">
         <ThemeScript />
-        {children}
+        <TopBar />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

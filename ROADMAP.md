@@ -30,7 +30,7 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 ## Phases
 
 - [x] **P0 — Foundations**
-- [ ] **P1 — App shell & navigation**
+- [x] **P1 — App shell & navigation**
 - [ ] **P2 — Home**
 - [ ] **P3 — Work + Project detail**
 - [ ] **P4 — About**
@@ -47,12 +47,15 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 - [x] Typed data layer in `src/data` (PERSON, SKILLS, PROJECTS, BLOGS, EXPERIENCE, COMMENTS, ACTIVITY)
 
 ### P1 — App shell & navigation
-- [ ] Root layout, base styles, reduced-motion handling
-- [ ] TopBar: logo, nav, ⌘K search button, theme toggle, mobile burger + menu
-- [ ] Footer: CTA, page links, social links, availability
-- [ ] Route skeletons for all pages + active-nav highlighting
-- [ ] Shared primitives: Reveal (scroll-in), magnetic Button, SectionHead, Icon set
-- [ ] Page transitions (fade/slide)
+- [x] Root layout, base styles, reduced-motion handling
+- [x] TopBar: logo, nav, ⌘K search button, theme toggle, mobile burger + menu
+- [x] Footer: CTA, page links, social links, availability
+- [x] Route skeletons for all pages + active-nav highlighting
+- [x] Shared primitives: Reveal (scroll-in), magnetic Button, SectionHead, Icon set
+- [x] Page transitions (fade/slide)
+- [x] Cache Components + `unstable_instant` on routes for instant navigation
+
+> ⌘K search button is present in the TopBar but wired to the modal in **P6**.
 
 ### P2 — Home
 - [ ] Hero: badge, cycling-word headline, intro, CTAs
