@@ -31,7 +31,7 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 
 - [x] **P0 — Foundations**
 - [x] **P1 — App shell & navigation**
-- [ ] **P2 — Home**
+- [x] **P2 — Home**
 - [ ] **P3 — Work + Project detail**
 - [ ] **P4 — About**
 - [ ] **P5 — Writing + Blog detail**
@@ -58,11 +58,11 @@ variables + Tailwind `@theme`, and keeps the interactions that make it feel aliv
 > ⌘K search button is present in the TopBar but wired to the modal in **P6**.
 
 ### P2 — Home
-- [ ] Hero: badge, cycling-word headline, intro, CTAs
-- [ ] Status panel with live Tehran clock
-- [ ] Selected work — featured ProjectCards (3D tilt)
-- [ ] WorkList with cursor-following preview tile (the centerpiece interaction)
-- [ ] Skills marquee + live-git ActivityTicker
+- [x] Hero: badge, cycling-word headline, intro, CTAs
+- [x] Status panel with live Tehran clock (dynamic hole behind Suspense)
+- [x] Selected work — featured ProjectCards (3D tilt)
+- [x] WorkList with cursor-following preview tile (the centerpiece interaction)
+- [x] Skills marquee + live-git ActivityTicker
 
 ### P3 — Work + Project detail
 - [ ] Work page: filter tabs, card grid, work index list
