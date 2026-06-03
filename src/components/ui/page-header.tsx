@@ -9,13 +9,16 @@ interface PageHeaderProps {
   intro?: string;
 }
 
-/** Shared sub-page header: mono eyebrow, oversized display title, optional intro. */
+/**
+ * Shared sub-page header: mono eyebrow, oversized display title, optional intro.
+ * Padding-free — the page provides its own container padding.
+ */
 export function PageHeader({ page, title, intro }: PageHeaderProps) {
   const link = NAV_LINKS.find((item) => item.id === page);
   const eyebrow = link ? `(${link.n}) — ${link.label}` : "";
 
   return (
-    <div className="px-[clamp(20px,4vw,52px)] pt-[clamp(40px,5vw,72px)]">
+    <>
       <Reveal>
         <p className="font-mono text-[11px] uppercase tracking-[2px] text-accent">{eyebrow}</p>
       </Reveal>
@@ -31,6 +34,6 @@ export function PageHeader({ page, title, intro }: PageHeaderProps) {
           </p>
         </Reveal>
       ) : null}
-    </div>
+    </>
   );
 }
