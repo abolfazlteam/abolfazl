@@ -128,3 +128,10 @@ export interface NavLink {
   /** Two-digit section number, e.g. "00". */
   n: string;
 }
+
+export interface TimelineEntry {
+  /** Time span, e.g. "2024 — now". */
+  when: string;
+  what: string;
+  why: string;
+}
