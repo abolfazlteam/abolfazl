@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 
+import { useIsClient } from "@/hooks/use-is-client";
 import { PROJECTS } from "@/data";
 import { accentSoft, accentVar } from "@/lib/theme";
 
@@ -11,6 +13,52 @@ export function WorkList() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const active = PROJECTS.find((project) => project.id === hoveredId) ?? null;
+  const isClient = useIsClient();
+
+  // The tile is `position: fixed` but lives behind transformed ancestors
+  // (Reveal, the page-transition template), which would otherwise become its
+  // containing block. Portalling to <body> keeps it anchored to the viewport so
+  // it tracks the cursor.
+  const preview = (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed z-[60] h-[180px] w-[280px] overflow-hidden rounded-xl shadow-[0_24px_60px_rgba(0,0,0,0.32)]"
+      style={{
+        left: pos.x,
+        top: pos.y,
+        opacity: active ? 1 : 0,
+        transform: `translate(28px, -50%) scale(${active ? 1 : 0.8}) rotate(${active ? -3 : 0}deg)`,
+        transition: "opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1)",
+      }}
+    >
+      {active ? (
+        <div
+          className="absolute inset-0 flex flex-col justify-between p-[18px]"
+          style={{ background: `linear-gradient(140deg, ${accentVar(active.accent)}, ${accentSoft(active.accent, 67)})` }}
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 11px)",
+            }}
+          />
+          <div className="relative flex justify-between font-mono text-[10px] uppercase tracking-[1px] text-white/90">
+            <span>{active.tag}</span>
+            <span>{active.year}</span>
+          </div>
+          <div className="relative">
+            <div className="font-display text-3xl font-bold leading-none tracking-[-0.8px] text-white">
+              {active.name}
+            </div>
+            <div className="mt-1.5 font-mono text-[11px] text-white/90">
+              {active.metric} · click to open →
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
 
   return (
     <div
@@ -62,46 +110,7 @@ export function WorkList() {
         })}
       </div>
 
-      {/* Cursor-following preview tile */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed z-[60] h-[180px] w-[280px] overflow-hidden rounded-xl shadow-[0_24px_60px_rgba(0,0,0,0.32)]"
-        style={{
-          left: pos.x,
-          top: pos.y,
-          opacity: active ? 1 : 0,
-          transform: `translate(28px, -50%) scale(${active ? 1 : 0.8}) rotate(${active ? -3 : 0}deg)`,
-          transition:
-            "opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1)",
-        }}
-      >
-        {active ? (
-          <div
-            className="absolute inset-0 flex flex-col justify-between p-[18px]"
-            style={{ background: `linear-gradient(140deg, ${accentVar(active.accent)}, ${accentSoft(active.accent, 67)})` }}
-          >
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 11px)",
-              }}
-            />
-            <div className="relative flex justify-between font-mono text-[10px] uppercase tracking-[1px] text-white/90">
-              <span>{active.tag}</span>
-              <span>{active.year}</span>
-            </div>
-            <div className="relative">
-              <div className="font-display text-3xl font-bold leading-none tracking-[-0.8px] text-white">
-                {active.name}
-              </div>
-              <div className="mt-1.5 font-mono text-[11px] text-white/90">
-                {active.metric} · click to open →
-              </div>
-            </div>
-          </div>
-        ) : null}
-      </div>
+      {isClient ? createPortal(preview, document.body) : null}
     </div>
   );
 }
