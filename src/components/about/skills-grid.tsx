@@ -2,8 +2,6 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
 import { SKILLS } from "@/data";
 
-const LEVELS = [1, 2, 3, 4, 5] as const;
-
 export function SkillsGrid() {
   return (
     <section className="mt-[clamp(64px,8vw,104px)]">
@@ -33,17 +31,7 @@ export function SkillsGrid() {
                       <span className="font-mono text-[9px] uppercase tracking-[1px] text-accent">
                         learning
                       </span>
-                    ) : (
-                      <div className="flex gap-[3px]">
-                        {LEVELS.map((level) => (
-                          <span
-                            key={level}
-                            className="size-[5px] rounded-[3px]"
-                            style={{ background: level <= skill.level ? "var(--text)" : "var(--border)" }}
-                          />
-                        ))}
-                      </div>
-                    )}
+                    ) : null}
                   </div>
                 ))}
               </div>
