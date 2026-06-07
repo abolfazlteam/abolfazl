@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 import { LiveClock } from "@/components/widgets/live-clock";
 
 const STATUS_ROWS: [label: string, value: string][] = [
@@ -9,29 +7,13 @@ const STATUS_ROWS: [label: string, value: string][] = [
   ["Stack", "React · Next · TypeScript · Docker · GitLab CI"],
 ];
 
-/** Static placeholder for the clock in the prerendered shell. */
-function ClockFallback() {
-  return (
-    <span className="inline-flex items-center gap-[7px] font-mono text-xs text-dim">
-      <span className="size-[7px] rounded-full bg-accent animate-pulse-dot" />
-      Tehran
-    </span>
-  );
-}
-
-/**
- * "Right now" panel. The static rows prerender; the live clock is a dynamic
- * hole behind Suspense (current time can't be prerendered with Cache Components).
- * Used on the home hero and About.
- */
+/** "Right now" panel with a live Tehran clock. Used on the home hero and About. */
 export function StatusPanel() {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-surface">
       <div className="flex items-center justify-between border-b border-border-soft bg-bg-soft px-[18px] py-3.5">
         <span className="font-mono text-[10px] uppercase tracking-[2px] text-dim">Status</span>
-        <Suspense fallback={<ClockFallback />}>
-          <LiveClock />
-        </Suspense>
+        <LiveClock />
       </div>
       <div className="flex flex-col gap-3 px-[18px] py-4">
         {STATUS_ROWS.map(([label, value]) => (
