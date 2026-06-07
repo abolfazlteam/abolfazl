@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Comments } from "@/components/comments/comments";
+import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { LikeButton } from "@/components/ui/like-button";
@@ -15,7 +16,7 @@ export function ProjectDetail({ project }: { project: Project }) {
   const next = PROJECTS[(index + 1) % PROJECTS.length];
 
   return (
-    <div className="px-[clamp(20px,4vw,52px)] pt-[clamp(28px,4vw,48px)]">
+    <Container className="pt-[clamp(28px,4vw,48px)]">
       <Link
         href="/projects"
         className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[1px] text-dim no-underline transition-opacity hover:opacity-60"
@@ -155,6 +156,6 @@ export function ProjectDetail({ project }: { project: Project }) {
         </div>
         <Icon name="arrow" size={28} style={{ color: accentVar(next.accent) }} />
       </Link>
-    </div>
+    </Container>
   );
 }

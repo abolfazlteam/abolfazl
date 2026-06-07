@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Hero } from "@/components/home/hero";
 import { ProjectCard } from "@/components/projects/project-card";
 import { WorkList } from "@/components/projects/work-list";
+import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
 import { ActivityTicker } from "@/components/widgets/activity-ticker";
@@ -13,7 +14,7 @@ export const unstable_instant = { prefetch: "static" };
 
 export default function HomePage() {
   return (
-    <div className="px-[clamp(20px,4vw,52px)]">
+    <Container>
       <Hero />
 
       <section className="mt-[clamp(64px,8vw,104px)]">
@@ -70,6 +71,6 @@ export default function HomePage() {
           </div>
         </Reveal>
       </section>
-    </div>
+    </Container>
   );
 }

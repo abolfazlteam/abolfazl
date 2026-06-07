@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { useSearch } from "@/components/search/search-provider";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { NAV_LINKS, pathForPage } from "@/data";
 import { cn } from "@/lib/cn";
@@ -25,7 +26,7 @@ export function TopBar() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-bg/80 backdrop-blur-md">
-      <div className="flex items-center justify-between px-[clamp(20px,4vw,52px)] py-3.5">
+      <Container className="flex items-center justify-between py-3.5">
         <Link href="/" onClick={closeMenu} className="flex items-center gap-[11px] no-underline">
           <span className="flex size-[26px] items-center justify-center rounded-md bg-accent font-display text-base font-extrabold text-accent-ink">
             A
@@ -84,10 +85,10 @@ export function TopBar() {
             <Icon name={menuOpen ? "close" : "menu"} size={18} strokeWidth={2.2} />
           </button>
         </nav>
-      </div>
+      </Container>
 
       {menuOpen ? (
-        <div className="flex flex-col border-t border-border px-[clamp(20px,4vw,52px)] pb-4 pt-2 md:hidden">
+        <Container className="flex flex-col border-t border-border pb-4 pt-2 md:hidden">
           {NAV_LINKS.map((link) => {
             const active = isActivePath(pathname, link.id);
             return (
@@ -106,7 +107,7 @@ export function TopBar() {
               </Link>
             );
           })}
-        </div>
+        </Container>
       ) : null}
     </header>
   );
