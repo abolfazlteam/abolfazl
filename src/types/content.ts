@@ -9,9 +9,6 @@
 /** Per-project accent identity. Resolves to a `--accent-<name>` CSS variable. */
 export type AccentName = "mint" | "amber" | "violet" | "sky" | "rose";
 
-/** Skill proficiency, 1 (learning) – 5 (expert). */
-export type SkillLevel = 1 | 2 | 3 | 4 | 5;
-
 /** Top-level navigable pages. */
 export type PageId = "home" | "work" | "about" | "writing" | "contact";
 
@@ -32,8 +29,7 @@ export interface Person {
 
 export interface Skill {
   name: string;
-  level: SkillLevel;
-  /** Currently being learned — rendered as a badge instead of a level. */
+  /** Currently being learned — rendered as a badge. */
   learning?: boolean;
 }
 
