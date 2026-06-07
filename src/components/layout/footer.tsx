@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { Container } from "@/components/ui/container";
 import { NAV_LINKS, PERSON, pathForPage } from "@/data";
 
 const LINK_CLASS = "font-sans text-sm text-text no-underline transition-opacity hover:opacity-60";
@@ -22,7 +23,8 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="mt-[clamp(64px,8vw,104px)] border-t border-border px-[clamp(20px,4vw,52px)] pb-[52px] pt-[clamp(56px,7vw,88px)]">
+    <footer className="mt-[clamp(64px,8vw,104px)] border-t border-border pb-[52px] pt-[clamp(56px,7vw,88px)]">
+      <Container>
       <div className="grid grid-cols-1 gap-7 sm:grid-cols-[1.6fr_1fr_1fr]">
         <div>
           <p className="font-display text-[clamp(32px,4.5vw,52px)] font-bold leading-[0.98] tracking-[-0.04em] text-text">
@@ -70,6 +72,7 @@ export function Footer() {
           <span className="size-[7px] rounded-full bg-accent animate-pulse-dot" /> available for work
         </span>
       </div>
+      </Container>
     </footer>
   );
 }

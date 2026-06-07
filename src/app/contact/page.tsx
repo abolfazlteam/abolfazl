@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { ContactForm } from "@/components/contact/contact-form";
+import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
 import { Reveal } from "@/components/ui/reveal";
 import { PERSON } from "@/data";
@@ -21,7 +22,7 @@ const CONTACT_LINKS = [
 
 export default function ContactPage() {
   return (
-    <div className="px-[clamp(20px,4vw,52px)] pt-[clamp(40px,5vw,72px)]">
+    <Container className="pt-[clamp(40px,5vw,72px)]">
       <PageHeader
         page="contact"
         title="Let's talk."
@@ -61,6 +62,6 @@ export default function ContactPage() {
           </div>
         </Reveal>
       </div>
-    </div>
+    </Container>
   );
 }

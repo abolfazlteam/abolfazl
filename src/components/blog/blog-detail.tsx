@@ -4,6 +4,7 @@ import { BlogToc } from "@/components/blog/blog-toc";
 import { CodeBlock } from "@/components/blog/code-block";
 import { Newsletter } from "@/components/blog/newsletter";
 import { Comments } from "@/components/comments/comments";
+import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { LikeButton } from "@/components/ui/like-button";
@@ -15,7 +16,7 @@ export function BlogDetail({ blog }: { blog: BlogPost }) {
   const others = BLOGS.filter((post) => post.id !== blog.id).slice(0, 2);
 
   return (
-    <div className="px-[clamp(20px,4vw,52px)] pt-[clamp(28px,4vw,48px)]">
+    <Container className="pt-[clamp(28px,4vw,48px)]">
       <Link
         href="/blogs"
         className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[1px] text-dim no-underline transition-opacity hover:opacity-60"
@@ -106,6 +107,6 @@ export function BlogDetail({ blog }: { blog: BlogPost }) {
           </div>
         </article>
       </div>
-    </div>
+    </Container>
   );
 }

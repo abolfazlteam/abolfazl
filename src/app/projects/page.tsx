@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { WorkGallery } from "@/components/projects/work-gallery";
 import { WorkList } from "@/components/projects/work-list";
+import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <div className="px-[clamp(20px,4vw,52px)] pt-[clamp(40px,5vw,72px)]">
+    <Container className="pt-[clamp(40px,5vw,72px)]">
       <PageHeader
         page="work"
         title="Things I've made"
@@ -32,6 +33,6 @@ export default function WorkPage() {
           <WorkList />
         </Reveal>
       </section>
-    </div>
+    </Container>
   );
 }
