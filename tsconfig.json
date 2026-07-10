@@ -1,19 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "",
-    "target": "ES2021",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -21,26 +19,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/public*": ["./public/*"],
-      "$lib/*": ["./src/lib/*"],
-      "$components/*": ["./src/components/*"],
-      "test/*": ["./test/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
-    },
-    "types": ["vitest", "jsdom", "node", "@testing-library/jest-dom"]
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated"
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
   ],
-  "exclude": ["node_modules"],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
+  "exclude": ["node_modules"]
 }

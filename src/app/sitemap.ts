@@ -1,41 +1,32 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { ALL_BLOGS, IBlogsProps } from "@/constants/content";
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+
+import { BLOGS, PROJECTS } from "@/data";
+import { SITE_URL } from "@/lib/seo";
+
+const NOW = new Date();
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const publishedBlogs: IBlogsProps[] = ALL_BLOGS?.filter(
-    (blog) => !blog?.isDraft,
-  );
+  const staticEntries: MetadataRoute.Sitemap = [
+    { url: SITE_URL, lastModified: NOW, changeFrequency: "weekly", priority: 1 },
+    { url: `${SITE_URL}/projects`, lastModified: NOW, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/blogs`, lastModified: NOW, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/about-me`, lastModified: NOW, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/contact`, lastModified: NOW, changeFrequency: "monthly", priority: 0.6 },
+  ];
 
-  const blogsUrls = publishedBlogs?.map((blog) => ({
-    url: `${blog?.baseUrl}blogs/${blog?.slug}`,
-    lastModified: blog?.updatedAt
-      ? new Date(Date.parse(blog?.updatedAt as string))
-      : new Date(blog?.publishedAt),
-    priority: 0.6,
+  const projectEntries: MetadataRoute.Sitemap = PROJECTS.map((project) => ({
+    url: `${SITE_URL}/projects/${project.id}`,
+    lastModified: NOW,
     changeFrequency: "monthly",
+    priority: 0.7,
   }));
 
-  return [
-    {
-      url: "https://iabolfazl.dev",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: "https://iabolfazl.dev/about-me",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://iabolfazl.dev/blogs",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    // @ts-ignore
-    ...blogsUrls,
-  ];
+  const blogEntries: MetadataRoute.Sitemap = BLOGS.map((post) => ({
+    url: `${SITE_URL}/blogs/${post.id}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...projectEntries, ...blogEntries];
 }
