@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { PROJECTS } from "@/data";
 import { cn } from "@/lib/cn";
 
-const FILTERS = ["all", "web", "mobile", "devops"] as const;
+const FILTERS = ["all", "portal", "platform", "auth", "marketplace"] as const;
 type Filter = (typeof FILTERS)[number];
 
 /** Filterable card grid for the Work page. */
@@ -20,7 +20,7 @@ export function WorkGallery() {
   return (
     <>
       <Reveal delay={180}>
-        <div className="mt-9 flex w-fit gap-1 rounded-lg border border-border bg-bg-soft p-1">
+        <div className="mt-9 flex w-full flex-wrap gap-1 rounded-lg border border-border bg-bg-soft p-1 min-[620px]:w-fit">
           {FILTERS.map((value) => (
             <button
               key={value}

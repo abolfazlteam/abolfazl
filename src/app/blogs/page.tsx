@@ -7,8 +7,27 @@ import { PageHeader } from "@/components/ui/page-header";
 export const unstable_instant = { prefetch: "static" };
 
 export const metadata: Metadata = {
-  title: "Writing",
-  description: "Notes on front-end, DevOps and lessons learned the hard way.",
+  title: "React, Next.js & Frontend Engineering Blog",
+  description:
+    "Frontend engineering articles by Abolfazl Jamshidi about React hooks, Next.js, Suspense, streaming, selective hydration, performance, and practical UI architecture.",
+  keywords: [
+    "React blog",
+    "Next.js blog",
+    "frontend engineering blog",
+    "React hooks",
+    "useEffect",
+    "useRef vs useState",
+    "React Suspense",
+    "selective hydration",
+  ],
+  alternates: { canonical: "/blogs" },
+  openGraph: {
+    title: "React, Next.js & Frontend Engineering Blog | Abolfazl Jamshidi",
+    description:
+      "Articles on React hooks, Suspense, streaming, hydration, performance, and frontend architecture.",
+    url: "/blogs",
+    type: "website",
+  },
 };
 
 export default function BlogsPage() {
@@ -16,8 +35,8 @@ export default function BlogsPage() {
     <Container className="pt-[clamp(40px,5vw,72px)]">
       <PageHeader
         page="writing"
-        title="Notes to my past self"
-        intro="If something cost me half a Saturday to figure out, I write it down so the next person (often future me) doesn't lose theirs."
+        title="Frontend engineering blog"
+        intro="React, Next.js, TypeScript, Suspense, hooks, rendering, and practical frontend architecture notes written from real implementation work."
       />
       <BlogList />
     </Container>

@@ -1,12 +1,12 @@
 import type { Activity } from "@/types";
 
-/** Mocked live git activity, newest first (stable order). */
+/** Static project signals, newest first (stable order). */
 export const ACTIVITY: Activity[] = [
-  { kind: "push", repo: "abolfazlcodes/ledger", msg: "fix: stale invoice totals on tab switch", when: "12m ago", lang: "ts" },
-  { kind: "deploy", repo: "stagehand", msg: "production · v2.41.0", when: "1h ago", lang: "ok" },
-  { kind: "pr", repo: "abolfazlcodes/lighthouse", msg: "feat: clickhouse 24.x compatibility", when: "3h ago", lang: "ts" },
-  { kind: "push", repo: "abolfazlcodes/kanji.fm", msg: "perf: defer kanji bitmap upload", when: "yesterday", lang: "tsx" },
-  { kind: "star", repo: "vercel/next.js", msg: "starred", when: "yesterday", lang: "—" },
-  { kind: "push", repo: "abolfazlcodes/quiet", msg: "chore: tailwind 4 upgrade", when: "2d ago", lang: "tsx" },
-  { kind: "deploy", repo: "ledger", msg: "preview · branch/feat-receipts", when: "2d ago", lang: "ok" },
+  { kind: "push", repo: "ticket-system", msg: "RBAC, ticket chat, uploads, voice messages", when: "282 commits", lang: "tsx" },
+  { kind: "push", repo: "iran-map-platform", msg: "React/MapLibre SDK and self-hosted vector tiles", when: "solo build", lang: "ts" },
+  { kind: "pr", repo: "svc-front", msg: "tables, uploaders, RHF controls, service workflows", when: "491 commits", lang: "tsx" },
+  { kind: "pr", repo: "myco", msg: "presigned uploads, SSO, payments, appraisal modules", when: "246 commits", lang: "tsx" },
+  { kind: "deploy", repo: "techpark-sso", msg: "native form-post SSO flows and OTP UX", when: "solo build", lang: "ok" },
+  { kind: "pr", repo: "sadaf-front", msg: "job search, SEO, employer forms, resume review", when: "169 commits", lang: "tsx" },
+  { kind: "pr", repo: "rahsa", msg: "meeting calendar, holidays, media player", when: "57 commits", lang: "tsx" },
 ];

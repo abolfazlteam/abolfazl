@@ -31,7 +31,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <span>{project.tag}</span>
           <span className="rounded-full bg-black/20 px-[7px] py-0.5">{project.metric}</span>
         </div>
-        <span className="absolute bottom-3.5 left-[18px] font-display text-4xl font-bold leading-none tracking-[-1.2px] text-white">
+        <span className="absolute bottom-3.5 left-[18px] right-[18px] font-display text-[clamp(30px,8vw,36px)] font-bold leading-[0.95] tracking-[-1.2px] text-white">
           {project.name}
         </span>
       </div>

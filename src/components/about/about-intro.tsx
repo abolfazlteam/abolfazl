@@ -9,21 +9,20 @@ export function AboutIntro() {
       <Reveal delay={120}>
         <div className="flex max-w-[620px] flex-col gap-[18px] font-sans text-lg leading-[1.72] text-text">
           <p className="m-0">
-            I started where a lot of people start — making buttons line up. Then I got hooked on
-            the part nobody claps for: the app that doesn&apos;t break, the form that doesn&apos;t
-            lose your work, the deploy that goes out quietly on a Friday and nobody notices because
-            nothing went wrong.
+            I&apos;m a React, Next.js, and TypeScript frontend developer based in Tehran, Iran. My
+            strongest work sits inside production products: support systems, service portals, job
+            marketplaces, authentication flows, internal dashboards, and reusable frontend
+            platforms.
           </p>
           <p className="m-0">
-            I work part-time on the front-end for a SaaS team — React, Next.js, a design system,
-            and a build pipeline I&apos;ve slowly stopped being scared of. I&apos;m a fast learner —
-            I pick up tools because something <span className="font-semibold text-accent">needs</span>{" "}
-            doing, not to pad a résumé.
+            I care about the parts that make frontend engineering durable: typed APIs, predictable
+            forms, reusable components, URL-driven state, cache-aware data fetching, accessible UI
+            structure, and pages that search engines and real users can both understand.
           </p>
           <p className="m-0">
-            The newest chapter is DevOps. I&apos;m interning, which is a polite phrase for
-            &quot;learning in public and Googling a lot.&quot; Docker, GitLab CI/CD, Linux,
-            Kubernetes — I&apos;m early, I know it, and I&apos;d rather tell you that than pretend.
+            The newest chapter is DevOps. I&apos;m learning Docker, GitLab CI/CD, Linux, and
+            Kubernetes so I can reason about the full delivery path: build it, ship it, observe it,
+            and fix it when reality starts asking questions.
           </p>
           <p className="m-0 font-display text-[26px] font-semibold leading-[1.35] tracking-[-0.5px] text-text">
             What I&apos;m really chasing: ship it, watch it run, and be the person who can fix both

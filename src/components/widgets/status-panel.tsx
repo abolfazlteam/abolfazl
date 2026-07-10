@@ -1,10 +1,10 @@
 import { LiveClock } from "@/components/widgets/live-clock";
 
 const STATUS_ROWS: [label: string, value: string][] = [
-  ["Open to", "full-time & freelance — front-end / junior DevOps"],
-  ["Building", "a CI dashboard that kills a Slack thread"],
-  ["Learning", "Kubernetes, by breaking the staging cluster"],
-  ["Stack", "React · Next · TypeScript · Docker · GitLab CI"],
+  ["Open to", "remote React / Next.js frontend roles"],
+  ["Building", "dashboards, portals, SSO flows, and case studies"],
+  ["Learning", "Docker, GitLab CI, Linux, and Kubernetes"],
+  ["Stack", "React · Next.js · TypeScript · TanStack Query"],
 ];
 
 /** "Right now" panel with a live Tehran clock. Used on the home hero and About. */

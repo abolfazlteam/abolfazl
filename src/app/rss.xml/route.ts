@@ -1,6 +1,8 @@
 import { BLOGS, PERSON } from "@/data";
+import { SITE_URL } from "@/lib/seo";
 
-const SITE_URL = "https://iabolfazl.dev";
+const FEED_DESCRIPTION =
+  "React, Next.js, TypeScript, performance, hooks, rendering, and frontend engineering articles by Abolfazl Jamshidi.";
 
 function escapeXml(value: string): string {
   return value
@@ -33,9 +35,9 @@ export function GET(): Response {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-<title>${escapeXml(PERSON.name)} — Writing</title>
+<title>${escapeXml(`${PERSON.name} — Frontend Engineering Blog`)}</title>
 <link>${SITE_URL}/blogs</link>
-<description>${escapeXml("Notes on front-end, DevOps and lessons learned the hard way.")}</description>
+<description>${escapeXml(FEED_DESCRIPTION)}</description>
 <language>en</language>
 ${items}
 </channel>

@@ -1,22 +1,84 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { BlogToc } from "@/components/blog/blog-toc";
 import { CodeBlock } from "@/components/blog/code-block";
 import { Newsletter } from "@/components/blog/newsletter";
 import { Comments } from "@/components/comments/comments";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { LikeButton } from "@/components/ui/like-button";
 import { SectionHead } from "@/components/ui/section-head";
-import { BLOGS } from "@/data";
-import type { BlogPost } from "@/types";
+import { BLOGS, PERSON } from "@/data";
+import { absoluteUrl, SITE_URL } from "@/lib/seo";
+import type { BlogImage, BlogPost } from "@/types";
+
+function BlogImageFrame({ image }: { image: BlogImage }) {
+  const fit = image.fit ?? (image.caption ? "contain" : "cover");
+
+  return (
+    <figure className="my-7">
+      <div
+        className="relative overflow-hidden rounded-[14px] border border-border bg-bg-soft"
+        style={{ aspectRatio: image.aspect ?? "16 / 9" }}
+      >
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes="(min-width: 980px) 760px, calc(100vw - 40px)"
+          unoptimized={image.src.endsWith(".gif")}
+          className={fit === "cover" ? "object-cover" : "object-contain"}
+        />
+      </div>
+      {image.caption ? (
+        <figcaption className="mt-2.5 text-center font-mono text-[11px] uppercase tracking-[1px] text-faint">
+          {image.caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
 
 export function BlogDetail({ blog }: { blog: BlogPost }) {
   const others = BLOGS.filter((post) => post.id !== blog.id).slice(0, 2);
+  const url = absoluteUrl(`/blogs/${blog.id}`);
+  const articleBody = blog.sections
+    .flatMap((section) => [section.h, ...section.body])
+    .join("\n\n");
 
   return (
     <Container className="pt-[clamp(28px,4vw,48px)]">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: blog.title,
+          description: blog.excerpt,
+          image: absoluteUrl(blog.hero),
+          datePublished: new Date(blog.date).toISOString(),
+          dateModified: new Date(blog.date).toISOString(),
+          author: {
+            "@type": "Person",
+            name: PERSON.name,
+            url: SITE_URL,
+            sameAs: [PERSON.github, PERSON.linkedin, PERSON.medium],
+          },
+          publisher: {
+            "@type": "Person",
+            name: PERSON.name,
+            url: SITE_URL,
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": url,
+          },
+          articleSection: blog.tag,
+          keywords: [blog.tag, "React", "Next.js", "frontend engineering"],
+          articleBody,
+        }}
+      />
       <Link
         href="/blogs"
         className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[1px] text-dim no-underline transition-opacity hover:opacity-60"
@@ -54,9 +116,7 @@ export function BlogDetail({ blog }: { blog: BlogPost }) {
             </div>
           </div>
 
-          <div className="my-7">
-            <ImagePlaceholder label="Drop a cover image" aspect="16 / 9" className="rounded-[14px]" />
-          </div>
+          <BlogImageFrame image={{ src: blog.hero, alt: blog.title, aspect: "16 / 9" }} />
 
           {blog.sections.map((section) => (
             <section
@@ -77,6 +137,9 @@ export function BlogDetail({ blog }: { blog: BlogPost }) {
                 </p>
               ))}
               {section.code ? <CodeBlock code={section.code} /> : null}
+              {section.images?.map((image) => (
+                <BlogImageFrame key={image.src} image={image} />
+              ))}
             </section>
           ))}
 

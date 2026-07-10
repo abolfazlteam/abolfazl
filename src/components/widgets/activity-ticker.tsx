@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 
 const ROW_HEIGHT = 22;
 
-/** Vertically rotating "live git" activity feed. */
+/** Vertically rotating project signal feed. */
 export function ActivityTicker() {
   const [index, setIndex] = useState(0);
 
@@ -23,7 +23,7 @@ export function ActivityTicker() {
     <div className="overflow-hidden rounded-xl border border-border bg-surface">
       <div className="flex items-center gap-4 px-5 py-4">
         <span className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[2px] text-dim">
-          ● Live git
+          ● Project log
         </span>
         <div className="h-[22px] flex-1 overflow-hidden">
           <div

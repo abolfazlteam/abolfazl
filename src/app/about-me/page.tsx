@@ -10,15 +10,34 @@ import { PageHeader } from "@/components/ui/page-header";
 export const unstable_instant = { prefetch: "static" };
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About Abolfazl Jamshidi",
   description:
-    "Front-end developer turned DevOps intern — experience, toolbox, and how I got here.",
+    "About Abolfazl Jamshidi, a React, Next.js, and TypeScript frontend developer in Tehran with experience building portals, dashboards, SSO flows, marketplaces, and reusable frontend systems.",
+  keywords: [
+    "Abolfazl Jamshidi",
+    "React developer Tehran",
+    "Next.js developer Iran",
+    "TypeScript frontend developer",
+    "frontend developer experience",
+  ],
+  alternates: { canonical: "/about-me" },
+  openGraph: {
+    title: "About Abolfazl Jamshidi | React & Next.js Frontend Developer",
+    description:
+      "Experience, skills, and background of a React, Next.js, and TypeScript frontend developer focused on production web apps.",
+    url: "/about-me",
+    type: "profile",
+  },
 };
 
 export default function AboutPage() {
   return (
     <Container className="pt-[clamp(40px,5vw,72px)]">
-      <PageHeader page="about" title="Hi, I'm Abolfazl." />
+      <PageHeader
+        page="about"
+        title="React developer in Tehran."
+        intro="I build production frontend systems with React, Next.js, TypeScript, TanStack Query, design systems, and practical DevOps workflows."
+      />
       <AboutIntro />
       <ExperienceList />
       <SkillsGrid />

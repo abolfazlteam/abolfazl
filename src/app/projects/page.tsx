@@ -10,8 +10,26 @@ import { SectionHead } from "@/components/ui/section-head";
 export const unstable_instant = { prefetch: "static" };
 
 export const metadata: Metadata = {
-  title: "Work",
-  description: "Selected projects — web apps, DevOps tooling and the things I've shipped.",
+  title: "Frontend Projects & Case Studies",
+  description:
+    "React, Next.js, and TypeScript frontend case studies by Abolfazl Jamshidi, covering support systems, service portals, SSO, job marketplaces, map platforms, and scheduling dashboards.",
+  keywords: [
+    "frontend projects",
+    "React case studies",
+    "Next.js portfolio",
+    "TypeScript projects",
+    "frontend architecture",
+    "dashboard frontend",
+    "SSO frontend",
+  ],
+  alternates: { canonical: "/projects" },
+  openGraph: {
+    title: "Frontend Projects & Case Studies | Abolfazl Jamshidi",
+    description:
+      "Production frontend work across portals, platforms, authentication, marketplaces, and internal tooling.",
+    url: "/projects",
+    type: "website",
+  },
 };
 
 export default function WorkPage() {
@@ -19,8 +37,8 @@ export default function WorkPage() {
     <Container className="pt-[clamp(40px,5vw,72px)]">
       <PageHeader
         page="work"
-        title="Things I've made"
-        intro="Some shipped to real customers, some shipped only to me at 2am. I learned something from every one — usually the hard way."
+        title="Frontend case studies"
+        intro="Selected React, Next.js, and TypeScript production projects: support systems, internal platforms, service portals, SSO flows, marketplace features, map SDKs, and scheduling tools."
       />
 
       <WorkGallery />

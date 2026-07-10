@@ -1,7 +1,7 @@
 import type { Experience } from "@/types";
 
 export const EXPERIENCE_INTRO =
-  "With nearly 4 years as a front-end engineer, I specialise in technologies like React, Next.js, JavaScript and TypeScript. I'm comfortable building reusable components with clean structure, and I lean toward simple, useful solutions — I believe simplicity is the key to almost everything. I care about delivering things that scale and staying current with where the craft is going.";
+  "With 4+ years as a front-end engineer, I specialize in React, Next.js, JavaScript, and TypeScript. I like turning complex product workflows into clear interfaces, reusable systems, and production-ready frontend architecture.";
 
 export const EXPERIENCE: Experience[] = [
   {
@@ -13,9 +13,10 @@ export const EXPERIENCE: Experience[] = [
     accent: "mint",
     logo: "exp-pardis-logo",
     achievements: [
-      "Lead front-end on internal SaaS products with React, Next.js & TypeScript.",
-      "Built and maintain a shared component library adopted across multiple teams.",
-      "Introduced Docker-based preview deploys and GitLab CI checks.",
+      "Delivered frontend work across support ticketing, SSO, company portals, service workflows, job marketplace features, internal scheduling, and a reusable Iran map platform.",
+      "Built reusable systems for RBAC, form controllers, backend-driven tables, file uploads, HTTP/error handling, Storybook primitives, and MapLibre SDK APIs.",
+      "Implemented complex user flows including chat and voice messages, presigned document uploads, payment branching, OTP authentication, URL-driven search, meeting-room calendars, and geospatial map rendering.",
+      "Contributed to production readiness with typed TypeScript patterns, TanStack Query cache workflows, Vitest coverage thresholds, PWA support, Docker builds, and GitLab CI configuration.",
     ],
   },
   {

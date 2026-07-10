@@ -1,22 +1,47 @@
 import Link from "next/link";
 
 import { Comments } from "@/components/comments/comments";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { LikeButton } from "@/components/ui/like-button";
 import { SectionHead } from "@/components/ui/section-head";
-import { PROJECTS } from "@/data";
+import { PERSON, PROJECTS } from "@/data";
 import { accentSoft, accentVar } from "@/lib/theme";
+import { absoluteUrl, SITE_URL } from "@/lib/seo";
 import type { Project } from "@/types";
 
 export function ProjectDetail({ project }: { project: Project }) {
   const accent = accentVar(project.accent);
   const index = PROJECTS.findIndex((item) => item.id === project.id);
   const next = PROJECTS[(index + 1) % PROJECTS.length];
+  const url = absoluteUrl(`/projects/${project.id}`);
 
   return (
     <Container className="pt-[clamp(28px,4vw,48px)]">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          name: `${project.name} Frontend Case Study`,
+          headline: `${project.name} Frontend Case Study`,
+          description: project.blurb,
+          url,
+          creator: {
+            "@type": "Person",
+            name: PERSON.name,
+            url: SITE_URL,
+          },
+          about: project.tag,
+          keywords: [project.name, project.tag, ...project.stack, "frontend case study"],
+          programmingLanguage: project.stack,
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": url,
+          },
+        }}
+      />
       <Link
         href="/projects"
         className="mb-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[1px] text-dim no-underline transition-opacity hover:opacity-60"
@@ -30,19 +55,25 @@ export function ProjectDetail({ project }: { project: Project }) {
             className="font-mono text-xs uppercase tracking-[1px]"
             style={{ color: accent }}
           >
-            {project.tag} · {project.year}
+            {project.tag} · {project.context}
           </div>
           <h1 className="mt-3 font-display text-[clamp(44px,7vw,96px)] font-bold leading-[0.92] tracking-[-0.04em] text-text">
             {project.name}
           </h1>
         </div>
         <div className="flex items-center gap-2.5 pt-2">
-          <a
-            href={project.link}
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-[18px] py-2.5 font-mono text-xs font-semibold uppercase tracking-[0.5px] text-accent-ink no-underline transition hover:brightness-105"
-          >
-            Live <Icon name="arrow" size={14} />
-          </a>
+          {project.link === "#" ? (
+            <span className="inline-flex items-center gap-2 rounded-full bg-accent px-[18px] py-2.5 font-mono text-xs font-semibold uppercase tracking-[0.5px] text-accent-ink">
+              Case study
+            </span>
+          ) : (
+            <a
+              href={project.link}
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-[18px] py-2.5 font-mono text-xs font-semibold uppercase tracking-[0.5px] text-accent-ink no-underline transition hover:brightness-105"
+            >
+              Live <Icon name="arrow" size={14} />
+            </a>
+          )}
           <LikeButton initial={project.likes} big />
         </div>
       </div>
@@ -92,7 +123,7 @@ export function ProjectDetail({ project }: { project: Project }) {
             [
               ["Role", project.role],
               ["Timeline", project.timeline],
-              ["Year", project.year],
+              ["Context", project.context],
             ] as const
           ).map(([label, value]) => (
             <div key={label}>
@@ -123,16 +154,16 @@ export function ProjectDetail({ project }: { project: Project }) {
           title="Gallery"
           right={
             <span className="font-mono text-[10px] uppercase tracking-[1px] text-faint">
-              drop screenshots
+              image placeholders
             </span>
           }
         />
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-4">
-          {project.gallery.map((id, i) => (
+          {project.gallery.map((item, i) => (
             <ImagePlaceholder
-              key={id}
-              label={`Screenshot ${i + 1}`}
-              aspect={i === 0 ? "16 / 10" : "4 / 3"}
+              key={item.id}
+              label={item.label}
+              aspect={item.aspect ?? (i === 0 ? "16 / 10" : "4 / 3")}
               className="rounded-[12px]"
             />
           ))}

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { StatusPanel } from "@/components/widgets/status-panel";
 
-const HERO_WORDS = ["work.", "last.", "ship.", "scale."];
+const HERO_WORDS = ["ship.", "scale.", "perform.", "convert."];
 
 export function Hero() {
   return (
@@ -25,7 +25,7 @@ export function Hero() {
               className="size-[7px] rounded-full bg-accent animate-pulse-dot"
               style={{ boxShadow: "0 0 10px var(--accent)" }}
             />
-            Frontend developer · DevOps intern
+            React · Next.js · TypeScript · Frontend Engineer
           </p>
         </Reveal>
 
@@ -33,17 +33,17 @@ export function Hero() {
           <div>
             <Reveal delay={70}>
               <h1 className="font-display text-[clamp(46px,7vw,104px)] font-bold leading-[0.96] tracking-[-0.04em] text-text">
-                I build things
+                React & Next.js
                 <br />
-                that <CycleWord words={HERO_WORDS} />
+                apps that <CycleWord words={HERO_WORDS} />
               </h1>
             </Reveal>
             <Reveal delay={150}>
               <p className="mt-7 max-w-[500px] font-sans text-[17px] leading-[1.6] text-dim">
-                I&apos;m <span className="font-semibold text-text">Abolfazl Jamshidi</span> — a
-                front-end developer who got curious about what happens after the build step.
-                Senior-ish on the front-end, honestly junior on the ops side, and fully obsessed
-                with closing the gap.
+                I&apos;m <span className="font-semibold text-text">Abolfazl Jamshidi</span>, a
+                React and Next.js frontend developer in Tehran building production dashboards,
+                portals, marketplaces, authentication flows, and frontend architecture with
+                TypeScript, TanStack Query, Docker, and GitLab CI.
               </p>
             </Reveal>
             <Reveal delay={220}>

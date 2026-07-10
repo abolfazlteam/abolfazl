@@ -9,8 +9,24 @@ import { PERSON } from "@/data";
 export const unstable_instant = { prefetch: "static" };
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch about hiring, freelance, or anything front-end / DevOps.",
+  title: "Hire React & Next.js Frontend Developer",
+  description:
+    "Contact Abolfazl Jamshidi for React, Next.js, TypeScript frontend development, dashboards, portals, frontend architecture, and remote web app work.",
+  keywords: [
+    "hire React developer",
+    "hire Next.js developer",
+    "frontend developer contact",
+    "remote frontend developer",
+    "TypeScript developer",
+  ],
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Hire Abolfazl Jamshidi | React & Next.js Frontend Developer",
+    description:
+      "Contact for React, Next.js, TypeScript frontend development, dashboards, portals, and frontend architecture.",
+    url: "/contact",
+    type: "website",
+  },
 };
 
 const CONTACT_LINKS = [
@@ -25,8 +41,8 @@ export default function ContactPage() {
     <Container className="pt-[clamp(40px,5vw,72px)]">
       <PageHeader
         page="contact"
-        title="Let's talk."
-        intro="Hiring, freelance, a question, or just want to argue tabs vs spaces — I'm genuinely happy to hear from you."
+        title="Hire a React frontend developer."
+        intro="Need help with a React, Next.js, or TypeScript frontend? I’m available for remote roles, product teams, dashboards, portals, and frontend architecture work."
       />
 
       <div className="mt-[52px] grid grid-cols-1 items-start gap-[clamp(32px,5vw,64px)] min-[880px]:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">

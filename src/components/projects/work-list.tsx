@@ -45,7 +45,7 @@ export function WorkList() {
           />
           <div className="relative flex justify-between font-mono text-[10px] uppercase tracking-[1px] text-white/90">
             <span>{active.tag}</span>
-            <span>{active.year}</span>
+            <span>{active.context}</span>
           </div>
           <div className="relative">
             <div className="font-display text-3xl font-bold leading-none tracking-[-0.8px] text-white">
@@ -104,7 +104,9 @@ export function WorkList() {
                   </span>
                 ))}
               </div>
-              <span className="font-mono text-xs text-dim">{project.year}</span>
+              <span className="hidden font-mono text-xs text-dim min-[560px]:block">
+                {project.context}
+              </span>
             </Link>
           );
         })}

@@ -12,7 +12,27 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectById(slug);
   if (!project) return {};
-  return { title: project.name, description: project.blurb };
+  const url = `/projects/${project.id}`;
+  return {
+    title: `${project.name} Frontend Case Study`,
+    description: `${project.blurb} Built with ${project.stack.slice(0, 4).join(", ")}.`,
+    keywords: [
+      project.name,
+      project.tag,
+      ...project.stack,
+      "frontend case study",
+      "React project",
+      "Next.js project",
+      "TypeScript project",
+    ],
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${project.name} Frontend Case Study | Abolfazl Jamshidi`,
+      description: project.blurb,
+      url,
+      type: "article",
+    },
+  };
 }
 
 // No `unstable_instant` here: the route is fully prerendered via

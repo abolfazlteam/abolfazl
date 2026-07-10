@@ -36,12 +36,21 @@ export interface Skill {
 export type SkillCategory = "frontend" | "testing" | "devops" | "tools";
 export type SkillGroups = Record<SkillCategory, Skill[]>;
 
+export interface ProjectGalleryItem {
+  /** Stable slot id for future real screenshots. */
+  id: string;
+  /** Placeholder caption shown until a screenshot is added. */
+  label: string;
+  aspect?: string;
+}
+
 export interface Project {
   id: string;
   name: string;
   /** e.g. "Web · SaaS" — first token doubles as the coarse filter category. */
   tag: string;
-  year: string;
+  /** Compact context shown in lists, e.g. "Internal platform". */
+  context: string;
   blurb: string;
   stack: string[];
   accent: AccentName;
@@ -53,13 +62,21 @@ export interface Project {
   link: string;
   overview: string;
   highlights: string[];
-  /** Image-slot ids for the detail gallery (placeholders for now). */
-  gallery: string[];
+  /** Image slots for the detail gallery (placeholders for now). */
+  gallery: ProjectGalleryItem[];
 }
 
 export interface CodeSnippet {
   lang: string;
   text: string;
+}
+
+export interface BlogImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  aspect?: string;
+  fit?: "cover" | "contain";
 }
 
 export interface BlogSection {
@@ -68,6 +85,7 @@ export interface BlogSection {
   h: string;
   body: string[];
   code?: CodeSnippet;
+  images?: BlogImage[];
 }
 
 export interface BlogPost {
@@ -79,7 +97,7 @@ export interface BlogPost {
   tag: string;
   views: number;
   likes: number;
-  /** Image-slot id for the cover (placeholder for now). */
+  /** Public image path for the cover. */
   hero: string;
   excerpt: string;
   sections: BlogSection[];

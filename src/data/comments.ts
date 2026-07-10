@@ -5,7 +5,7 @@ import type { Comment, CommentsByContentId } from "@/types";
  * Front-end mock only — new comments live in component state for now.
  */
 export const COMMENTS: CommentsByContentId = {
-  "react-18-loading-ux": [
+  "revolutionize-loading-ux-with-react18-suspense-streaming-and-selective-hydration": [
     {
       name: "Sara K.",
       when: "2 days ago",
@@ -19,36 +19,20 @@ export const COMMENTS: CommentsByContentId = {
       likes: 3,
     },
   ],
-  "ci-without-cargo": [
+  "useEffect-deep-dive-into-it": [
     {
       name: "Omid R.",
       when: "1 week ago",
-      text: "The lockfile cache key alone shaved 3 minutes for us. Wild how often this is missed.",
+      text: "The effect lifecycle explanation is the part I wish I had earlier.",
       likes: 9,
     },
   ],
-  "vim-six-months": [
+  "useRef-vs-useState-when-to-use-each": [
     {
       name: "Lena",
       when: "3 days ago",
-      text: "'Tools are tools' — needed to hear this before I lost another weekend in Lua.",
+      text: "The 'does the UI depend on it?' question is a useful rule of thumb.",
       likes: 12,
-    },
-  ],
-  ledger: [
-    {
-      name: "freelance_jo",
-      when: "4 days ago",
-      text: "Offline-first bookkeeping is exactly what I've wanted. Is there a waitlist?",
-      likes: 5,
-    },
-  ],
-  stagehand: [
-    {
-      name: "ops_dan",
-      when: "1 week ago",
-      text: "One-click rollback that posts back to the channel is chef's kiss.",
-      likes: 7,
     },
   ],
 };

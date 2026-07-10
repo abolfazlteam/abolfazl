@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { Hero } from "@/components/home/hero";
 import { ProjectCard } from "@/components/projects/project-card";
@@ -9,8 +10,24 @@ import { SectionHead } from "@/components/ui/section-head";
 import { ActivityTicker } from "@/components/widgets/activity-ticker";
 import { Marquee } from "@/components/widgets/marquee";
 import { PROJECTS } from "@/data";
+import { SITE_KEYWORDS } from "@/lib/seo";
 
 export const unstable_instant = { prefetch: "static" };
+
+export const metadata: Metadata = {
+  title: "React & Next.js Frontend Developer Portfolio",
+  description:
+    "Abolfazl Jamshidi is a React, Next.js, and TypeScript frontend developer building production dashboards, portals, marketplaces, SSO flows, and frontend architecture.",
+  keywords: SITE_KEYWORDS,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Abolfazl Jamshidi | React & Next.js Frontend Developer",
+    description:
+      "Frontend portfolio with React, Next.js, TypeScript, dashboards, portals, marketplace work, SSO flows, and engineering case studies.",
+    url: "/",
+    type: "website",
+  },
+};
 
 export default function HomePage() {
   return (
