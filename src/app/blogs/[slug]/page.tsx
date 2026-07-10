@@ -22,6 +22,7 @@ export async function generateMetadata({
       "React",
       "Next.js",
       "frontend engineering",
+      "frontend DevOps",
       "JavaScript",
       "TypeScript",
       post.title,

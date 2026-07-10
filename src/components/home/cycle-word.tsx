@@ -10,6 +10,7 @@ interface CycleWordProps {
 export function CycleWord({ words }: CycleWordProps) {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
+  const minWidth = `${Math.max(...words.map((word) => word.length))}ch`;
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -23,7 +24,7 @@ export function CycleWord({ words }: CycleWordProps) {
   }, [words.length]);
 
   return (
-    <span className="relative inline-block text-accent">
+    <span className="relative inline-block text-accent" style={{ minWidth }}>
       <span
         className="inline-block transition-[opacity,transform] duration-[260ms] ease-[cubic-bezier(0.2,0.7,0.2,1)]"
         style={{

@@ -1,35 +1,39 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { BlogList } from "@/components/blog/blog-list";
 import { Hero } from "@/components/home/hero";
 import { ProjectCard } from "@/components/projects/project-card";
-import { WorkList } from "@/components/projects/work-list";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHead } from "@/components/ui/section-head";
 import { ActivityTicker } from "@/components/widgets/activity-ticker";
 import { Marquee } from "@/components/widgets/marquee";
-import { PROJECTS } from "@/data";
+import { BLOGS, PROJECTS } from "@/data";
 import { SITE_KEYWORDS } from "@/lib/seo";
 
 export const unstable_instant = { prefetch: "static" };
 
+const HOME_ITEM_LIMIT = 7;
+
 export const metadata: Metadata = {
-  title: "React & Next.js Frontend Developer Portfolio",
+  title: "React, Next.js & DevOps Engineer Portfolio",
   description:
-    "Abolfazl Jamshidi is a React, Next.js, and TypeScript frontend developer building production dashboards, portals, marketplaces, SSO flows, and frontend architecture.",
+    "Abolfazl Jamshidi is a React, Next.js, TypeScript, and DevOps engineer building production dashboards, portals, marketplaces, SSO flows, frontend architecture, Docker builds, and GitLab CI workflows.",
   keywords: SITE_KEYWORDS,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Abolfazl Jamshidi | React & Next.js Frontend Developer",
+    title: "Abolfazl Jamshidi | React, Next.js & DevOps Engineer",
     description:
-      "Frontend portfolio with React, Next.js, TypeScript, dashboards, portals, marketplace work, SSO flows, and engineering case studies.",
+      "Portfolio with React, Next.js, TypeScript, dashboards, portals, marketplace work, SSO flows, DevOps workflows, and engineering case studies.",
     url: "/",
     type: "website",
   },
 };
 
 export default function HomePage() {
+  const homeProjects = PROJECTS.slice(0, HOME_ITEM_LIMIT);
+
   return (
     <Container>
       <Hero />
@@ -50,7 +54,7 @@ export default function HomePage() {
           />
         </Reveal>
         <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] gap-[18px]">
-          {PROJECTS.slice(0, 3).map((project, i) => (
+          {homeProjects.map((project, i) => (
             <Reveal key={project.id} delay={80 + i * 70}>
               <ProjectCard project={project} />
             </Reveal>
@@ -58,7 +62,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-[clamp(56px,7vw,88px)]">
+      {/* <section className="mt-[clamp(56px,7vw,88px)]">
         <Reveal>
           <SectionHead
             n="02"
@@ -71,13 +75,33 @@ export default function HomePage() {
           />
         </Reveal>
         <Reveal delay={60}>
-          <WorkList />
+          <WorkList limit={HOME_ITEM_LIMIT} />
+        </Reveal>
+      </section> */}
+
+      <section className="mt-[clamp(56px,7vw,88px)]">
+        <Reveal>
+          <SectionHead
+            n="03"
+            title="Latest writing"
+            right={
+              <Link
+                href="/blogs"
+                className="font-mono text-[11px] uppercase tracking-[1px] text-text no-underline transition-opacity hover:opacity-60"
+              >
+                All {BLOGS.length} →
+              </Link>
+            }
+          />
+        </Reveal>
+        <Reveal delay={60}>
+          <BlogList limit={HOME_ITEM_LIMIT} showSearch={false} />
         </Reveal>
       </section>
 
       <section className="mt-[clamp(56px,7vw,88px)]">
         <Reveal>
-          <SectionHead n="03" title="Toolbox & signal" />
+          <SectionHead n="04" title="Toolbox & signal" />
         </Reveal>
         <Reveal delay={60}>
           <Marquee />

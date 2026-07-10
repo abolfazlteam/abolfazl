@@ -9,21 +9,24 @@ import { PERSON } from "@/data";
 export const unstable_instant = { prefetch: "static" };
 
 export const metadata: Metadata = {
-  title: "Hire React & Next.js Frontend Developer",
+  title: "Hire React, Next.js & DevOps Engineer",
   description:
-    "Contact Abolfazl Jamshidi for React, Next.js, TypeScript frontend development, dashboards, portals, frontend architecture, and remote web app work.",
+    "Contact Abolfazl Jamshidi for React, Next.js, TypeScript, DevOps engineering, dashboards, portals, frontend architecture, Docker, GitLab CI, and remote web app work.",
   keywords: [
     "hire React developer",
     "hire Next.js developer",
+    "hire DevOps Engineer",
     "frontend developer contact",
+    "DevOps Engineer contact",
     "remote frontend developer",
     "TypeScript developer",
+    "Docker GitLab CI engineer",
   ],
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Hire Abolfazl Jamshidi | React & Next.js Frontend Developer",
+    title: "Hire Abolfazl Jamshidi | React, Next.js & DevOps Engineer",
     description:
-      "Contact for React, Next.js, TypeScript frontend development, dashboards, portals, and frontend architecture.",
+      "Contact for React, Next.js, TypeScript, DevOps engineering, dashboards, portals, frontend architecture, Docker, and GitLab CI workflows.",
     url: "/contact",
     type: "website",
   },
@@ -41,8 +44,8 @@ export default function ContactPage() {
     <Container className="pt-[clamp(40px,5vw,72px)]">
       <PageHeader
         page="contact"
-        title="Hire a React frontend developer."
-        intro="Need help with a React, Next.js, or TypeScript frontend? I’m available for remote roles, product teams, dashboards, portals, and frontend architecture work."
+        title="Hire a React and DevOps engineer."
+        intro="Need help with React, Next.js, TypeScript, Docker, GitLab CI, or production delivery workflows? I’m available for remote roles, product teams, dashboards, portals, and frontend architecture work."
       />
 
       <div className="mt-[52px] grid grid-cols-1 items-start gap-[clamp(32px,5vw,64px)] min-[880px]:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">

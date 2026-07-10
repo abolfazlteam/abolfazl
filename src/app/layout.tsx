@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd } from "@/components/seo/json-ld";
 import { TopBar } from "@/components/layout/top-bar";
@@ -12,9 +13,9 @@ import { SITE_KEYWORDS, SITE_URL } from "@/lib/seo";
 
 import "./globals.css";
 
-const TAGLINE = `${PERSON.name} | React & Next.js Frontend Developer`;
+const TAGLINE = `${PERSON.name} | React, Next.js & DevOps Engineer`;
 const SITE_DESCRIPTION =
-  "Portfolio of Abolfazl Jamshidi, a React, Next.js, and TypeScript frontend developer in Tehran building production dashboards, portals, marketplaces, authentication flows, and frontend architecture.";
+  "Portfolio of Abolfazl Jamshidi, a React, Next.js, TypeScript, and DevOps engineer in Tehran building production dashboards, portals, marketplaces, authentication flows, frontend architecture, Docker builds, GitLab CI pipelines, and Kubernetes-ready delivery workflows.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -64,11 +65,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           data={{
             "@context": "https://schema.org",
             "@type": "Person",
+            "@id": `${SITE_URL}/#person`,
             name: PERSON.name,
             alternateName: PERSON.handle,
             url: SITE_URL,
             email: PERSON.email,
-            jobTitle: "React and Next.js Frontend Developer",
+            jobTitle: "React, Next.js and DevOps Engineer",
             description: SITE_DESCRIPTION,
             address: {
               "@type": "PostalAddress",
@@ -83,8 +85,23 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               "Frontend Architecture",
               "TanStack Query",
               "Design Systems",
+              "DevOps Engineering",
               "Docker",
               "GitLab CI",
+              "Linux",
+              "Kubernetes",
+            ],
+            hasOccupation: [
+              {
+                "@type": "Occupation",
+                name: "Frontend Developer",
+                skills: "React, Next.js, TypeScript, JavaScript, frontend architecture",
+              },
+              {
+                "@type": "Occupation",
+                name: "DevOps Engineer",
+                skills: "Docker, GitLab CI/CD, Linux, Kubernetes, CI/CD workflows",
+              },
             ],
             sameAs: [PERSON.github, PERSON.linkedin, PERSON.medium],
           }}
@@ -93,6 +110,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           data={{
             "@context": "https://schema.org",
             "@type": "WebSite",
+            "@id": `${SITE_URL}/#website`,
             name: "Abolfazl.dev",
             url: SITE_URL,
             description: SITE_DESCRIPTION,
@@ -104,6 +122,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             },
           }}
         />
+        <GoogleAnalytics />
         <SearchProvider>
           <TopBar />
           <main className="flex-1">{children}</main>

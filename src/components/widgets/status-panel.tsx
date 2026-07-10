@@ -1,9 +1,9 @@
 import { LiveClock } from "@/components/widgets/live-clock";
 
 const STATUS_ROWS: [label: string, value: string][] = [
-  ["Open to", "remote React / Next.js frontend roles"],
+  ["Open to", "remote React, Next.js, and DevOps Engineer roles"],
   ["Building", "dashboards, portals, SSO flows, and case studies"],
-  ["Learning", "Docker, GitLab CI, Linux, and Kubernetes"],
+  ["DevOps", "Docker, GitLab CI, Linux, and Kubernetes"],
   ["Stack", "React · Next.js · TypeScript · TanStack Query"],
 ];
 

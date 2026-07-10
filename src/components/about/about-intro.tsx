@@ -9,7 +9,7 @@ export function AboutIntro() {
       <Reveal delay={120}>
         <div className="flex max-w-[620px] flex-col gap-[18px] font-sans text-lg leading-[1.72] text-text">
           <p className="m-0">
-            I&apos;m a React, Next.js, and TypeScript frontend developer based in Tehran, Iran. My
+            I&apos;m a React, Next.js, TypeScript, and DevOps engineer based in Tehran, Iran. My
             strongest work sits inside production products: support systems, service portals, job
             marketplaces, authentication flows, internal dashboards, and reusable frontend
             platforms.
@@ -20,9 +20,9 @@ export function AboutIntro() {
             structure, and pages that search engines and real users can both understand.
           </p>
           <p className="m-0">
-            The newest chapter is DevOps. I&apos;m learning Docker, GitLab CI/CD, Linux, and
-            Kubernetes so I can reason about the full delivery path: build it, ship it, observe it,
-            and fix it when reality starts asking questions.
+            The newest chapter is DevOps engineering: Docker, GitLab CI/CD, Linux, and Kubernetes
+            workflows that help me reason about the full delivery path: build it, ship it, observe
+            it, and fix it when reality starts asking questions.
           </p>
           <p className="m-0 font-display text-[26px] font-semibold leading-[1.35] tracking-[-0.5px] text-text">
             What I&apos;m really chasing: ship it, watch it run, and be the person who can fix both

@@ -1,7 +1,7 @@
 import type { Experience } from "@/types";
 
 export const EXPERIENCE_INTRO =
-  "With 4+ years as a front-end engineer, I specialize in React, Next.js, JavaScript, and TypeScript. I like turning complex product workflows into clear interfaces, reusable systems, and production-ready frontend architecture.";
+  "With 4+ years across frontend and DevOps engineering, I specialize in React, Next.js, JavaScript, TypeScript, Docker, GitLab CI, Linux, and delivery workflows. I like turning complex product workflows into clear interfaces, reusable systems, and production-ready architecture.";
 
 export const EXPERIENCE: Experience[] = [
   {
@@ -30,7 +30,7 @@ export const EXPERIENCE: Experience[] = [
     achievements: [
       "Shipped customer-facing dashboards with React and React Query.",
       "Raised confidence on critical flows with Jest, RTL and Cypress.",
-      "Mentored two junior developers on clean code and review habits.",
+      "Mentored two developers on clean code, maintainable React patterns, and review habits.",
     ],
   },
 ];

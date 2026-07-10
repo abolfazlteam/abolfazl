@@ -75,7 +75,7 @@ export function BlogDetail({ blog }: { blog: BlogPost }) {
             "@id": url,
           },
           articleSection: blog.tag,
-          keywords: [blog.tag, "React", "Next.js", "frontend engineering"],
+          keywords: [blog.tag, "React", "Next.js", "frontend engineering", "frontend DevOps"],
           articleBody,
         }}
       />

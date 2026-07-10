@@ -3,11 +3,11 @@ import type { Person } from "@/types";
 export const PERSON: Person = {
   name: "Abolfazl Jamshidi",
   handle: "abolfazlcodes",
-  role: "React & Next.js Frontend Developer",
+  role: "React, Next.js & DevOps Engineer",
   blurb:
-    "React and Next.js frontend developer focused on production web apps, TypeScript interfaces, design systems, complex dashboards, and practical DevOps workflows with Docker, GitLab CI, Linux, and Kubernetes.",
+    "React, Next.js, and DevOps engineer focused on production web apps, TypeScript interfaces, design systems, complex dashboards, Docker, GitLab CI, Linux, and Kubernetes workflows.",
   shortBlurb:
-    "React, Next.js, and TypeScript frontend developer building production web apps, dashboards, portals, and engineering case studies.",
+    "React, Next.js, TypeScript, and DevOps engineer building production web apps, dashboards, portals, and delivery workflows.",
   email: "hello@abolfazl.dev",
   github: "https://github.com/abolfazlcodes",
   medium: "https://medium.com/@abolfazlcodes",

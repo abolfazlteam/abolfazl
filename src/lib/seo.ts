@@ -8,13 +8,19 @@ export const SITE_KEYWORDS = [
   "TypeScript Developer",
   "JavaScript Developer",
   "Frontend Engineer",
+  "DevOps Engineer",
+  "React and DevOps Engineer",
   "React portfolio",
   "Next.js portfolio",
+  "DevOps portfolio",
   "Tehran frontend developer",
   "Iran frontend developer",
   "frontend architecture",
   "React performance",
-  "DevOps Engineer",
+  "Docker Engineer",
+  "GitLab CI Engineer",
+  "Linux Engineer",
+  "Kubernetes Engineer",
 ];
 
 export function absoluteUrl(path = "/"): string {

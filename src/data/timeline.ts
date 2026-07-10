@@ -4,8 +4,8 @@ import type { TimelineEntry } from "@/types";
 export const TIMELINE: TimelineEntry[] = [
   {
     when: "2026 — now",
-    what: "DevOps intern",
-    why: "Learning Docker, GitLab CI/CD and Kubernetes the long way: by breaking staging and reading logs until it clicks.",
+    what: "DevOps Engineer",
+    why: "Working deeper with Docker, GitLab CI/CD, Linux, and Kubernetes by tracing builds, reading logs, and improving delivery workflows.",
   },
   {
     when: "2024 — now",

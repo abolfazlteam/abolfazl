@@ -24,6 +24,8 @@ export async function generateMetadata({
       "React project",
       "Next.js project",
       "TypeScript project",
+      "DevOps case study",
+      "CI/CD workflow",
     ],
     alternates: { canonical: url },
     openGraph: {
