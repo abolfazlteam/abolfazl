@@ -2,13 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { BlogToc } from "@/components/blog/blog-toc";
+import { BlogDetailStats } from "@/components/blog/blog-stats";
 import { CodeBlock } from "@/components/blog/code-block";
 import { Newsletter } from "@/components/blog/newsletter";
 import { Comments } from "@/components/comments/comments";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
-import { LikeButton } from "@/components/ui/like-button";
 import { SectionHead } from "@/components/ui/section-head";
 import { BLOGS, PERSON } from "@/data";
 import { absoluteUrl, SITE_URL } from "@/lib/seo";
@@ -100,21 +100,13 @@ export function BlogDetail({ blog }: { blog: BlogPost }) {
             {blog.title}
           </h1>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-b border-line pb-6">
-            <div className="flex gap-[18px] font-mono text-xs text-faint">
-              <span>{blog.views.toLocaleString("en-US")} views</span>
-              <span>{blog.read}</span>
-            </div>
-            <div className="flex gap-2.5">
-              <button
-                type="button"
-                className="inline-flex items-center gap-[7px] rounded-full border-[1.5px] border-line px-3.5 py-1.5 font-mono text-xs text-text"
-              >
-                <Icon name="share" size={14} /> Share
-              </button>
-              <LikeButton initial={blog.likes} />
-            </div>
-          </div>
+          <BlogDetailStats
+            slug={blog.id}
+            initialViews={blog.views}
+            initialLikes={blog.likes}
+            read={blog.read}
+            trackView
+          />
 
           <BlogImageFrame image={{ src: blog.hero, alt: blog.title, aspect: "16 / 9" }} />
 

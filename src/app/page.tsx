@@ -17,7 +17,7 @@ export const unstable_instant = { prefetch: "static" };
 const HOME_ITEM_LIMIT = 7;
 
 export const metadata: Metadata = {
-  title: "React, Next.js & DevOps Engineer Portfolio",
+  title: "Abolfazl Jamshidi | React, Next.js & DevOps Engineer",
   description:
     "Abolfazl Jamshidi is a React, Next.js, TypeScript, and DevOps engineer building production dashboards, portals, marketplaces, SSO flows, frontend architecture, Docker builds, and GitLab CI workflows.",
   keywords: SITE_KEYWORDS,
@@ -82,7 +82,7 @@ export default function HomePage() {
       <section className="mt-[clamp(56px,7vw,88px)]">
         <Reveal>
           <SectionHead
-            n="03"
+            n="02"
             title="Latest writing"
             right={
               <Link
@@ -101,7 +101,7 @@ export default function HomePage() {
 
       <section className="mt-[clamp(56px,7vw,88px)]">
         <Reveal>
-          <SectionHead n="04" title="Toolbox & signal" />
+          <SectionHead n="03" title="Toolbox & signal" />
         </Reveal>
         <Reveal delay={60}>
           <Marquee />

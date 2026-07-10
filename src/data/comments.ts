@@ -2,7 +2,7 @@ import type { Comment, CommentsByContentId } from "@/types";
 
 /**
  * Seed comments, keyed by the content id they belong to (project or post).
- * Front-end mock only — new comments live in component state for now.
+ * Mongo-backed comments are rendered before these static starter comments.
  */
 export const COMMENTS: CommentsByContentId = {
   "revolutionize-loading-ux-with-react18-suspense-streaming-and-selective-hydration": [

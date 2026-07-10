@@ -5,7 +5,7 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 
 const DEFAULT_GA_MEASUREMENT_ID = "G-BF6HH1FC70";
-const GA_MEASUREMENT_ID =
+const CLIENT_GA_MEASUREMENT_ID =
   process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID ?? DEFAULT_GA_MEASUREMENT_ID;
 
 declare global {
@@ -41,13 +41,13 @@ function RouteAnalytics({ measurementId }: { measurementId: string }) {
   return null;
 }
 
-export function GoogleAnalytics() {
-  if (!GA_MEASUREMENT_ID) return null;
+export function GoogleAnalytics({ measurementId = CLIENT_GA_MEASUREMENT_ID }: { measurementId?: string }) {
+  if (!measurementId) return null;
 
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
         strategy="afterInteractive"
       />
       <Script
@@ -58,14 +58,14 @@ export function GoogleAnalytics() {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', ${JSON.stringify(GA_MEASUREMENT_ID)}, {
+            gtag('config', ${JSON.stringify(measurementId)}, {
               page_path: window.location.pathname + window.location.search,
               page_title: document.title
             });
           `,
         }}
       />
-      <RouteAnalytics measurementId={GA_MEASUREMENT_ID} />
+      <RouteAnalytics measurementId={measurementId} />
     </>
   );
 }

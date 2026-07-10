@@ -16,6 +16,9 @@ import "./globals.css";
 const TAGLINE = `${PERSON.name} | React, Next.js & DevOps Engineer`;
 const SITE_DESCRIPTION =
   "Portfolio of Abolfazl Jamshidi, a React, Next.js, TypeScript, and DevOps engineer in Tehran building production dashboards, portals, marketplaces, authentication flows, frontend architecture, Docker builds, GitLab CI pipelines, and Kubernetes-ready delivery workflows.";
+const GA_MEASUREMENT_ID =
+  process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID ??
+  process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -122,7 +125,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             },
           }}
         />
-        <GoogleAnalytics />
+        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <SearchProvider>
           <TopBar />
           <main className="flex-1">{children}</main>

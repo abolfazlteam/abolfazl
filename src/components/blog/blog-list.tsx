@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
+import { BlogStatsInline } from "@/components/blog/blog-stats";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
 import { BLOGS } from "@/data";
@@ -109,11 +110,12 @@ export function BlogList({ limit, showSearch = true }: BlogListProps) {
                 <div className="mt-2 max-w-[640px] font-sans text-[14.5px] leading-[1.55] text-dim">
                   {post.excerpt}
                 </div>
-                <div className="mt-3 flex gap-3.5 font-mono text-[11px] text-faint">
-                  <span>{post.views.toLocaleString("en-US")} views</span>
-                  <span>♥ {post.likes}</span>
-                  <span>{post.read}</span>
-                </div>
+                <BlogStatsInline
+                  slug={post.id}
+                  initialViews={post.views}
+                  initialLikes={post.likes}
+                  read={post.read}
+                />
               </div>
               <span className="hidden font-mono text-[13px] text-dim min-[640px]:inline">→</span>
             </Link>
