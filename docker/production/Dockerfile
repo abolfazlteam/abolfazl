@@ -1,12 +1,11 @@
-FROM node:18-alpine AS base
+ARG NODE_VERSION=22
 
-# Install dependencies only when needed
+FROM node:${NODE_VERSION}-alpine AS base
+
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
@@ -15,34 +14,31 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-
-# Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Accept build arguments and set them as environment variables
-ARG NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID
-ENV NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID=${NEXT_PUBLIC_GOOGLE_ANALYTICS_MEASUREMENT_ID}
-
-ARG NEWSLETTER_USERNAME
-ARG NEWSLETTER_PASSWORD
+ARG GOOGLE_ANALYTICS_MEASUREMENT_ID
 ARG MONGODB_USERNAME
 ARG MONGODB_PASSWORD
 ARG MONGODB_CLUSTER_NAME
 ARG MONGODB_DB_NAME
-ENV NEWSLETTER_USERNAME=${NEWSLETTER_USERNAME}
-ENV NEWSLETTER_PASSWORD=${NEWSLETTER_PASSWORD}
+ARG MONGODB_COUNTS_COLLECTION=counts
+ARG MONGODB_COMMENTS_COLLECTION=comments
+ARG FEATURE_COMMENTS_ENABLED=true
+ARG FEATURE_NEWSLETTER_ENABLED=true
+
+ENV GOOGLE_ANALYTICS_MEASUREMENT_ID=${GOOGLE_ANALYTICS_MEASUREMENT_ID}
 ENV MONGODB_USERNAME=${MONGODB_USERNAME}
 ENV MONGODB_PASSWORD=${MONGODB_PASSWORD}
 ENV MONGODB_CLUSTER_NAME=${MONGODB_CLUSTER_NAME}
 ENV MONGODB_DB_NAME=${MONGODB_DB_NAME}
-
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV MONGODB_COUNTS_COLLECTION=${MONGODB_COUNTS_COLLECTION}
+ENV MONGODB_COMMENTS_COLLECTION=${MONGODB_COMMENTS_COLLECTION}
+ENV FEATURE_COMMENTS_ENABLED=${FEATURE_COMMENTS_ENABLED}
+ENV FEATURE_NEWSLETTER_ENABLED=${FEATURE_NEWSLETTER_ENABLED}
+ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
@@ -51,40 +47,42 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-# Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3002
+ENV HOSTNAME=0.0.0.0
 
-# Set environment variables again in the runner stage
-ARG NEWSLETTER_USERNAME
-ARG NEWSLETTER_PASSWORD
+ARG GOOGLE_ANALYTICS_MEASUREMENT_ID
 ARG MONGODB_USERNAME
 ARG MONGODB_PASSWORD
 ARG MONGODB_CLUSTER_NAME
 ARG MONGODB_DB_NAME
-ENV NEWSLETTER_USERNAME=${NEWSLETTER_USERNAME}
-ENV NEWSLETTER_PASSWORD=${NEWSLETTER_PASSWORD}
+ARG MONGODB_COUNTS_COLLECTION=counts
+ARG MONGODB_COMMENTS_COLLECTION=comments
+ARG FEATURE_COMMENTS_ENABLED=true
+ARG FEATURE_NEWSLETTER_ENABLED=false
+
+ENV GOOGLE_ANALYTICS_MEASUREMENT_ID=${GOOGLE_ANALYTICS_MEASUREMENT_ID}
 ENV MONGODB_USERNAME=${MONGODB_USERNAME}
 ENV MONGODB_PASSWORD=${MONGODB_PASSWORD}
 ENV MONGODB_CLUSTER_NAME=${MONGODB_CLUSTER_NAME}
 ENV MONGODB_DB_NAME=${MONGODB_DB_NAME}
-
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV MONGODB_COUNTS_COLLECTION=${MONGODB_COUNTS_COLLECTION}
+ENV MONGODB_COMMENTS_COLLECTION=${MONGODB_COMMENTS_COLLECTION}
+ENV FEATURE_COMMENTS_ENABLED=${FEATURE_COMMENTS_ENABLED}
+ENV FEATURE_NEWSLETTER_ENABLED=${FEATURE_NEWSLETTER_ENABLED}
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-# Set the correct permission for prerender cache
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
@@ -92,8 +90,4 @@ USER nextjs
 
 EXPOSE 3002
 
-ENV PORT 3002
-
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD ["node", "server.js"]

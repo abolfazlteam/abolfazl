@@ -1,30 +1,25 @@
-ARG NODE_ENV=18
+ARG NODE_VERSION=22
 
-FROM node:${NODE_ENV}-alpine as base
+FROM node:${NODE_VERSION}-alpine AS base
 WORKDIR /app
 EXPOSE 3000
 
-# Dependancies stage
-FROM base as deps
+FROM base AS deps
 WORKDIR /app
-COPY package.json package-lock.json yarn-lock* pnpm-lock.yaml* ./
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm install; \
+  elif [ -f package-lock.json ]; then npm ci; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-FROM base as development
-
+FROM base AS development
 ENV NODE_ENV=development
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
-
 COPY . .
 
-EXPOSE 3000
-
-CMD npm run dev
+CMD ["npm", "run", "dev"]
