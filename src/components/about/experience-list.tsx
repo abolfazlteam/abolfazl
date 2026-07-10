@@ -8,7 +8,7 @@ export function ExperienceList() {
   return (
     <section className="mt-[clamp(64px,8vw,104px)]">
       <Reveal>
-        <SectionHead n="03" title="Work experience" />
+        <SectionHead n="01" title="Work experience" />
       </Reveal>
       <Reveal delay={60}>
         <p className="m-0 max-w-[760px] font-sans text-[16.5px] leading-[1.65] text-dim">
@@ -22,10 +22,19 @@ export function ExperienceList() {
           return (
             <Reveal key={job.company} delay={80 + i * 70}>
               <div className="grid grid-cols-[48px_1fr] items-start gap-[clamp(14px,2vw,28px)] border-b border-line py-[26px] min-[880px]:grid-cols-[52px_1fr_auto]">
-                <ImagePlaceholder label={job.company[0]} aspect="1 / 1" className="size-12 rounded-[10px]" />
+                <ImagePlaceholder
+                  label={job.company[0]}
+                  aspect="1 / 1"
+                  src={job.logoSrc}
+                  alt={`${job.company} logo`}
+                  className="size-12 rounded-[10px]"
+                  fit="contain"
+                  sizes="48px"
+                />
                 <div>
                   <div className="font-display text-[clamp(19px,2.4vw,24px)] font-semibold leading-tight tracking-[-0.4px] text-text">
-                    {job.role} <span style={{ color: accent }}>· {job.company}</span>
+                    {job.role}{" "}
+                    <span style={{ color: accent }}>· {job.company}</span>
                   </div>
                   <div className="mt-[5px] font-mono text-xs text-dim">
                     {job.location} · {job.mode}
@@ -36,7 +45,12 @@ export function ExperienceList() {
                         key={j}
                         className="flex gap-2.5 font-sans text-[14.5px] leading-[1.55] text-text"
                       >
-                        <span className="mt-px shrink-0" style={{ color: accent }}>—</span>
+                        <span
+                          className="mt-px shrink-0"
+                          style={{ color: accent }}
+                        >
+                          —
+                        </span>
                         <span>{achievement}</span>
                       </li>
                     ))}

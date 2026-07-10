@@ -25,6 +25,8 @@ export interface Person {
   medium: string;
   linkedin: string;
   location: string;
+  /** Optional public image path, e.g. "/images/profile.jpg". */
+  portrait?: string;
 }
 
 export interface Skill {
@@ -112,7 +114,19 @@ export interface Experience {
   accent: AccentName;
   /** Image-slot id for the company logo (placeholder for now). */
   logo: string;
+  /** Optional public image path for the company logo. */
+  logoSrc?: string;
   achievements: string[];
+}
+
+export interface Certification {
+  title: string;
+  issuer: string;
+  issued: string;
+  credentialId: string;
+  credentialUrl: string;
+  skills: string[];
+  accent: AccentName;
 }
 
 export interface Comment {

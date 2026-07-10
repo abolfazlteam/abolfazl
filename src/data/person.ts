@@ -8,7 +8,7 @@ export const PERSON: Person = {
     "React, Next.js, and DevOps engineer focused on production web apps, TypeScript interfaces, design systems, complex dashboards, Docker, GitLab CI, Linux, and Kubernetes workflows.",
   shortBlurb:
     "React, Next.js, TypeScript, and DevOps engineer building production web apps, dashboards, portals, and delivery workflows.",
-  email: "hello@abolfazl.dev",
+  email: "abolfazljamshidi@proton.me",
   github: "https://github.com/abolfazlcodes",
   medium: "https://medium.com/@abolfazlcodes",
   linkedin: "https://www.linkedin.com/in/abolfazl-jamshidi/",

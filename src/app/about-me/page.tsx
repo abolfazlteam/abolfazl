@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 
 import { AboutIntro } from "@/components/about/about-intro";
+import { CertificationsList } from "@/components/about/certifications-list";
 import { ExperienceList } from "@/components/about/experience-list";
 import { SkillsGrid } from "@/components/about/skills-grid";
 import { Timeline } from "@/components/about/timeline";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
-import { PERSON } from "@/data";
+import { CERTIFICATIONS, PERSON } from "@/data";
 import { SITE_URL } from "@/lib/seo";
 
 export const unstable_instant = { prefetch: "static" };
@@ -58,6 +59,17 @@ export default function AboutPage() {
             email: PERSON.email,
             jobTitle: "React, Next.js and DevOps Engineer",
             sameAs: [PERSON.github, PERSON.linkedin, PERSON.medium],
+            hasCredential: CERTIFICATIONS.map((certificate) => ({
+              "@type": "EducationalOccupationalCredential",
+              name: certificate.title,
+              credentialCategory: "Certificate",
+              identifier: certificate.credentialId,
+              url: certificate.credentialUrl,
+              recognizedBy: {
+                "@type": "Organization",
+                name: certificate.issuer,
+              },
+            })),
             knowsAbout: [
               "React",
               "Next.js",
@@ -75,11 +87,13 @@ export default function AboutPage() {
       <Container className="pt-[clamp(40px,5vw,72px)]">
         <PageHeader
           page="about"
-          title="React and DevOps engineer in Tehran."
+          // title="React and DevOps engineer in Tehran."
+          title="React and DevOps Engineer."
           intro="I build production frontend systems with React, Next.js, TypeScript, TanStack Query, design systems, Docker, GitLab CI, Linux, and Kubernetes-aware delivery workflows."
         />
         <AboutIntro />
         <ExperienceList />
+        <CertificationsList />
         <SkillsGrid />
         <Timeline />
       </Container>

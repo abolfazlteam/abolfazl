@@ -14,7 +14,7 @@ export const TIMELINE: TimelineEntry[] = [
   },
   {
     when: "2023",
-    what: "Freelance front-end",
+    what: "Full-time Front-End Developer",
     why: "Landing pages, dashboards, design-system fits. Many codebases, lots of fast learning.",
   },
   {

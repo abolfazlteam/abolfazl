@@ -9,8 +9,9 @@ import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { LikeButton } from "@/components/ui/like-button";
 import { SectionHead } from "@/components/ui/section-head";
 import { PERSON, PROJECTS } from "@/data";
-import { accentSoft, accentVar } from "@/lib/theme";
+import { FEATURES } from "@/lib/features";
 import { absoluteUrl, SITE_URL } from "@/lib/seo";
+import { accentSoft, accentVar } from "@/lib/theme";
 import type { Project } from "@/types";
 
 export function ProjectDetail({ project }: { project: Project }) {
@@ -193,9 +194,11 @@ export function ProjectDetail({ project }: { project: Project }) {
         </div>
       </div>
 
-      <div className="mt-[clamp(48px,6vw,80px)]">
-        <Comments contentId={project.id} />
-      </div>
+      {FEATURES.comments ? (
+        <div className="mt-[clamp(48px,6vw,80px)]">
+          <Comments contentId={project.id} />
+        </div>
+      ) : null}
 
       <div className="mt-[clamp(40px,5vw,64px)]">
         <SectionHead n="04" title="Next project" />

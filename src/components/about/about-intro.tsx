@@ -1,6 +1,7 @@
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { Reveal } from "@/components/ui/reveal";
 import { StatusPanel } from "@/components/widgets/status-panel";
+import { PERSON } from "@/data";
 
 /** Bio paragraphs alongside a portrait placeholder and the status panel. */
 export function AboutIntro() {
@@ -36,7 +37,10 @@ export function AboutIntro() {
           <ImagePlaceholder
             label="Drop a photo of you"
             aspect="4 / 5"
+            src={PERSON.portrait}
+            alt="Portrait of Abolfazl Jamshidi"
             className="rounded-[14px]"
+            sizes="(min-width: 880px) 420px, calc(100vw - 40px)"
           />
           <StatusPanel />
         </div>

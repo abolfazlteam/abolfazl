@@ -5,6 +5,17 @@ export const EXPERIENCE_INTRO =
 
 export const EXPERIENCE: Experience[] = [
   {
+    company: "Avina IT Solutions",
+    role: "DevOps Engineer",
+    location: "Tehran, Iran",
+    mode: "Remote",
+    period: "2026 — Present",
+    accent: "mint",
+    logoSrc: "/images/avina.png",
+    logo: "/images/avina.png",
+    achievements: [],
+  },
+  {
     company: "Pardis Technology Park",
     role: "Frontend Developer",
     location: "Tehran, Iran",
@@ -22,15 +33,17 @@ export const EXPERIENCE: Experience[] = [
   {
     company: "Mizban",
     role: "Frontend Developer",
-    location: "Tehran, Iran",
-    mode: "Hybrid",
-    period: "2021 — 2023",
+    location: "Tehran Province, Iran",
+    mode: "Full-time",
+    period: "Sep 2021 — Sep 2023 · 2 yrs 1 mo",
     accent: "amber",
     logo: "exp-mizban-logo",
     achievements: [
-      "Shipped customer-facing dashboards with React and React Query.",
-      "Raised confidence on critical flows with Jest, RTL and Cypress.",
-      "Mentored two developers on clean code, maintainable React patterns, and review habits.",
+      "Developed 100+ UI components with Jest and Storybook, boosting consistency and cutting development time by 35%.",
+      "Led full dashboard refactor, reducing technical debt and improving onboarding by applying SOLID and DRY principles.",
+      "Automated 5 key flows and fixed 5+ critical bugs with Cypress, improving UX and app stability.",
+      "Introduced ESLint and Prettier standards, aligning the team on consistent syntax and reducing formatting issues.",
+      "Collaborated with 3 designers to align UI expectations with frontend constraints, improving delivery speed by 10%.",
     ],
   },
 ];

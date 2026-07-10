@@ -7,7 +7,7 @@ export function Timeline() {
   return (
     <section className="mt-[clamp(64px,8vw,104px)]">
       <Reveal>
-        <SectionHead n="05" title="How I got here" />
+        <SectionHead n="04" title="How I got here" />
       </Reveal>
       <div className="border-t border-line">
         {TIMELINE.map((entry, i) => (

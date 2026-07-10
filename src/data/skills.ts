@@ -20,11 +20,11 @@ export const SKILLS: SkillGroups = {
     { name: "Cypress" },
   ],
   devops: [
-    { name: "Docker", learning: true },
-    { name: "GitLab CI", learning: true },
-    { name: "CI/CD", learning: true },
-    { name: "Linux", learning: true },
-    { name: "Kubernetes", learning: true },
+    { name: "Docker" },
+    { name: "GitLab CI" },
+    { name: "CI/CD" },
+    { name: "Linux" },
+    { name: "Kubernetes" },
     { name: "Vim" },
   ],
   tools: [

@@ -6,7 +6,7 @@ export function SkillsGrid() {
   return (
     <section className="mt-[clamp(64px,8vw,104px)]">
       <Reveal>
-        <SectionHead n="04" title="Toolbox" />
+        <SectionHead n="03" title="Toolbox" />
       </Reveal>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-[22px]">
         {Object.entries(SKILLS).map(([group, skills], groupIndex) => (
@@ -23,7 +23,9 @@ export function SkillsGrid() {
                   >
                     <span
                       className="font-sans text-[14.5px]"
-                      style={{ color: skill.learning ? "var(--accent)" : "var(--text)" }}
+                      style={{
+                        color: skill.learning ? "var(--accent)" : "var(--text)",
+                      }}
                     >
                       {skill.name}
                     </span>

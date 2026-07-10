@@ -11,6 +11,7 @@ import { Container } from "@/components/ui/container";
 import { Icon } from "@/components/ui/icon";
 import { SectionHead } from "@/components/ui/section-head";
 import { BLOGS, PERSON } from "@/data";
+import { FEATURES } from "@/lib/features";
 import { absoluteUrl, SITE_URL } from "@/lib/seo";
 import type { BlogImage, BlogPost } from "@/types";
 
@@ -135,11 +136,13 @@ export function BlogDetail({ blog }: { blog: BlogPost }) {
             </section>
           ))}
 
-          <div className="mt-[clamp(48px,6vw,80px)]">
-            <Newsletter />
-          </div>
+          {FEATURES.newsletter ? (
+            <div className="mt-[clamp(48px,6vw,80px)]">
+              <Newsletter />
+            </div>
+          ) : null}
 
-          <Comments contentId={blog.id} />
+          {FEATURES.comments ? <Comments contentId={blog.id} /> : null}
 
           <div className="mt-[clamp(48px,6vw,80px)]">
             <SectionHead n="→" title="Keep reading" />
