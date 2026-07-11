@@ -9,11 +9,13 @@ export const unstable_instant = { prefetch: "static" };
 export const metadata: Metadata = {
   title: "Frontend & DevOps Projects Case Studies",
   description:
-    "React, Next.js, TypeScript, and DevOps case studies by Abolfazl Jamshidi, covering support systems, service portals, SSO, job marketplaces, map platforms, scheduling dashboards, Docker builds, and GitLab CI workflows.",
+    "React, Next.js, React Native, TypeScript, and DevOps case studies by Abolfazl Jamshidi, covering support systems, mobile apps, service portals, SSO, job marketplaces, map platforms, scheduling dashboards, Docker builds, and GitLab CI workflows.",
   keywords: [
     "frontend projects",
     "DevOps projects",
     "React case studies",
+    "React Native portfolio",
+    "Expo mobile app",
     "Next.js portfolio",
     "TypeScript projects",
     "DevOps portfolio",
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Frontend & DevOps Projects Case Studies | Abolfazl Jamshidi",
     description:
-      "Production frontend and DevOps work across portals, platforms, authentication, marketplaces, internal tooling, Docker, and GitLab CI workflows.",
+      "Production frontend, mobile, and DevOps work across portals, platforms, authentication, marketplaces, internal tooling, Docker, and GitLab CI workflows.",
     url: "/projects",
     type: "website",
   },
@@ -38,7 +40,7 @@ export default function WorkPage() {
       <PageHeader
         page="work"
         title="Frontend and DevOps case studies"
-        intro="Selected React, Next.js, TypeScript, and DevOps production projects: support systems, internal platforms, service portals, SSO flows, marketplace features, map SDKs, scheduling tools, Docker builds, and GitLab CI workflows."
+        intro="Selected React, Next.js, React Native, TypeScript, and DevOps production projects: mobile apps, support systems, internal platforms, service portals, SSO flows, marketplace features, map SDKs, scheduling tools, Docker builds, and GitLab CI workflows."
       />
 
       <WorkGallery />

@@ -20,6 +20,7 @@ export function ProjectDetail({ project }: { project: Project }) {
   const nextIndex = (index + 1) % PROJECTS.length;
   const next = PROJECTS[nextIndex];
   const url = absoluteUrl(`/projects/${project.id}`);
+  const hasGalleryImages = project.gallery.some((item) => item.src);
 
   return (
     <Container className="pt-[clamp(28px,4vw,48px)]">
@@ -178,7 +179,7 @@ export function ProjectDetail({ project }: { project: Project }) {
           title="Gallery"
           right={
             <span className="font-mono text-[10px] uppercase tracking-[1px] text-faint">
-              image placeholders
+              {hasGalleryImages ? "screenshots" : "image placeholders"}
             </span>
           }
         />
@@ -187,7 +188,11 @@ export function ProjectDetail({ project }: { project: Project }) {
             <ImagePlaceholder
               key={item.id}
               label={item.label}
+              src={item.src}
+              alt={item.label}
               aspect={item.aspect ?? (i === 0 ? "16 / 10" : "4 / 3")}
+              fit={item.fit}
+              imageClassName={item.imageClassName}
               className="rounded-[12px]"
             />
           ))}

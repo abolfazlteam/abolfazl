@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { PROJECTS } from "@/data";
 import { cn } from "@/lib/cn";
 
-const FILTERS = ["all", "portal", "platform", "auth", "marketplace"] as const;
+const FILTERS = ["all", "portal", "platform", "auth", "marketplace", "mobile"] as const;
 type Filter = (typeof FILTERS)[number];
 
 /** Filterable card grid for the Work page. */
