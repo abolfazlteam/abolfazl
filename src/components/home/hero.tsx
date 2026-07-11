@@ -41,8 +41,9 @@ export function Hero() {
             <Reveal delay={150}>
               <p className="mt-7 max-w-[500px] font-sans text-[17px] leading-[1.6] text-dim">
                 I&apos;m <span className="font-semibold text-text">Abolfazl Jamshidi</span>, a
-                front-end and DevOps engineer in Tehran building production dashboards, portals,
-                authentication flows, frontend architecture, Docker builds, and GitLab CI workflows.
+                React, Next.js, TypeScript, and DevOps engineer building production dashboards,
+                portals, authentication flows, frontend architecture, Docker builds, and GitLab CI
+                workflows.
               </p>
             </Reveal>
             <Reveal delay={220}>
