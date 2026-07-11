@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 
+import { AnimatedNumber } from "@/components/ui/animated-number";
 import { Icon } from "@/components/ui/icon";
 import { getCommentsFor } from "@/data";
 import { cn } from "@/lib/cn";
@@ -184,7 +185,19 @@ export function Comments({ contentId }: { contentId: string }) {
         <h2 className="font-display text-[clamp(22px,3vw,28px)] font-bold tracking-[-0.6px] text-text">
           Comments
         </h2>
-        <span className="font-mono text-xs text-accent">({list.length})</span>
+        <span className="font-mono text-xs text-accent">
+          {isLoading ? (
+            <span className="inline-flex items-center gap-1.5" aria-label="Loading comments count">
+              (
+              <span className="h-3 w-5 animate-pulse rounded-full bg-accent/30" />
+              )
+            </span>
+          ) : (
+            <>
+              (<AnimatedNumber value={list.length} />)
+            </>
+          )}
+        </span>
         <span className="h-px flex-1 bg-line" />
       </div>
 
@@ -257,7 +270,8 @@ export function Comments({ contentId }: { contentId: string }) {
                     liked ? "text-accent" : "text-faint",
                   )}
                 >
-                  <Icon name="heart" size={13} fill={liked ? "currentColor" : "none"} /> {likes}
+                  <Icon name="heart" size={13} fill={liked ? "currentColor" : "none"} />{" "}
+                  <AnimatedNumber value={likes} />
                 </button>
               </div>
             </article>

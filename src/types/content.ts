@@ -43,7 +43,11 @@ export interface ProjectGalleryItem {
   id: string;
   /** Placeholder caption shown until a screenshot is added. */
   label: string;
+  /** Optional public image path for real screenshots or design captures. */
+  src?: string;
   aspect?: string;
+  fit?: "cover" | "contain";
+  imageClassName?: string;
 }
 
 export interface Project {
