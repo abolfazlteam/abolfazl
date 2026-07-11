@@ -2,7 +2,7 @@
 
 import { useClock } from "@/hooks/use-clock";
 
-/** The live, ticking clock. Shows just "Tehran" until it starts on the client. */
+/** The live, ticking clock. Shows the working timezone once hydrated. */
 export function LiveClock() {
   const clock = useClock(3.5);
   return (
@@ -11,10 +11,10 @@ export function LiveClock() {
       {clock ? (
         <>
           {clock.hh}:{clock.mm}
-          <span className="text-faint">:{clock.ss}</span> Tehran
+          <span className="text-faint">:{clock.ss}</span> UTC+3:30
         </>
       ) : (
-        "Tehran"
+        "UTC+3:30"
       )}
     </span>
   );

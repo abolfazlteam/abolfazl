@@ -1,13 +1,13 @@
 import { LiveClock } from "@/components/widgets/live-clock";
 
 const STATUS_ROWS: [label: string, value: string][] = [
-  ["Open to", "remote React, Next.js, and DevOps Engineer roles"],
-  ["Building", "dashboards, portals, SSO flows, and case studies"],
-  ["DevOps", "Docker, GitLab CI, Linux, and Kubernetes"],
+  ["Open to", "remote React, Next.js, and DevOps engineering roles"],
+  ["Building", "production dashboards, portals, SSO flows, and platform case studies"],
+  ["DevOps", "Docker · GitLab CI · Linux · Kubernetes"],
   ["Stack", "React · Next.js · TypeScript · TanStack Query"],
 ];
 
-/** "Right now" panel with a live Tehran clock. Used on the home hero and About. */
+/** "Right now" panel with a live working-timezone clock. Used on the home hero and About. */
 export function StatusPanel() {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-surface">
