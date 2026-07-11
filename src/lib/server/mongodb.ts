@@ -5,8 +5,10 @@ declare global {
 }
 
 function getMongoUri(): string | undefined {
-  if (process.env.MONGODB_URI) {
-    return process.env.MONGODB_URI;
+  const directUri = process.env.MONGODB_URI ?? process.env.MONGODB_URL;
+
+  if (directUri) {
+    return directUri;
   }
 
   const username = process.env.MONGODB_USERNAME;
@@ -33,8 +35,13 @@ export async function getMongoClient(): Promise<MongoClient> {
   }
 
   if (!globalThis.__mongoClientPromise) {
-    const client = new MongoClient(mongoUri);
-    globalThis.__mongoClientPromise = client.connect();
+    const client = new MongoClient(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+    });
+    globalThis.__mongoClientPromise = client.connect().catch((error) => {
+      globalThis.__mongoClientPromise = undefined;
+      throw error;
+    });
   }
 
   return globalThis.__mongoClientPromise;
