@@ -40,6 +40,7 @@ export function AboutIntro() {
             src={PERSON.portrait}
             alt="Portrait of Abolfazl Jamshidi"
             className="rounded-[14px]"
+            loading="eager"
             sizes="(min-width: 880px) 420px, calc(100vw - 40px)"
           />
           <StatusPanel />

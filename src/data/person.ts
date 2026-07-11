@@ -13,4 +13,5 @@ export const PERSON: Person = {
   medium: "https://medium.com/@abolfazlcodes",
   linkedin: "https://www.linkedin.com/in/abolfazl-jamshidi/",
   location: "Tehran, Iran · Available remote · UTC+3:30",
+  portrait: "/images/me.png",
 };

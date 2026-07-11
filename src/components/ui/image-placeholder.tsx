@@ -11,6 +11,8 @@ interface ImagePlaceholderProps {
   src?: string;
   alt?: string;
   sizes?: string;
+  loading?: "lazy" | "eager";
+  quality?: 75 | 100;
   fit?: "cover" | "contain";
   className?: string;
   imageClassName?: string;
@@ -26,6 +28,8 @@ export function ImagePlaceholder({
   src,
   alt,
   sizes = "(min-width: 880px) 420px, calc(100vw - 40px)",
+  loading = "lazy",
+  quality = 100,
   fit = "cover",
   className,
   imageClassName,
@@ -44,7 +48,8 @@ export function ImagePlaceholder({
           alt={alt ?? label}
           fill
           sizes={sizes}
-          loading="eager"
+          loading={loading}
+          quality={quality}
           className={cn(
             fit === "cover" ? "object-cover" : "object-contain",
             imageClassName,
