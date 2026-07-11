@@ -139,15 +139,17 @@ export interface Comment {
 /** Seed comments keyed by the content id they belong to (project or post). */
 export type CommentsByContentId = Record<string, Comment[]>;
 
-export type ActivityKind = "push" | "deploy" | "pr" | "star";
+export type ActivityKind = "repo" | "solo" | "case";
 
 export interface Activity {
   kind: ActivityKind;
   repo: string;
   msg: string;
-  when: string;
-  /** Language/badge hint, e.g. "ts", "ok", "—". */
-  lang: string;
+  /** Stable proof point shown on the right side of the ticker. */
+  evidence: string;
+  /** Where the proof point came from, e.g. private repo analysis. */
+  source: string;
+  verifiedAt: string;
 }
 
 export interface NavLink {
