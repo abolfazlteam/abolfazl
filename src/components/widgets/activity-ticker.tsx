@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 
 const ROW_HEIGHT = 22;
 
-/** Vertically rotating project signal feed. */
+/** Vertically rotating project evidence feed. */
 export function ActivityTicker() {
   const [index, setIndex] = useState(0);
 
@@ -23,7 +23,7 @@ export function ActivityTicker() {
     <div className="overflow-hidden rounded-xl border border-border bg-surface">
       <div className="flex items-center gap-4 px-5 py-4">
         <span className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[2px] text-dim">
-          ● Project log
+          ● Project evidence
         </span>
         <div className="h-[22px] flex-1 overflow-hidden">
           <div
@@ -34,11 +34,12 @@ export function ActivityTicker() {
               <div
                 key={idx}
                 className="flex h-[22px] items-center gap-2.5 overflow-hidden whitespace-nowrap font-mono text-[12.5px] text-text"
+                title={`${item.source} · verified ${item.verifiedAt}`}
               >
                 <span
                   className={cn(
                     "rounded-[3px] px-[7px] py-0.5 text-[9px] uppercase tracking-[1px]",
-                    item.kind === "deploy"
+                    item.kind === "solo"
                       ? "bg-accent text-accent-ink"
                       : "border border-border bg-bg-soft text-dim",
                   )}
@@ -52,7 +53,7 @@ export function ActivityTicker() {
           </div>
         </div>
         <span className="whitespace-nowrap font-mono text-[11px] text-faint">
-          {ACTIVITY[index].when}
+          {ACTIVITY[index].evidence}
         </span>
       </div>
     </div>
